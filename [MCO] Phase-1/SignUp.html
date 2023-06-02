@@ -2,9 +2,9 @@
 
 <html>
     <head>
-        <title> Arrow Express - Sign Up  </title> 
-        <link rel="icon" type="image/png" href="Images/DLSU_Logo.png">
+        <link rel="icon" type="image/png" href="DLSU_Logo.png">
         <link rel="stylesheet" href="CSS/FormStyle.css">  <!-- Kailangan to if may separate CSS file -->
+        <script src="JS/User.js"> </script>
     </head>
 
     <body>
@@ -20,14 +20,14 @@
                 <h4> It's quick and easy </h4>
                 <hr>
                 <div class="input">
-                    <form>
+                    <form action="Login.html">
                         <div class="input_name">  
-                            <div> <input type="text" placeholder="First Name" class="fillup name"> </div>    
-                            <div> <input type="text" placeholder="Last Name" class="fillup name"> </div>    
+                            <div> <input type="text" placeholder="First Name" class="fillup name" name="user_firstName" id="user_firstName"> </div>    
+                            <div> <input type="text" placeholder="Last Name" class="fillup name" name="user_lastName" id="user_lastName"> </div>    
                         </div>
-                        <input type="password" placeholder="Password" class="fillup">
-                        <input type="password" placeholder="Confirm Password" class="fillup">
-                        <input type="email" placeholder="E-mail" class="fillup">
+                        <input type="email" placeholder="E-mail" class="fillup" name="user_email" id="user_email">
+                        <input type="password" placeholder="Password" class="fillup" name="user_password" id="user_password">
+                        <button type="submit" class="toggle_btn" onclick="create_User(document.getElementById('user_firstName'), document.getElementById('user_lastName'), document.getElementById('user_email'), document.getElementById('user_password'))"> Sign Up <style> .toggle_btn{ font-size: large; font-weight: bold;}</style></button>
                     </form>
                 </div>
 
@@ -35,7 +35,6 @@
                 <br>
                 <p> By clicking Sign Up, you agree to our Terms, Privacy Policy and Cookies Policy. </p>
 
-                <button type="button" class="toggle_btn"> Sign Up <style> .toggle_btn{ font-size: large; font-weight: bold;}</style></button>
                 <div class="subtext">
                     <a href="Login.html"> Login </a>
                 </div>
@@ -43,6 +42,26 @@
 
         </div>
     </body>
+    
+    <style>
+        .input{
+            top: 25px;
+        }
+
+        .form_box p{
+            top: -35px;
+        }
+
+        .toggle_btn{
+            top: 70px;
+        }
+
+        .subtext a{
+            position: relative;
+            top: 25px;
+        }
+
+    </style>
 
 
 </html>

@@ -1,24 +1,27 @@
-function user_storage(first_name, last_name, email, password){
-    this.email = email;
-    this.password = password;
-    this.first_name = first_name;
-    this.last_name = last_name;
-
-    this.getEmail = function(){
-        return this.email;
+class user_storage {
+    constructor(firstName, lastName, email, password) {
+      this.firstName = firstName;
+      this.lastName = lastName;
+      this.email = email;
+      this.password = password;
     }
 
-    this.getPassword = function(){
-        return this.password;
+    getEmail() {
+      return this.email;
     }
 
-    this.getFirstName = function(){
-        return this.first_name;
+    getPassword() {
+      return this.password;
     }
 
-    this.getLastName = function(){
-        return this.last_name;
+    getFirstName() {
+      return this.firstName;
     }
+
+    getLastName() {
+      return this.lastName;
+    }
+
 }
 
 var user0 = new user_storage("admin", "admin", "admin@gmail.com", "admin");
@@ -37,16 +40,15 @@ function hideErrorBox(){
 }
 
 function validate_User() {
-
     var email = document.getElementById('user_email').value;
     var password = document.getElementById('user_password').value;
-  
+
     var isValidUser = false;
   
     for (var i = 0; i < valid_user.length; i++) {
-      if (email == valid_user[i].getEmail() && password == valid_user[i].getPassword()) {
+      if (email === valid_user[i].getEmail() && password === valid_user[i].getPassword()) {
         isValidUser = true;
-        break; // Exit the loop since a match is found
+        break;
       }
     }
   
@@ -57,4 +59,14 @@ function validate_User() {
       return false;
     }
 
-  }
+}
+
+function create_User(user_firstName, user_lastName, user_email, user_password){
+
+    var newUser = new user_storage(user_firstName.value, user_lastName.value, user_email.value, user_password.value);
+    valid_user.push(newUser);
+
+    alert("User has been created!");
+    alert(user_firstName.value + " " + user_lastName.value + " " + user_email.value + " " + user_password.value);
+
+}
