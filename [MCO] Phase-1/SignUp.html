@@ -22,11 +22,29 @@
                 <div class="input">
                     <form action="Login.html">
                         <div class="input_name">  
-                            <div> <input type="text" placeholder="First Name" class="fillup name" name="user_firstName" id="user_firstName"> </div>    
-                            <div> <input type="text" placeholder="Last Name" class="fillup name" name="user_lastName" id="user_lastName"> </div>    
+                            <div> <input type="text" placeholder="First Name" class="fillup name" required name="user_firstName" id="user_firstName"> </div>    
+                            <div> <input type="text" placeholder="Last Name" class="fillup name" required name="user_lastName" id="user_lastName"> </div>    
                         </div>
-                        <input type="email" placeholder="E-mail" class="fillup" name="user_email" id="user_email">
-                        <input type="password" placeholder="Password" class="fillup" name="user_password" id="user_password">
+                        <input type="email" placeholder="E-mail" class="fillup" required name="user_email" id="user_email">
+                        <input type="password" placeholder="Password" class="fillup" required name="user_password" id="user_password">
+
+                        <select name="user_designation" id="user_designation" class="fillup" style="width: 320px;" required >
+                            <option value="" disabled selected hidden s> Designation </option>
+                            <option value="Student"> Student </option>
+                            <option value="Guest"> Guest </option>
+                            <option value="Faculty"> Faculty </option>
+                            <option value="ESP"> ESP </option>
+                            <option value="CAP"> CAP </option>
+                            <option value="ASF"> ASF </option>
+                            <option value="APSP"> APSP </option>
+                        </select>
+
+                        <select name="user_passengerType" id="user_passengerType" class="fillup" style="width: 320px;" required >
+                            <option value="" disabled selected hidden s> Type of Passenger </option>
+                            <option value="Student"> Student </option>
+                            <option value="Employee"> Employee </option>
+                        </select>
+
                         <button type="submit" class="toggle_btn" onclick="create_User(document.getElementById('user_firstName'), document.getElementById('user_lastName'), document.getElementById('user_email'), document.getElementById('user_password'))"> Sign Up <style> .toggle_btn{ font-size: large; font-weight: bold;}</style></button>
                     </form>
                 </div>

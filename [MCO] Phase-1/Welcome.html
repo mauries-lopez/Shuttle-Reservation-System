@@ -8,27 +8,39 @@
     </head>
 
     <body>
-        <div class = "banner"> 
+        <div class = "banner" id="top"> 
             <div class="navbar">
-                <img src= "Images/DLSU_Logo.png" class = "website_logo">
+                <a href="#top"> <img src= "Images/DLSU_Logo.png" class = "website_logo"> </a>
+                <p style="position: absolute; color:white; left: 165px; font-weight: bolder; font-size: 25px;"> De La Salle University </p>
                 <ul>
-                    <li><a href="AboutUs.html"> About </a></li>
-                    <li><a href="#"> Schedules </a></li>
-                    <li><a href="#"> Staff </a></li>
+                    <li><a href="#schedules"> Schedules </a></li>
+                    <li><a href="#staff"> Staff </a></li>
                     <li><a href="Login.html"> Login </a></li>
                 </ul>
             </div>
 
-            <div class = "content">
+            <div class = "content" id = "content">
                 <h3> Welcome to </h3>
                 <h1> Arrow Express </h1>
                 <p> Simplify your shuttle booking and secure your seat effortlessly with our user-friendly platform. <br> 
                     Experience the convenience of booking shuttles with just a few clicks and enjoy a stress-free journey to your destination. </p>
                 <div>
                     <button type="button" onclick="window.location.href='SignUp.html'"> <span></span> Get Started </button>
-                    <button type="button" onclick="window.location.href='AboutUs.html'"> <span></span> About Us </button> <!-- onclick is to open a new html file within the window -->
+                    <a href="#about"> <button type="button"> <span></span> About Us </button> </a>  <!-- onclick is to open a new html file within the window -->
                 </div>
             </div>
+        </div>
+
+        <div id = "about">
+            
+        </div>
+
+        <div id = "schedules">
+            
+        </div>
+
+        <div id = "staff">
+            
         </div>
 
         <div class = "footer">

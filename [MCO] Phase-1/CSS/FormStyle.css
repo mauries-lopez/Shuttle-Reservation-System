@@ -84,7 +84,7 @@
 
 .form_box{
     width: 380px;
-    height: 450px;
+    height: 530px;
     top: 10%;
     margin: auto;
     background: rgba(0, 0, 0, 0.8);
@@ -109,7 +109,7 @@
 
 .form_box .input{
     position: relative;
-    margin-top: 11%;
+    margin-top: 8%;
 }
 
 .form_box p{
