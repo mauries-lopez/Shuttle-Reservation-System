@@ -31,42 +31,63 @@
                             <button type="button" class="switch" onclick="rightClick();"> Manila </button> 
                         </div>
 
+                        <input type="date" placeholder="Date" class="fillup" required name="user_date" id="user_date" >
+
                         <div class="entry">
-                            <select name="user_entry" id="user_entry" class="fillup" style="width: 175px; margin: 10px;" required >
+                            <img src="Images/Help.png" style="width: 25px; height: 25px; position: relative; filter:invert(1); top: 15px; left:10px; cursor: help;" title="From home, location going to be picked up.">
+                            <select name="user_entry" id="user_entry" class="fillup" style="width: 200px; margin: 10px; position: relative; left: 5px; ">
                                 <option value="" disabled selected hidden s> Entry Location </option>
-                                <option value="Student"> Student </option>
-                                <option value="Guest"> Guest </option>
-                                <option value="Faculty"> Faculty </option>
-                                <option value="ESP"> ESP </option>
-                                <option value="CAP"> CAP </option>
-                                <option value="ASF"> ASF </option>
-                                <option value="APSP"> APSP </option>
+                                <option value="0"> Laguna </option>
+                                <option value="1"> Paseo </option>
+                                <option value="2"> Carmona </option>
+                                <option value="3"> Pavilion </option>
+                                <option value="4"> N/A </option>
                             </select>
-                            <input type="time" placeHolder="Time" class="fillup" style="width: 200px;" name="user_entrytime" id="user_entrytime" list="time_slots">
-                            <datalist id="time_slots">
-                                <option value = "07:00">
-                            </datalist>
+                            <select name="user_entryTime" id="user_entryTime" class="fillup" style="width: 120px; ">
+                                <option value="" disabled selected hidden s> Time Slot </option>
+                                <option value="0"> 06:00 AM </option>
+                                <option value="1"> 07:30 AM </option>
+                                <option value="2"> 09:30 AM </option>
+                                <option value="3"> 11:00 AM </option>
+                                <option value="4"> 01:00 PM </option>
+                                <option value="5"> 02:30 PM </option>
+                                <option value="6"> 03:30 PM </option>
+                                <option value="7"> 05:10 PM </option>
+                                <option value="8"> 06:15 PM </option>
+                                <option value="9"> 05:10 PM </option>
+                                <option value="10"> 07:45 PM </option>
+                                <option value="11"> N/A </option>
+                            </select>
                         </div>
 
                         <div class="exit"> </style>
-                            <select name="user_exit" id="user_exit" class="fillup" style="width: 175px; margin: 10px;" required >
+                            <img src="Images/Help.png" style="width: 25px; height: 25px; position: relative; filter:invert(1); top: 15px; left:10px; cursor: help;" title="From De La Salle University, location going to be dropped-off.">
+                            <select name="user_exit" id="user_exit" class="fillup" style="width: 200px; margin: 10px; position: relative; left: 5px;">
                                 <option value="" disabled selected hidden s> Exit Location </option>
-                                <option value="Student"> Student </option>
-                                <option value="Guest"> Guest </option>
-                                <option value="Faculty"> Faculty </option>
-                                <option value="ESP"> ESP </option>
-                                <option value="CAP"> CAP </option>
-                                <option value="ASF"> ASF </option>
-                                <option value="APSP"> APSP </option>
+                                <option value="0"> Manila </option>
+                                <option value="1"> Paseo </option>
+                                <option value="2"> Carmona </option>
+                                <option value="3"> Pavilion Mall </option>
+                                <option value="4"> Walter Mart </option>
+                                <option value="5"> N/A </option>
                             </select>
-                            <input type="time" placeHolder="Time" class="fillup" style="width: 200px;" name="user_exittime" id="user_exittime" list="time_slots">
-                            <datalist id="time_slots">
-                                <option value = "07:00">
-                            </datalist>
+                            <select name="user_exitTime" id="user_exitTime" class="fillup" style="width: 120px;">
+                                <option value="" disabled selected hidden s> Time Slot </option>
+                                <option value="0"> 06:00 AM </option>
+                                <option value="1"> 07:30 AM </option>
+                                <option value="2"> 09:30 AM </option>
+                                <option value="3"> 11:00 AM </option>
+                                <option value="4"> 01:00 PM </option>
+                                <option value="5"> 02:30 PM </option>
+                                <option value="6"> 03:30 PM </option>
+                                <option value="7"> 05:10 PM </option>
+                                <option value="8"> 06:15 PM </option>
+                                <option value="9"> 05:10 PM </option>
+                                <option value="10"> 07:45 PM </option>
+                                <option value="11"> N/A </option>
+                            </select>
                         </div>
-                        
-                        <input type="date" placeholder="Date" class="fillup" required name="user_date" id="user_date" >
-                        
+
                         <button type="submit" class="toggle_btn" onclick="create_User(document.getElementById('user_firstName'), document.getElementById('user_lastName'), document.getElementById('user_email'), document.getElementById('user_password'))"> Reserve <style> .toggle_btn{ font-size: large; font-weight: bold;}</style></button>
                     </form>
                     

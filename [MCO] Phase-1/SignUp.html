@@ -28,7 +28,7 @@
                         </div>
                         <input type="email" placeholder="E-mail" class="fillup" required name="user_email" id="user_email">
                         <input type="password" placeholder="Password" class="fillup" required name="user_password" id="user_password">
-
+                        
                         <select name="user_designation" id="user_designation" class="fillup" style="width: 320px;" required >
                             <option value="" disabled selected hidden s> Designation </option>
                             <option value="Student"> Student </option>
@@ -46,7 +46,7 @@
                             <option value="Employee"> Employee </option>
                         </select>
 
-                        <button type="submit" class="toggle_btn" onclick="create_User(document.getElementById('user_firstName'), document.getElementById('user_lastName'), document.getElementById('user_email'), document.getElementById('user_password'), document.getElementById('user_designation'), document.getElementById('user_passengerType'))"> Sign Up <style> .toggle_btn{ font-size: large; font-weight: bold;}</style></button>
+                        <button type="submit" class="toggle_btn" onclick="create_User()"> Sign Up <style> .toggle_btn{ font-size: large; font-weight: bold;}</style></button>
                     </form>
                 </div>
 

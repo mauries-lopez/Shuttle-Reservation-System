@@ -3,12 +3,8 @@
 }
 
 .form_box {
-    height: 405px;
+    height: 390px;
     top: 100px;
-}
-
-#user_date{
-    top: 10px;
 }
 
 .toggle_btn{
@@ -53,7 +49,7 @@
 
 #user_date{
     position: relative;
-    top: -55px;
+    top: -25px;
 }
 
 .content{
@@ -85,4 +81,5 @@
     margin-left: 20px; 
     top: -45px;
 }
+
 
