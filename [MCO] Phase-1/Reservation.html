@@ -5,82 +5,85 @@
         <title> Arrow Express - Reserve </title>
         <link rel="icon" type="image/png" href="Images/DLSU_Logo.png">
         <link rel="stylesheet" href="CSS/FormStyle.css">  <!-- Kailangan to if may separate CSS file -->
+        <link rel="stylesheet" href="CSS/ReservationStyle.css">
         <script src="JS/User.js"> </script>
+        <script src="JS/Reservation.js"> </script>
     </head>
 
     <body>
+        
         <div class = "banner"> 
 
             <div class="navbar">
                 <a href="Welcome.html"><img src="Images/Leftarrow.png" class = "back_img"></a>
                 <a> <img src= "Images/DLSU_Logo.png" class = "website_logo"> </a> 
             </div>
-            
+        
             <div class="form_box">
                 <h2> Reserve Now </h2>
                 <h4> Just one-click away </h4>
                 <hr>
                 <div class="input">
                     <form action="Login.html">
-                        <div class="input_name">  
-                            <div> <input type="text" placeholder="First Name" class="fillup name" required name="user_firstName" id="user_firstName"> </div>    
-                            <div> <input type="text" placeholder="Last Name" class="fillup name" required name="user_lastName" id="user_lastName"> </div>    
+                        <div class="button_box">
+                            <div id="btn"></div>
+                            <button type="button" class="switch" onclick="leftClick();"> Laguna </button>
+                            <button type="button" class="switch" onclick="rightClick();"> Manila </button> 
                         </div>
-                        <input type="email" placeholder="E-mail" class="fillup" required name="user_email" id="user_email">
-                        <input type="password" placeholder="Password" class="fillup" required name="user_password" id="user_password">
 
-                        <select name="user_designation" id="user_designation" class="fillup" style="width: 320px;" required >
-                            <option value="" disabled selected hidden s> Designation </option>
-                            <option value="Student"> Student </option>
-                            <option value="Guest"> Guest </option>
-                            <option value="Faculty"> Faculty </option>
-                            <option value="ESP"> ESP </option>
-                            <option value="CAP"> CAP </option>
-                            <option value="ASF"> ASF </option>
-                            <option value="APSP"> APSP </option>
-                        </select>
+                        <div class="entry">
+                            <select name="user_entry" id="user_entry" class="fillup" style="width: 175px; margin: 10px;" required >
+                                <option value="" disabled selected hidden s> Entry Location </option>
+                                <option value="Student"> Student </option>
+                                <option value="Guest"> Guest </option>
+                                <option value="Faculty"> Faculty </option>
+                                <option value="ESP"> ESP </option>
+                                <option value="CAP"> CAP </option>
+                                <option value="ASF"> ASF </option>
+                                <option value="APSP"> APSP </option>
+                            </select>
+                            <input type="time" placeHolder="Time" class="fillup" style="width: 200px;" name="user_entrytime" id="user_entrytime" list="time_slots">
+                            <datalist id="time_slots">
+                                <option value = "07:00">
+                            </datalist>
+                        </div>
 
-                        <select name="user_passengerType" id="user_passengerType" class="fillup" style="width: 320px;" required >
-                            <option value="" disabled selected hidden s> Type of Passenger </option>
-                            <option value="Student"> Student </option>
-                            <option value="Employee"> Employee </option>
-                        </select>
-
-                        <button type="submit" class="toggle_btn" onclick="create_User(document.getElementById('user_firstName'), document.getElementById('user_lastName'), document.getElementById('user_email'), document.getElementById('user_password'))"> Sign Up <style> .toggle_btn{ font-size: large; font-weight: bold;}</style></button>
+                        <div class="exit"> </style>
+                            <select name="user_exit" id="user_exit" class="fillup" style="width: 175px; margin: 10px;" required >
+                                <option value="" disabled selected hidden s> Exit Location </option>
+                                <option value="Student"> Student </option>
+                                <option value="Guest"> Guest </option>
+                                <option value="Faculty"> Faculty </option>
+                                <option value="ESP"> ESP </option>
+                                <option value="CAP"> CAP </option>
+                                <option value="ASF"> ASF </option>
+                                <option value="APSP"> APSP </option>
+                            </select>
+                            <input type="time" placeHolder="Time" class="fillup" style="width: 200px;" name="user_exittime" id="user_exittime" list="time_slots">
+                            <datalist id="time_slots">
+                                <option value = "07:00">
+                            </datalist>
+                        </div>
+                        
+                        <input type="date" placeholder="Date" class="fillup" required name="user_date" id="user_date" >
+                        
+                        <button type="submit" class="toggle_btn" onclick="create_User(document.getElementById('user_firstName'), document.getElementById('user_lastName'), document.getElementById('user_email'), document.getElementById('user_password'))"> Reserve <style> .toggle_btn{ font-size: large; font-weight: bold;}</style></button>
                     </form>
+                    
                 </div>
-
-                <p> People who use our service may have uploaded your contact information to De La Salle University - Laguna. </p>
-                <br>
-                <p> By clicking Sign Up, you agree to our Terms, Privacy Policy and Cookies Policy. </p>
 
                 <div class="subtext">
-                    <a href="Login.html"> Login </a>
+                    <a href="#"> How to use? </a>
                 </div>
+
             </div>
+
+            <div class="calendar">
+
+            </div>
+            
 
         </div>
     </body>
-    
-    <style>
-        .input{
-            top: 25px;
-        }
-
-        .form_box p{
-            top: -35px;
-        }
-
-        .toggle_btn{
-            top: 70px;
-        }
-
-        .subtext a{
-            position: relative;
-            top: 25px;
-        }
-
-    </style>
-
 
 </html>

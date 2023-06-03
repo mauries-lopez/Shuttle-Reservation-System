@@ -1,9 +1,11 @@
 class user_storage {
-    constructor(firstName, lastName, email, password) {
+    constructor(firstName, lastName, email, password, designation, passengerType) {
       this.firstName = firstName;
       this.lastName = lastName;
       this.email = email;
       this.password = password;
+      this.designation = designation;
+      this.passengerType = passengerType;
     }
 
     getEmail() {
@@ -22,12 +24,20 @@ class user_storage {
       return this.lastName;
     }
 
+    getDesignation(){
+      return this.designation;
+    }
+
+    getPassengerType(){
+      return this.passengerType;
+    }
+
 }
 
-var user0 = new user_storage("admin", "admin", "admin@gmail.com", "admin");
-var user1 = new user_storage("maui", "lopez", "maui@gmail.com", "maui");
-var user2 = new user_storage("benmar", "ramirez", "benmar@gmail.com", "benmar");
-var user3 = new user_storage("nathan", "asnan", "asnan@gmail.com", "asnan");
+var user0 = new user_storage("admin", "admin", "admin@gmail.com", "admin", "student", "student");
+var user1 = new user_storage("maui", "lopez", "maui@gmail.com", "maui", "student", "student");
+var user2 = new user_storage("benmar", "ramirez", "benmar@gmail.com", "benmar", "student", "student");
+var user3 = new user_storage("nathan", "asnan", "asnan@gmail.com", "asnan", "student", "student");
 var valid_user = new Array(user0, user1, user2, user3);
 
 function showErrorBox(){

@@ -1,0 +1,88 @@
+.input{
+    top: 20px;
+}
+
+.form_box {
+    height: 405px;
+    top: 100px;
+}
+
+#user_date{
+    top: 10px;
+}
+
+.toggle_btn{
+    top: -50px;
+}
+
+.subtext a{
+    position: relative;
+    top: -35px;
+}
+
+.button_box{
+    width: 320px;
+    margin: 35px auto;
+    position: relative;
+    background: #fff;
+    border-radius: 30px;
+}
+
+.button_box button{
+    padding: 10px 55px;
+    position: relative;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+    color: black;
+}
+
+#btn{
+    left: 0;
+    top: 0;
+    position: absolute;
+    width: 160px;
+    height: 100%;
+    background: rgb(0, 119, 30);
+    border-radius: 30px;
+    margin: 0px;
+    transition: 0.7s;
+}
+
+#user_date{
+    position: relative;
+    top: -55px;
+}
+
+.content{
+    background: white;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.calendar{
+    background: rgba(255, 0, 0, 0);
+    width: 300px;
+    height: 300px;
+    position: relative;
+}
+
+.entry{
+    position: relative; 
+    display: flex; 
+    width: 330px; 
+    margin-left: 20px; 
+    top: -35px;
+}
+
+.exit{
+    position: relative; 
+    display: flex;
+    width: 330px; 
+    margin-left: 20px; 
+    top: -45px;
+}
+
