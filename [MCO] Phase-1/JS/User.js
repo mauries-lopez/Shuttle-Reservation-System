@@ -101,7 +101,6 @@ function create_User(){
     localStorage.setItem('designation', tempDesignation);
     localStorage.setItem('passengerType', tempPassengerType);
     
-
     localStorage.removeItem('firstName');
     localStorage.removeItem('lastName');
     localStorage.removeItem('email');
@@ -109,6 +108,8 @@ function create_User(){
     localStorage.removeItem('designation');
     localStorage.removeItem('passengerType');
     */
+    
+    alert('User Created! Directing to Login Page...');
 
     var newUser = new user_storage(tempFirstName, tempLastName, tempEmail, tempPassword, tempDesignation, tempPassengerType);
 
