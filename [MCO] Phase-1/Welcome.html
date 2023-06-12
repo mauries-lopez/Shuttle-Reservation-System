@@ -40,7 +40,81 @@
             
         </div>
 
-        <div id = "staff">
+        <div id="staff" style="display: flex;">
+            <style>
+                #staff .unit{
+                    display: flex;
+                    flex-wrap: wrap;
+                    flex-direction: vertical;
+                    background-color: white;
+                    border-style: solid;
+                    border-color: gray;
+                    border-radius: 8px;
+                    border-width: 3px;
+                    margin: 50px;
+                    width: 20%;
+                    height: 30%;
+                    box-shadow: 4px 4px lightgreen; //this is just a funny shadow, omit if you want
+                }
+                #staff .unit name{
+                    font-size: 24px;
+                    font-weight: 500;
+                    text-align:center;
+                    margin: 10px auto 10px auto; //This centers the thing
+                    padding: 0px 10px 0px 10px;
+                }
+                #staff .unit photo{
+                    margin: 10px 3% 10px 3%;
+                    width: 95%;
+                    border: 3px solid gray;
+                    border-radius: 8px;
+                    padding: 0px 10px 0px 10px;
+                }
+                #staff .unit description{
+                    text-align: center;
+                    margin: 10px auto 10px auto; 
+                    padding: 0px 10px 0px 10px;
+                }
+            </style>
+            <!--
+                Template for staff profiles:
+                    <div .unit>
+                        <name> Name </name>
+
+                        <photo> Insert your img src here </photo>
+
+                        <description>
+                            Staff role <br>
+                            <a href = "mailto: email address?subject = Reservation&body = Message">
+                            email
+                            </a>
+                        </description>
+                    </div>
+
+                The mailto: tag is still untested because I don't have an email client installed on my pc
+            -->
+            <div class="unit">
+                <name>
+                    John Magsaysay
+                </name>
+                <photo>
+                    Test
+                </photo>
+                <description>
+                    Staff position <br>
+                    <a href="mailto: john_email@_email_?subject = Reservation Concerns&amp;body = Message"> john.magsaysay@gmail.com</a>
+                    <br> DO NOT CLICK THIS LINK
+                    <br> Check HTML for template
+                </description>
+            </div>
+
+            <div class="unit">
+                <name>
+                    May Flores
+                </name>
+                <photo> Test </photo>
+                <description> I am staff. <br> Reach me at blank email address. </description>
+            </div>
             
         </div>
 
