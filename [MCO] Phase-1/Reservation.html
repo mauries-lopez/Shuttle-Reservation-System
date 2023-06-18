@@ -19,91 +19,127 @@
                 <a onclick="history.back()"><img src="Images/Leftarrow.png" class = "back_img"></a>
                 <a> <img src= "Images/DLSU_Logo.png" class = "website_logo"> </a> 
             </div>
-        
-            <div class="form_box">
-                <h2> Reserve Now </h2>
-                <h4> Just one-click away </h4>
-                <hr>
-                <div class="input">
-                    <form action="Login.html">
-                        <div class="button_box">
-                            <div id="btn"></div>
-                            <button type="button" class="switch" onclick="leftClick();"> Laguna </button>
-                            <button type="button" class="switch" onclick="rightClick();"> Manila </button> 
-                        </div>
+            
+            <div class="content">
 
-                        <input type="date" placeholder="Date" class="fillup" required name="user_date" id="user_date" >
+                <h1 style="position: relative; color: white; left: 50px; top: 40px;"> Reserve </h1>
+                <p style="position: relative; color: white; left: 50px; margin-top: 40px; font-style: italic;"> View your reserved schedules </p>
+                <button id="reserve_schedule_btn" onclick="showScheduleForm();"> Reserve Schedule </button> 
+                <style> 
+                    #reserve_schedule_btn{
+                        position: absolute; 
+                        left: 85%; 
+                        top: 5%; 
+                        padding: 15px; 
+                        font-weight: bold; 
+                        background: transparent;
+                        border: 5px solid green;
+                        color: white;
+                        cursor: pointer; 
+                        border-radius: 30px; 
+                        transition: 0.5s;
+                    }
 
-                        <div class="entry">
-                            <img src="Images/Help.png" style="width: 25px; height: 25px; position: relative; filter:invert(1); top: 15px; left:10px; cursor: help;" title="From home, location going to be picked up.">
-                            <select name="user_entry" id="user_entry" class="fillup" style="width: 200px; margin: 10px; position: relative; left: 5px; ">
-                                <option value="" disabled selected hidden s> Entry Location </option>
-                                <option value="0"> Laguna </option>
-                                <option value="1"> Paseo </option>
-                                <option value="2"> Carmona </option>
-                                <option value="3"> Pavilion </option>
-                                <option value="4"> N/A </option>
-                            </select>
-                            <select name="user_entryTime" id="user_entryTime" class="fillup" style="width: 120px; ">
-                                <option value="" disabled selected hidden s> Time Slot </option>
-                                <option value="0"> 06:00 AM </option>
-                                <option value="1"> 07:30 AM </option>
-                                <option value="2"> 09:30 AM </option>
-                                <option value="3"> 11:00 AM </option>
-                                <option value="4"> 01:00 PM </option>
-                                <option value="5"> 02:30 PM </option>
-                                <option value="6"> 03:30 PM </option>
-                                <option value="7"> 05:10 PM </option>
-                                <option value="8"> 06:15 PM </option>
-                                <option value="9"> 05:10 PM </option>
-                                <option value="10"> 07:45 PM </option>
-                                <option value="11"> N/A </option>
-                            </select>
-                        </div>
+                    #reserve_schedule_btn:hover{
+                        background: green;
+                        color: black;
+                    } 
 
-                        <div class="exit"> </style>
-                            <img src="Images/Help.png" style="width: 25px; height: 25px; position: relative; filter:invert(1); top: 15px; left:10px; cursor: help;" title="From De La Salle University, location going to be dropped-off.">
-                            <select name="user_exit" id="user_exit" class="fillup" style="width: 200px; margin: 10px; position: relative; left: 5px;">
-                                <option value="" disabled selected hidden s> Exit Location </option>
-                                <option value="0"> Manila </option>
-                                <option value="1"> Paseo </option>
-                                <option value="2"> Carmona </option>
-                                <option value="3"> Pavilion Mall </option>
-                                <option value="4"> Walter Mart </option>
-                                <option value="5"> N/A </option>
-                            </select>
-                            <select name="user_exitTime" id="user_exitTime" class="fillup" style="width: 120px;">
-                                <option value="" disabled selected hidden s> Time Slot </option>
-                                <option value="0"> 06:00 AM </option>
-                                <option value="1"> 07:30 AM </option>
-                                <option value="2"> 09:30 AM </option>
-                                <option value="3"> 11:00 AM </option>
-                                <option value="4"> 01:00 PM </option>
-                                <option value="5"> 02:30 PM </option>
-                                <option value="6"> 03:30 PM </option>
-                                <option value="7"> 05:10 PM </option>
-                                <option value="8"> 06:15 PM </option>
-                                <option value="9"> 05:10 PM </option>
-                                <option value="10"> 07:45 PM </option>
-                                <option value="11"> N/A </option>
-                            </select>
-                        </div>
+                </style>
 
-                        <button type="submit" class="toggle_btn" onclick="create_User(document.getElementById('user_firstName'), document.getElementById('user_lastName'), document.getElementById('user_email'), document.getElementById('user_password'))"> Reserve <style> .toggle_btn{ font-size: large; font-weight: bold;}</style></button>
-                    </form>
+                <hr style="position: relative; margin-top: 30px; border: 2px solid white;">
+
+                <div class = "schedule_container">
                     
                 </div>
+                
 
-                <div class="subtext">
-                    <a href="#"> How to use? </a>
+
+                <!-- Ang idea dito is kapag cinlick ung button na RESERVE SCHEDULE. Lalabas ung class na form_box, after mag submit ng form. Lalabas sa class reserved_schedule ung nireserve na sched -->
+                
+                <div class="form_box">
+                    <div id="blur_box"> </div>
+                    <h2> Reserve Now </h2>
+                    <h4> Just one-click away </h4>
+                    <hr>
+                    <div class="input">
+                        <form action="">
+                            <div class="button_box">
+                                <div id="btn"></div>
+                                <button type="button" class="switch" onclick="leftClick();"> Laguna </button>
+                                <button type="button" class="switch" onclick="rightClick();"> Manila </button> 
+                            </div>
+    
+                            <input type="date" placeholder="Date" class="fillup" required name="user_date" id="user_date" >
+    
+                            <div class="entry">
+                                <img src="Images/Help.png" style="width: 25px; height: 25px; position: relative; filter:invert(1); top: 15px; left:10px; cursor: help;" title="From home, location going to be picked up.">
+                                <select name="user_entry" id="user_entry" class="fillup" style="width: 200px; margin: 10px; position: relative; left: 5px; ">
+                                    <option value="" disabled selected hidden s> Entry Location </option>
+                                    <option value="0"> Laguna </option>
+                                    <option value="1"> Paseo </option>
+                                    <option value="2"> Carmona </option>
+                                    <option value="3"> Pavilion </option>
+                                    <option value="4"> N/A </option>
+                                </select>
+                                <select name="user_entryTime" id="user_entryTime" class="fillup" style="width: 120px; ">
+                                    <option value="" disabled selected hidden s> Time Slot </option>
+                                    <option value="0"> 06:00 AM </option>
+                                    <option value="1"> 07:30 AM </option>
+                                    <option value="2"> 09:30 AM </option>
+                                    <option value="3"> 11:00 AM </option>
+                                    <option value="4"> 01:00 PM </option>
+                                    <option value="5"> 02:30 PM </option>
+                                    <option value="6"> 03:30 PM </option>
+                                    <option value="7"> 05:10 PM </option>
+                                    <option value="8"> 06:15 PM </option>
+                                    <option value="9"> 05:10 PM </option>
+                                    <option value="10"> 07:45 PM </option>
+                                    <option value="11"> N/A </option>
+                                </select>
+                            </div>
+    
+                            <div class="exit"> </style>
+                                <img src="Images/Help.png" style="width: 25px; height: 25px; position: relative; filter:invert(1); top: 15px; left:10px; cursor: help;" title="From De La Salle University, location going to be dropped-off.">
+                                <select name="user_exit" id="user_exit" class="fillup" style="width: 200px; margin: 10px; position: relative; left: 5px;">
+                                    <option value="" disabled selected hidden s> Exit Location </option>
+                                    <option value="0"> Manila </option>
+                                    <option value="1"> Paseo </option>
+                                    <option value="2"> Carmona </option>
+                                    <option value="3"> Pavilion Mall </option>
+                                    <option value="4"> Walter Mart </option>
+                                    <option value="5"> N/A </option>
+                                </select>
+                                <select name="user_exitTime" id="user_exitTime" class="fillup" style="width: 120px;">
+                                    <option value="" disabled selected hidden s> Time Slot </option>
+                                    <option value="0"> 06:00 AM </option>
+                                    <option value="1"> 07:30 AM </option>
+                                    <option value="2"> 09:30 AM </option>
+                                    <option value="3"> 11:00 AM </option>
+                                    <option value="4"> 01:00 PM </option>
+                                    <option value="5"> 02:30 PM </option>
+                                    <option value="6"> 03:30 PM </option>
+                                    <option value="7"> 05:10 PM </option>
+                                    <option value="8"> 06:15 PM </option>
+                                    <option value="9"> 05:10 PM </option>
+                                    <option value="10"> 07:45 PM </option>
+                                    <option value="11"> N/A </option>
+                                </select>
+                            </div>
+    
+                            <button type="submit" class="toggle_btn" id="reserve_btn" onclick="hideScheduleForm();"> Reserve <style> .toggle_btn{ font-size: large; font-weight: bold;}</style></button>
+                        </form>
+                        
+                    </div>
+    
+                    <div class="subtext">
+                        <a href="#"> How to use?</a>
+                        <a onclick="hideScheduleForm();" style="cursor:pointer;">Cancel </a>
+                    </div>
+    
                 </div>
 
             </div>
-
-            <div class="calendar">
-
-            </div>
-            
 
         </div>
     </body>
