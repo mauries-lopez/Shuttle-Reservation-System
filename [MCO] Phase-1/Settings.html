@@ -1,17 +1,90 @@
-<!DOCTYPE html>
-
+<DOCTYPE! html>
 <html>
-
     <head>
         <title> Arrow Express - Settings </title> 
         <link rel="icon" type="image/png" href="Images/DLSU_Logo.png">
-        <link rel="stylesheet" type="text/css" href="CSS/SettingsStyle.css">
+        <link rel="stylesheet" type="text/css" href="SettingsStyle.css">
+
+        <script type="text/javascript">
+            var buttons = document.getElementsByClassName("tab");
+            var panels = document.getElementsByClassName("panel");
+			
+            function showPanel(i){
+                //This just resets all the backgound colour and text colour for all buttons
+				for(const button of buttons){
+					button.style.backgroundColor="";
+					button.style.color="";
+				}
+
+                //Differentiates the colour of the active button
+                buttons[i].style.backgroundColor="white";
+                buttons[i].style.color="black";
+                
+                //Resets display for all panels
+				for(const panel of panels){
+					panel.style.display="none";
+				}
+
+                //displays the chosen panel
+                panels[i].style.display="block";
+            }
+			
+			function submitForm(formName){
+				var form = document.getElementById(formName);
+				form.submit();
+				
+				alert("Form " + formName + " submitted"); 
+			}
+        </script>
+    
+        <style>
+            .panel{
+                float: left;
+                display: none;
+				overflow: scroll;
+				-ms-overflow-style: none;
+				scrollbar-width: none;
+				padding: 4.5%;
+				width: 100%;
+            }
+			.panel::-webkit-scrollbar{
+				display: none;
+			}
+			.panel div div{
+				padding: 20px 0 20px 0;
+			}
+			
+			.panel div div input[type="text"]{
+				height: 50px; 
+				margin-top: 10px; 
+				font-size: 24px; 
+				border-radius: 5px; 
+				padding-left: 5px;
+			}
+			
+			.submitButton{
+				color: white;
+				background-color: rgb(0, 139, 50, 1);
+				border: 3px solid black;
+				border-radius: 10px;
+				padding: 0 10px 0 10px;
+				width: 200px;
+				height: 50px;
+				font-size: 20px;
+			}
+			
+			.submitButton:hover{
+				background-color: rgba(0, 139, 50, 0.9);
+				cursor: pointer;
+			}
+			
+        </style>
     </head>
 
     <body>
         <div class="navbar">
-            <a onclick="history.back()"><img src="Images/Leftarrow.png" class = "back_img"></a>
-            <img src= "Images/DLSU_Logo.png" class = "website_logo" href="#">   
+            <a onclick="history.back()"><img src="Images/Leftarrow.png" class="back_img"></a>
+            <img src="Images/DLSU_Logo.png" class="website_logo" href="#">   
         </div>
 
         <div class="content">
@@ -21,29 +94,114 @@
                 <hr style="position: relative; margin-top: 25px; border: 2px solid white;">
                 
                 <div id="tab_list">
-                    <button class="tab"> Profile </button>
-                    <button class="tab"> Password </button>
-                    <button class="tab"> Schedule </button>
-                    <button class="tab"> Delete Account </button>
+                    <button onclick="showPanel(0)" class="tab"> Profile </button>
+                    <button onclick="showPanel(1)" class="tab"> Password </button>
+                    <button onclick="showPanel(2)" class="tab"> Schedule </button>
+                    <button onclick="showPanel(3)" class="tab"> Delete Account </button>
                 </div>
 
             </div>
 
             <div id="tab_content"> 
 
-                <div id="profile_tab">
+                <div class="panel" id="profile_tab" style="display: flex; flex-direction: vertical;">
                     <!-- First Name, Last Name, Student Number, Designation, Type of Passenger -->
+                    <div style="background-color: white; border-radius: 25px; width:auto; padding: 25px;">
+						<h1>Public info</h1>
+						<hr>
+						<form id="public_change", action="#">
+							<div>
+								<label for="username"><h2>User name: <br> <h2></label>
+								<input type="text" placeholder="User name" id="username" name="username">
+							</div>
+							<div>
+								<label for="dp"><h2>Display photo: <br> <h2></label>
+								<input type="file" id="dp" name="dp" style="margin-top: 10px;">
+							</div>
+							
+							<button onclick="submitForm('public_change')", class="submitButton">Save changes</button>
+						</form>
+					</div>
+					
+					<div style="background-color: white; border-radius: 25px; width:auto; padding: 25px; margin-top: 15px">
+						<h1>Private info</h1>
+						<hr>
+						<form id="private_change", action="#">
+							<div>
+								<label for="designation"><h2>Change designation: <br> <h2></label>
+								<select id="designation" name="designation" style="height: 50px; margin-top: 10px; font-size: 24px; border-radius: 5px; width: 300px">
+									<option value="guest">Guest</option>
+									<option value="student">Student</option>
+									<option value="faculty">Faculty</option>
+									<option value="asp">ASP</option>
+									<option value="apsp">APSP</option>
+									<option value="caf">CAF</option>
+									<option value="esp">ESP</option>
+								</select>
+							</div>
+							
+							<div>
+								<label for="type"><h2>Type of Passenger lol idk: <br> <h2></label>
+								<select id="type" name="type" style="height: 50px; margin-top: 10px; font-size: 24px; border-radius: 5px; width: 300px">
+									<option value="student">Student</option>
+									<option value="employee">Employee</option>
+								</select>
+							</div>
+							
+							<button onclick="submitForm('private_change')", class="submitButton">Save Changes</button>
+						</form>
+					</div>
+					
                 </div>
 
-                <div id="password_tab">
-                    <!-- Current Passowrd, New Password, Verify Password -->
+                <div class="panel" id="password_tab">
+                    <div style="background-color: white; border-radius: 25px; width:auto; padding: 25px;">
+						<h1>Password Change</h1>
+						<hr>
+						<form id="pass_change", action="#">
+							<div>
+								<label for="oldPassword"><h2>Old password: <br> <h2></label>
+								<input type="text" placeholder="Old password" id="oldPassword" name="oldPassword">
+							</div>
+							<div>
+								<label for="newPassword"><h2>New password: <br> <h2></label>
+								<input type="text" placeholder="New password" id="newPassword" name="newPassword">
+							</div>
+							
+							<button onclick="submitForm('pass_change')", class="submitButton">Save Password</button>
+						</form>
+					</div>
+                    <!-- Current Password, New Password, Verify Password -->
                 </div>
 
-                <div id="schedule_tab"> 
+                <div class="panel" id="schedule_tab"> 
+                    <div style="background-color: white; border-radius: 25px; width:auto; padding: 25px;">
+						<h1>Schedule</h1>
+						<hr>
+						<div>
+							??? Idk Display Schedule here
+						</div>
+						<div>
+							??? Cancel schedule here
+						</div>
+					</div>
                     <!-- Display the schedules, Cancel a schedule -->
                 </div>
 
-                <div id="delete_tab"> 
+                <div class="panel" id="delete_tab"> 
+                    <div style="background-color: white; border-radius: 25px; width:auto; padding: 25px;">
+						<h1>Delete Account</h1>
+						<hr><br>
+						You must input your password in order to confirm the deletion of your account.
+						<form id="delete_account", action="#">
+							<div>
+								<label for="password"><h2>Password: <br> <h2></label>
+								<input type="text" placeholder="Password" id="password" name="Password">
+							</div>
+							
+							<button onclick="submitForm('delete_account')", class="submitButton" style="width: auto; ">DELETE ACCOUNT</button>
+						</form>
+					</div>
                     <!-- Type current password, delete buttom -->
                 </div>
 
@@ -53,12 +211,6 @@
 
         </div>
 
-        
-
-    </body>
-
-    <style>
-
-    </style>
-
+		<script>/*This shows Profile tab automatically at page load*/showPanel(0);</script>
+	</body>
 </html>
