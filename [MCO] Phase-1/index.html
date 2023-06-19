@@ -4,7 +4,7 @@
     <head>
         <title> Arrow Express - Home  </title> 
         <link rel="icon" type="image/png" href="Images/DLSU_Logo.png">
-        <link rel="stylesheet" href="CSS/Style.css">  <!-- Kailangan to if may separate CSS file -->
+        <link rel="stylesheet" href="CSS/Style.css"> 
     </head>
 
     <body>
@@ -32,13 +32,80 @@
             </div>
         </div>
 
-        <div id = "about">
-            
+        <div id="about">
+            <div class="content-about">
+                <h3>About Us</h3>
+                <p>We are proud to present our CCAPDEV Project, designed by Maurice, Benmar, and Nathan. Our project aims to improve the existing scheduling system for the Arrows Express Shuttle, introducing innovative features and a user-friendly profile system for ease-of-access.</p>
+                <p>With our collective expertise and passion for creating efficient solutions, we have developed a platform that enhances the shuttle-commuting experience of students, faculty, and staff at De La Salle University. Our project incorporates the concept of a profile system, allowing users to easily manage their reservations and personalize their shuttle experience.</p>
+                <p>We are dedicated to providing reliable and convenient ways to access shuttle services that align with the hard work and dedication of the DLSU community. By simplifying the scheduling process and introducing user-friendly features, we aim to ensure a comfortable and stress-free journey for all passengers.</p>
+                <p>A simplified booking experience for Arrows Express, designed by Maurice, Benmar, and Nathan, is a testament to our commitment to innovation and our drive to serve the needs of the DLSU community. Join us in experiencing a new level of convenience and efficiency in school transportation.</p>
+            </div>
         </div>
 
-        <div id = "schedules">
-            
-        </div>
+        <div class="arrows" id="schedules">
+            <div class="schedule-container">
+              <div class="toprow">
+                <div class="tc">
+                  <h3>Line 1 (MON-SAT)</h3>
+                  <div class="s-title">Manila to Laguna</div>
+                  <table id="sc-table1" class="sc-table"></table>
+                </div>
+                <div class="tc">
+                  <h3>&nbsp;</h3>
+                  <div class="s-title">Laguna to Manila</div>
+                  <table id="sc-table2" class="sc-table2"></table>
+                </div>
+              </div>
+              <div class="midrow">
+                <div class="tc">
+                  <h3>LINE 2 (MON-FRI)</h3>
+                  <div class="s-title">DLSU Laguna - Laguna Central</div>
+                  <table id="sc-table3" class="sc-table3">
+                  </table>
+                </div>
+                <div class="tc">
+                  <h3>LINE 3</h3>
+                  <div class="s-title">DLSU Laguna - Pavilion</div>
+                  <table id="sc-table4" class="sc-table4">
+                  </table>
+                </div>
+                <div class="tc">
+                  <h3>Line 4</h3>
+                  <div class="s-title">DLSU Laguna - Carmona</div>
+                  <table id="sc-table5" class="sc-table5">
+                  </table>
+                </div>
+                <div class="tc">
+                  <h3>Line 5</h3>
+                  <div class="s-title">DLSU Laguna - Waltermart</div>
+                  <table id="sc-table6" class="sc-table6">
+                  </table>
+                </div>
+              </div>
+              <div class="botrow">
+                <div class="tc">
+                  <h3>Line 2 (SAT)</h3>
+                  <div class="s-title">DLSU Laguna - Paseo</div>
+                  <table id="sc-table7" class="sc-table7">
+                  </table>
+                </div>
+                <div class="tc">
+                  <h3>Line 4</h3>
+                  <div class="s-title">DLSU Laguna - Carmona</div>
+                  <table id="sc-table8" class="sc-table8">
+                  </table>
+                </div>
+                <div class="tc">
+                  <h3>Line 5</h3>
+                  <div class="s-title">DLSU Laguna - Waltermart</div>
+                  <table id="sc-table9" class="sc-table9">
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div> 
+
+          <script src="ScheduleArrayIndex.js"></script>      
 
         <div id="staff" style="display: flex;">
             <style>
@@ -126,5 +193,4 @@
         </div>
         
     </body>
-     
 </html>
