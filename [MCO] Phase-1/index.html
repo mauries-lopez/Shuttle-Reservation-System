@@ -5,6 +5,12 @@
         <title> Arrow Express - Home  </title> 
         <link rel="icon" type="image/png" href="Images/DLSU_Logo.png">
         <link rel="stylesheet" href="CSS/Style.css">  <!-- Kailangan to if may separate CSS file -->
+        <style> 
+            /*This removes the scrollbar for Chrome, Safari, and Opera*/
+            #staff::-webkit-scrollbar{
+                display: none;
+            }
+        </style>
     </head>
 
     <body>
@@ -40,7 +46,7 @@
             
         </div>
 
-        <div id="staff" style="display: flex;">
+        <div id="staff" style="display: flex; flex-wrap: wrap; justify-content: center; overflow: scroll; -ms-overflow-style: none; scrollbar-width: none;">
             <style>
                 #staff .unit{
                     display: flex;
@@ -51,10 +57,14 @@
                     border-color: gray;
                     border-radius: 8px;
                     border-width: 3px;
-                    margin: 50px;
-                    width: 20%;
-                    height: 30%;
+                    margin: 35px;
+                    width: 280px;
+                    height: auto;
+                    max-height: 400px;
                     box-shadow: 4px 4px lightgreen; 
+                    flex-grow: 1;
+                    min-width: 280px;
+                    max-width: 280px;
                 }
                 #staff .unit name{
                     font-size: 24px;
@@ -64,11 +74,16 @@
                     padding: 0px 10px 0px 10px;
                 }
                 #staff .unit photo{
-                    margin: 10px 3% 10px 3%;
-                    width: 95%;
+                    margin: 0px auto 0px auto;
+                    width: 240px;
+                    height: 240px;
                     border: 3px solid gray;
                     border-radius: 8px;
                     padding: 0px 10px 0px 10px;
+                }
+                #staff .unit photo img{
+                    max-width: 100%;
+                    max-height: 100%;
                 }
                 #staff .unit description{
                     text-align: center;
@@ -98,13 +113,11 @@
                     John Magsaysay
                 </name>
                 <photo>
-                    Test
+                    <img src="/Images/DLSU_Logo.png">
                 </photo>
                 <description>
-                    Staff position <br>
+                    Driver - Paseo <br>
                     <a href="mailto: john_email@_email_?subject = Reservation Concerns&amp;body = Message"> john.magsaysay@gmail.com</a>
-                    <br> DO NOT CLICK THIS LINK
-                    <br> Check HTML for template
                 </description>
             </div>
 
@@ -112,10 +125,59 @@
                 <name>
                     May Flores
                 </name>
-                <photo> Test </photo>
-                <description> I am staff. <br> Reach me at blank email address. </description>
+                <photo> <img src="/Images/DLSU_Logo.png"> </photo>
+                <description> Driver - Carmona <br> may.flores@gmail.com </description>
             </div>
             
+            <div class="unit">
+                <name>
+                    Juan Dela Cruz
+                </name>
+                <photo> <img src="/Images/DLSU_Logo.png"> </photo>
+                <description> Driver - Pavilion <br> juan.cruz@gmail.com </description>
+            </div>
+            <div class="unit">
+                <name>
+                    Flynn Driver
+                </name>
+                <photo> <img src="/Images/DLSU_Logo.png"> </photo>
+                <description> Driver - Walter Mart  <br> flynn.driver@gmail.com </description>
+            </div>
+            <div class="unit">
+                <name>
+                    Gil Puyat
+                </name>
+                <photo> <img src="/Images/DLSU_Logo.png"> </photo>
+                <description> Driver - Manila <br> gil.puyat.avenue@gmail.com </description>
+            </div>
+            <div class="unit">
+                <name>
+                    Sarah Do
+                </name>
+                <photo> <img src="/Images/DLSU_Logo.png"> </photo>
+                <description> Site Administrator <br> sarah.do@gmail.com </description>
+            </div>
+            <div class="unit">
+                <name>
+                    Mauries Lopez
+                </name>
+                <photo> <img src="/Images/DLSU_Logo.png"> </photo>
+                <description> Web Developer <br> email@email </description>
+            </div>
+            <div class="unit">
+                <name>
+                    Benmar Ramirez
+                </name>
+                <photo> <img src="/Images/DLSU_Logo.png"> </photo>
+                <description> Web Developer <br> email@email </description>
+            </div>
+            <div class="unit">
+                <name>
+                    Nathan Asnan
+                </name>
+                <photo> <img src="/Images/DLSU_Logo.png"> </photo>
+                <description> Web Developer <br> nathan_andrei_asnan@email.com </description>
+            </div>
         </div>
 
         <div class = "footer">
