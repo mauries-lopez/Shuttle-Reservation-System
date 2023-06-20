@@ -5,13 +5,32 @@
     <head>
         <title> Arrow Express - Profile </title> 
         <link rel="icon" type="image/png" href="Images/DLSU_Logo.png">
-
+        <link rel="stylesheet" type="text/css" href="CSS/ProfileStyle.css">
     </head>
 
     <body>
+        <div class="navbar">
+            <img src= "Images/DLSU_Logo.png" class = "website_logo" href="#">   
+        </div>
+        <div class="content">
+
+            <div id="info_box">
+                <img src = "Images/ProfilePicture.jpg" id = "profile_picture">
+                <p class = "title_text" style="top: 50px; left: 160px; font-size: 40px; color: white;"> Shin Ryujin </p>
+                <p class = "sub_text" style="top: 50px; left: 210px; font-size: 25px; color: white; font-style: normal;"> 12177539 </p>
+                <p class = "sub_text" style="top: 80px; left: 230px; font-size: 20px; color: white;"> Student </p>
+            </div>
+            
+            <div class="right"> 
+
+                <a href="Reservation.html">
+                    <div class="box">
+                        <img src = "Images/Van_Logo.png" id = "van_logo">
+                        <p class = "title_text"> Reserve Now </p>
+                        <p class = "sub_text"> Start reserving your seat now! </p>
+                    </div>
+                </a>
         
-<<<<<<< Updated upstream
-=======
                 <a href="Schedule.html">
                     <div class="box">
                         <img src = "Images/Schedule_Logo.png" id = "schedule_logo">
@@ -41,7 +60,57 @@
 
         </div>
 
->>>>>>> Stashed changes
     </body>
+
+    <style>
+
+        a{
+            text-decoration: none;
+        }
+
+        #van_logo{
+            width: 200px;
+            height: 200px;
+            margin: auto;
+            display: block;
+        }
+
+        #schedule_logo{
+            position: relative;
+            top: 30px;
+            width: 150px;
+            height: 150px;
+            margin: auto;
+            display: block;
+        }
+
+        #logout_logo{
+            position: relative;
+            top: 30px;
+            width: 160px;
+            height: 160px;
+            margin: auto;
+            display: block;
+        }
+
+        .title_text{
+            position: relative;
+            left: 60px;
+            font-size: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            color: black;
+        }
+
+        .sub_text{
+            position: relative;
+            left: 50px;
+            font-style: italic;
+            text-decoration: none;
+            color: black;
+        }
+
+        
+    </style>
 
 </html>

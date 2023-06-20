@@ -2,9 +2,28 @@
     top: 20px;
 }
 
+.banner{
+    background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0, 0, 0, 0.5)),url(../Images/DLSU_Background0.png);
+}
+
 .form_box {
+    display: none;
+    position: fixed;
+    background: rgb(51, 255, 0);
     height: 390px;
-    top: 100px;
+    top: 300px;
+    right: 770px;
+}
+
+.form_box #blur_box{
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 977px;
+    background-image: linear-gradient(rgba(0,0,0,0.8),rgba(0, 0, 0, 0.8));
+    background-size: cover;
+    background-position: cover;
 }
 
 .toggle_btn{
@@ -14,6 +33,36 @@
 .subtext a{
     position: relative;
     top: -35px;
+}
+
+.content{
+    position: relative;
+    width: 1350px;
+    height: 800px;
+    margin: auto;
+    top: -15px;
+    border-radius: 50px;
+    background: rgba(0, 0, 0, 0.603);
+}
+
+.content .schedule_container{
+    margin: auto;
+    width: 90%;
+    height: 80%;
+    position: relative;
+}
+
+.content .schedule_container .reserved_schedule{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    margin: 20px auto;
+    top: 20px;
+    border: 5px solid white;
+    width: 100%;
+    height: 9%;
+    background: green;
+    border-radius: 30px;
 }
 
 .button_box{
@@ -52,12 +101,6 @@
     top: -25px;
 }
 
-.content{
-    background: white;
-    margin: auto;
-    display: flex;
-    flex-direction: row;
-}
 
 .calendar{
     background: rgba(255, 0, 0, 0);

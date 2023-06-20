@@ -6,9 +6,11 @@ function rightClick(){
     btn.style.left = '160px';
 }
 
+function showScheduleForm() {
+    var scheduleForm = document.getElementsByClassName('form_box')[0];
+    scheduleForm.style.display = 'block';
+}
 
-<<<<<<< Updated upstream
-=======
 function hideScheduleForm(){
     var scheduleContainer = document.getElementsByClassName('schedule_container')[0];
     var scheduleForm = document.getElementsByClassName('form_box')[0];
@@ -94,4 +96,3 @@ function changeTimeHelper( position, storage_time ){
     }
 }
 
->>>>>>> Stashed changes

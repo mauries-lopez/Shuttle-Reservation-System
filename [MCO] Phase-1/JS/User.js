@@ -55,27 +55,28 @@ function validate_User() {
   var password = document.getElementById('user_password').value;
   var registeredUser = localStorage.getItem('valid_user');
 
-  var isValidUser = false;
+  var isValidUser = 0;
 
-  if (registeredUser && registeredUser.match(email) && registeredUser.match(password)) {
-    isValidUser = true;
+  if ( registeredUser && (registeredUser.match(email) && registeredUser.match(password))) {
+    isValidUser = 1;
   } else {
     for (var i = 0; i < valid_user.length; i++) {
       if (email === valid_user[i].getEmail() && password === valid_user[i].getPassword()) {
-        isValidUser = true;
+        isValidUser = 1;
         break;
+      }
+      else{
+        isValidUser = 0;
       }
     }
   }
   
-  if (isValidUser) {
-    if ( localStorage.length != 0 ) { // Iibahin lugar nito pag may html na for profile para idedelete
-      localStorage.clear();
-    }
-    return true;
+  if (isValidUser == 1 && email != "" && password != "") {
+    localStorage.clear();  // Iibahin lugar nito pag may html na for profile para idedelete
+    return 1;
   } else {
     showErrorBox();
-    return false;
+    return 0;
   }
 }
 
