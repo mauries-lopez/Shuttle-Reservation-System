@@ -1,8 +1,12 @@
+var functionCalled = 0; // 0 = left (Laguna), 1 = right (Manila)
+
 function leftClick(){
+    functionCalled = 0;
     btn.style.left = '0';
 }
 
 function rightClick(){
+    functionCalled = 1;
     btn.style.left = '160px';
 }
 
@@ -12,6 +16,7 @@ function showScheduleForm() {
 }
 
 function hideScheduleForm(){
+
     var scheduleContainer = document.getElementsByClassName('schedule_container')[0];
     var scheduleForm = document.getElementsByClassName('form_box')[0];
 
@@ -26,21 +31,110 @@ function hideScheduleForm(){
     var reserved_schedule_container = document.getElementsByClassName('reserved_schedule')[count];
     var divBtn = document.createElement('div');
     divBtn.className = 'reserved_schedule_btn';
-
+    
     reserved_schedule_container.appendChild(divBtn);
     
-    var exit_btn = document.createElement('button');
-    exit_btn.setAttribute('id', 'edit_btn');
-    exit_btn.innerHTML = 'EDIT';
+    var edit_btn = document.createElement('button');
+    edit_btn.setAttribute('id', 'edit_btn');
+    edit_btn.setAttribute('onclick','editSchedule()');
+    edit_btn.innerHTML = 'EDIT';
 
     var delete_btn = document.createElement('button');
     delete_btn.setAttribute('id', 'delete_btn');
     delete_btn.innerHTML = 'DELETE';
 
-    divBtn.appendChild(exit_btn);
+    divBtn.appendChild(edit_btn);
     divBtn.appendChild(delete_btn);
-    
+
+    createTextInfo(div);
+
     scheduleForm.style.display = 'none';
+
+}
+
+function createTextInfo(main_div){
+    
+    var text_info = document.createElement('div');
+    text_info.className = 'text_reserved_schedule';
+    main_div.appendChild(text_info);
+
+    var locationValue;
+    if ( functionCalled == 0 ){
+        locationValue = document.getElementById('laguna_btn');
+    }
+    else{
+        locationValue = document.getElementById('manila_btn');
+    }
+
+    var dateValue = document.getElementById('user_date');
+    var entryValue = document.getElementById('user_entry');
+    var entryTimeValue = document.getElementById('user_entryTime');
+    var exitValue = document.getElementById('user_exit');
+    var exitTimeValue = document.getElementById('user_exitTime');
+
+    var locationText = document.createElement('p');
+    locationText.innerHTML = locationValue.innerHTML;
+
+    var dateText = document.createElement('p');
+    dateText.setAttribute('id', 'date_text');
+    if ( dateValue.value == '' ){
+        dateText.innerHTML = 'N/A';
+    }
+    else{
+        
+        dateText.innerHTML = dateValue.value;
+    }
+
+    var entryText = document.createElement('p');
+    if ( entryValue.options[entryValue.selectedIndex].text == 'N/A' || entryValue.options[entryValue.selectedIndex].text == "Entry Location"){
+        entryText.innerHTML = 'N/A';
+    }
+    else{
+        entryText.innerHTML = entryValue.options[entryValue.selectedIndex].text;
+    }
+
+    var entryTimeText = document.createElement('p');
+    if ( entryTimeValue.options[entryTimeValue.selectedIndex].text == 'N/A' || entryTimeValue.options[entryTimeValue.selectedIndex].text == "Time Slot"){
+        entryTimeText.innerHTML = 'N/A';
+    }
+    else{
+        entryTimeText.innerHTML = entryTimeValue.options[entryTimeValue.selectedIndex].text;
+    }
+
+    var exitText = document.createElement('p');
+    if ( exitValue.options[exitValue.selectedIndex].text == 'N/A' || exitValue.options[exitValue.selectedIndex].text == "Exit Location"){
+        exitText.innerHTML = 'N/A';
+    }
+    else{
+        exitText.innerHTML = exitValue.options[exitValue.selectedIndex].text;
+    }
+
+    var exitTimeText = document.createElement('p');
+    if ( exitTimeValue.options[exitTimeValue.selectedIndex].text == 'N/A' || exitTimeValue.options[exitTimeValue.selectedIndex].text == "Time Slot" ){
+        exitTimeText.innerHTML = 'N/A';
+    }
+    else{
+        exitTimeText.innerHTML = exitTimeValue.options[exitTimeValue.selectedIndex].text;
+    }
+
+
+    var border = new Array();
+
+    for ( var i = 0; i < 4; i++ ){
+        border[i] = document.createElement('hr');
+    }
+
+    text_info.appendChild(locationText);
+    text_info.appendChild(border[0]);
+    text_info.appendChild(dateText);
+    text_info.appendChild(border[1]);
+    text_info.appendChild(entryText);
+    text_info.appendChild(entryTimeText);
+    text_info.appendChild(border[2]);
+    text_info.appendChild(exitText);
+    text_info.appendChild(exitTimeText);
+    text_info.appendChild(border[3]);
+
 }
 
 function cancelScheduleForm(){
@@ -115,4 +209,3 @@ function changeTimeHelper( position, storage_time ){
         timeSlots.appendChild(option);
     }
 }
-
