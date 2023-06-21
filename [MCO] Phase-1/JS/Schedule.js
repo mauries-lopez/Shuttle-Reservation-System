@@ -105,8 +105,13 @@ function hideScheduleForm() {
     div.className = 'viewed_schedule';
   
     scheduleContainer.appendChild(div);
-  
-    scheduleForm.style.display = '';
+
+    scheduleForm,addEventListener('submit', function(e) {
+        e.preventDefault();
+    })
+
+    scheduleForm.style.display = 'none';
+
 }
   
 

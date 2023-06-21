@@ -36,6 +36,33 @@
 				alert("Form " + formName + " submitted"); 
 			}
 
+			function deleteAccount(){
+				var user_loggedIn  = localStorage.getItem('loggedInUser');
+				var registeredUser;
+
+				var password = document.getElementById("password").value;
+
+				if ( ( user_loggedIn && (user_loggedIn.match(password)) && password != "")){
+					localStorage.removeItem('loggedInUser');
+					for ( var i = 0 ; i < localStorage.length ; i++ ) {
+
+						var key = localStorage.key(i);
+    					registeredUser = localStorage.getItem(key);
+
+						if ( registeredUser && registeredUser.match(password)) {
+							localStorage.removeItem(key);
+							break;
+						}
+					}				
+					return 1;
+				}
+				else{
+					alert("Password is incorrect! Please try again.");
+					return 0;
+				}
+				
+			}
+
         </script>
     
         <style>
@@ -83,6 +110,8 @@
     </head>
 
     <body>
+		
+
         <div class="navbar">
             <a onclick="history.back()"><img src="Images/Leftarrow.png" class="back_img"></a>
             <img src="Images/DLSU_Logo.png" class="website_logo" href="#">   
@@ -122,6 +151,8 @@
 							<button onclick="submitForm('public_change')", class="submitButton">Save changes</button>
 						</form>
 					</div>
+
+					<script>/*This shows Profile tab automatically at page load*/showPanel(0);</script>
 					
 					<div style="background-color: white; border-radius: 25px; width:auto; padding: 25px; margin-top: 15px">
 						<h1>Private info</h1>
@@ -179,13 +210,13 @@
 						<h1>Delete Account</h1>
 						<hr><br>
 						You must input your password in order to confirm the deletion of your account.
-						<form id="delete_account", action="#">
+						<form id="delete_account" action="index.html">
 							<div>
 								<label for="password"><h2>Password: <br> <h2></label>
 								<input type="text" placeholder="Password" id="password" name="Password">
 							</div>
 							
-							<button onclick="submitForm('delete_account')", class="submitButton" style="width: auto; ">DELETE ACCOUNT</button>
+							<button onclick="if (deleteAccount() == 0){ return false; }", class="submitButton" style="width: auto; ">Delete Account</button>
 						</form>
 					</div>
                     <!-- Type current password, delete buttom -->
@@ -197,6 +228,6 @@
 
         </div>
 
-		<script>/*This shows Profile tab automatically at page load*/showPanel(0);</script>
+		
 	</body>
 </html>

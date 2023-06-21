@@ -48,6 +48,11 @@ function hideScheduleForm(){
 
     createTextInfo(div);
 
+    scheduleForm,addEventListener('submit', function(e) {
+        e.preventDefault();
+
+    })
+
     scheduleForm.style.display = 'none';
 
 }
