@@ -19,6 +19,26 @@ function hideScheduleForm(){
     div.className = 'reserved_schedule';
 
     scheduleContainer.appendChild(div);
+
+    var count = scheduleContainer.childElementCount;
+    count = count - 1;
+
+    var reserved_schedule_container = document.getElementsByClassName('reserved_schedule')[count];
+    var divBtn = document.createElement('div');
+    divBtn.className = 'reserved_schedule_btn';
+
+    reserved_schedule_container.appendChild(divBtn);
+    
+    var exit_btn = document.createElement('button');
+    exit_btn.setAttribute('id', 'edit_btn');
+    exit_btn.innerHTML = 'EDIT';
+
+    var delete_btn = document.createElement('button');
+    delete_btn.setAttribute('id', 'delete_btn');
+    delete_btn.innerHTML = 'DELETE';
+
+    divBtn.appendChild(exit_btn);
+    divBtn.appendChild(delete_btn);
     
     scheduleForm.style.display = 'none';
 }
