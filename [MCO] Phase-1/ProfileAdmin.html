@@ -19,9 +19,10 @@
                 <div style="position: relative; background: rgba(0, 0, 0, 0.26); border-radius: 20px; width: 50%; height: 6%; margin: auto; top: 45px;">
                     <p class = "sub_text" style="top: 7px; font-size: 25px; color: white; font-style: italic; font-weight: bold;"> 12177539 </p>
                 </div>
-                <img src = "Images/ProfilePicture.jpg" id = "profile_picture">
-                <p class = "title_text" style="top: 50px; font-size: 40px; color: white;"> Shin Ryujin </p>
-                <p class = "sub_text" style="top: 80px; font-size: 20px; color: white;"> Student </p>
+                <img src = "Images/ProfilePicture1.jpg" id = "profile_picture" >
+                <p class = "title_text" style="top: 50px; font-size: 40px; color: white;"> Hwang Yeji </p>
+                
+                <p class = "sub_text" style="top: 80px; font-size: 20px; color: white;"> Admin / Employee </p>
             </div>
             
             <div class="right"> 
@@ -38,23 +39,31 @@
                     <div class="box">
                         <img src = "Images/Schedule_Logo.png" id = "schedule_logo">
                         <p class = "title_text" style="top: 50px;"> Schedule </p>
-                        <p class = "sub_text" style="top: 50px; "> View seats availability of schedules </p>
+                        <p class = "sub_text" style="top: 50px;"> View seats availability of schedules </p>
                     </div>
                 </a>
                 
                 <a href="Settings.html">
                     <div class="box">
-                        <img src = "Images/ProfileSettings_Logo.png" id = "logout_logo">
+                        <img src = "Images/ProfileSettings_Logo.png" id = "settings_logo">
                         <p class = "title_text" style="top: 50px;" > Settings </p>
                         <p class = "sub_text" style="top: 50px;"> View Profile Settings </p>
                     </div>
                 </a>
-        
-                <a href="index.html" onclick="logoutAccount()">
+
+                <a href="ReservationAdmin.html">
+                    <div class="box">
+                        <img src = "Images/UserEdit_Logo.png" id = "user_reserve_logo">
+                        <p class = "title_text" style="top: 50px;" > User Reservation </p>
+                        <p class = "sub_text" style="top: 50px;"> Edit/View user reservation </p>
+                    </div>
+                </a>
+
+                <a href="index.html" onclick="logoutAccount();">
                     <div class="logout_box">
                         <img src = "Images/Logout_Logo.png" id = "logout_logo">
-                        <p class = "title_text" style="top: 50px;" > Logout </p>
-                        <p class = "sub_text" style="top: 50px;"> Exit Arrow Express </p>
+                        <p class = "title_text" style="top: 40px;" > Logout </p>
+                        <p class = "sub_text" style="top: 40px;"> Exit Arrow Express </p>
                     </div>
                 </a>
 
@@ -70,9 +79,29 @@
             text-decoration: none;
         }
 
-        #van_logo{
-            width: 200px;
+        .content .right{
+            top: 10px;
+            left: 15px;
+            position: relative;
+            width: 800px;
+            height: 800px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content .right .box{
+            width: 300px;
             height: 200px;
+        }
+
+        .content .right .logout_box{
+            width: 300px;
+            height: 200px;
+        }
+
+        #van_logo{
+            width: 150px;
+            height: 150px;
             margin: auto;
             display: block;
         }
@@ -80,8 +109,26 @@
         #schedule_logo{
             position: relative;
             top: 30px;
-            width: 150px;
-            height: 150px;
+            width: 100px;
+            height: 100px;
+            margin: auto;
+            display: block;
+        }
+
+        #settings_logo{
+            position: relative;
+            top: 30px;
+            width: 90px;
+            height: 90px;
+            margin: auto;
+            display: block;
+        }
+
+        #user_reserve_logo{
+            position: relative;
+            top: 30px;
+            width: 100px;
+            height: 100px;
             margin: auto;
             display: block;
         }
@@ -89,16 +136,17 @@
         #logout_logo{
             position: relative;
             top: 30px;
-            width: 160px;
-            height: 160px;
+            width: 110px;
+            height: 110px;
             margin: auto;
             display: block;
         }
 
         .title_text{
             position: relative;
+            bottom: 10px;
             text-align: center;
-            font-size: 30px;
+            font-size: 20px;
             font-weight: bold;
             text-decoration: none;
             color: black;
@@ -107,6 +155,8 @@
         .sub_text{
             position: relative;
             text-align: center;
+            bottom: 10px;
+            font-size: 10px;
             font-style: italic;
             text-decoration: none;
             color: black;

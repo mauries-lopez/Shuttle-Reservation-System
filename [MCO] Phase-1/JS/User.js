@@ -50,10 +50,11 @@ class loggedInUser {
 
 }
 
-var user0 = new user_storage("admin", "admin", "admin@gmail.com", "admin", "student", "student");
-var user1 = new user_storage("maui", "lopez", "maui@gmail.com", "maui", "student", "student");
-var user2 = new user_storage("benmar", "ramirez", "benmar@gmail.com", "benmar", "student", "student");
-var user3 = new user_storage("nathan", "asnan", "asnan@gmail.com", "asnan", "student", "student");
+var user0 = new user_storage("admin", "admin", "admin@gmail.com", "admin", "employee", "employee");
+var user1 = new user_storage("maui", "lopez", "maui@gmail.com", "maui", "employee", "employee");
+var user2 = new user_storage("benmar", "ramirez", "benmar@gmail.com", "benmar", "employee", "employee");
+var user3 = new user_storage("nathan", "asnan", "asnan@gmail.com", "asnan", "employee", "employee");
+var user4 = new user_storage("admin1", "admin1", "admin1@gmail.com", "admin1", "employee", "employee")
 
 var registerdUserCount = localStorage.length; //For key in local storage
 
@@ -67,7 +68,7 @@ function hideErrorBox(){
 }
 
 function validate_User() {
-  var valid_user = new Array(user0, user1, user2, user3);
+  var valid_user = new Array(user0, user1, user2, user3, user4);
   var email = document.getElementById('user_email').value;
   var password = document.getElementById('user_password').value;
   var registeredUser;
@@ -96,12 +97,12 @@ function validate_User() {
 
     var user_loggedIn = new loggedInUser(email, password);
 
-    if ( registeredUser && (registeredUser.match(email) && registeredUser.match(password))) {
+    if ( registeredUser && (registeredUser.match(email) && registeredUser.match(password))) { //Local Storage Validation
       isValidUser = 1;
     } else {
       for (var i = 0; i < valid_user.length; i++) {
-        if (email === valid_user[i].getEmail() && password === valid_user[i].getPassword()) {
-          isValidUser = 1;
+        if (email === valid_user[i].getEmail() && password === valid_user[i].getPassword()) { //Admin Validation
+          isValidUser = 2;
           break;
         }
         else{
@@ -110,21 +111,23 @@ function validate_User() {
       }
     }
 
-    if (isValidUser == 1 && email != "" && password != "") {
-      //localStorage.clear();  // Iibahin lugar nito pag may html na for profile para idedelete
+    if (isValidUser == 1 && (email != "" && password != "")) {
       localStorage.setItem('loggedInUser', JSON.stringify(user_loggedIn));
       window.location.href = "Profile.html";
       return 1;
-    } else {
+    } else if ( isValidUser == 2 && (email != "" && password != "")) {
+      localStorage.setItem('loggedInUser', JSON.stringify(user_loggedIn));
+      window.location.href = "ProfileAdmin.html";
+      return 1;
+    }
+    else{
       showErrorBox();
       return 0;
     }
 
   });
 
-
 }
-
 
 
 function create_User(){
@@ -140,22 +143,6 @@ function create_User(){
     var storePassengerType = document.getElementById('user_passengerType');
     var tempPassengerType = storePassengerType.options[storePassengerType.selectedIndex].text;
 
-    /*
-    localStorage.setItem('firstName', tempFirstName);
-    localStorage.setItem('lastName', tempLastName);
-    localStorage.setItem('email', tempEmail);
-    localStorage.setItem('password', tempPassword);
-    localStorage.setItem('designation', tempDesignation);
-    localStorage.setItem('passengerType', tempPassengerType);
-    
-    localStorage.removeItem('firstName');
-    localStorage.removeItem('lastName');
-    localStorage.removeItem('email');
-    localStorage.removeItem('password');
-    localStorage.removeItem('designation');
-    localStorage.removeItem('passengerType');
-    */
-
     alert('User Created! Directing to Login Page...');
     var newUser = new user_storage(tempFirstName, tempLastName, tempEmail, tempPassword, tempDesignation, tempPassengerType);
 
@@ -165,5 +152,7 @@ function create_User(){
 
 }
 
-
+function logoutAccount(){
+  localStorage.removeItem('loggedInUser');
+}
 
