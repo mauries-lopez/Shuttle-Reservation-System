@@ -102,6 +102,39 @@ function cancelScheduleForm() {
   scheduleForm.style.display = '';
 }
 
+function changeTimeSlots() {
+var user_location = document.getElementById('user_location').value;
+var buttonClicked = document.getElementById('btn').style.left === '0px' ? 'entry' : 'exit';
+
+  const entryTimeSlots = {
+    0: ["06:00 AM", "07:30 AM", "09:30 AM", "11:00 AM", "01:00 PM", "02:30 PM", "03:30 PM", "05:10 PM", "06:15 PM", "07:45 PM"],
+    1: ["09:00 AM", "11:30 AM", "04:45 PM", "05:10 PM", "05:30 PM", "06:00 PM", "06:30 PM", "07:00 PM", "07:45 PM"],
+    2: ["04:45 PM", "05:10 PM", "05:30 PM", "06:00 PM", "07:45 PM"],
+    3: ["04:45 PM", "05:10 PM", "05:30 PM", "06:00 PM", "07:45 PM"],
+    4: ["04:45 PM", "05:10 PM", "05:30 PM", "06:00 PM", "07:45 PM"],
+  }
+
+  const exitTimeSlots = {
+    0: ["05:45 AM", "06:15 AM", "07:00 AM", "08:00 AM", "09:00 AM", "11:00 AM", "01:00 PM", "02:30 PM", "03:30 PM", "05:10 PM", "06:15 PM", "07:45 PM"],
+    1: ["06:00 AM", "06:30 AM", "07:00 AM", "12:15 PM", "01:00 PM", "03:00 PM", "03:30 PM"],
+    2: ["06:30 AM"],
+    3: ["05:30 AM", "06:00 AM", "06:30 AM", "07:00 AM"],
+    4: ["06:30 AM", "07:00 AM"],
+  }
+
+  var timeSlots = document.getElementById('user_entryTime');
+  timeSlots.innerHTML = '<option value="" disabled selected hidden s> Time Slot </option>';
+
+  var selectedTimeSlots = buttonClicked === 'entry' ? entryTimeSlots[user_location] : exitTimeSlots[user_location];
+
+  for (var i = 0; i < selectedTimeSlots.length; i++) {
+    var option = document.createElement('option');
+    option.value = i;
+    option.innerHTML = selectedTimeSlots[i];
+    timeSlots.appendChild(option);
+  }
+}
+
 function findMatchingSeats(event) {
   event.preventDefault();
   var user_location = document.getElementById('user_location').value;
@@ -157,7 +190,7 @@ var combinations = [
   // ENTRY TO LAGUNA
   {
     location: '0',
-    entryTime: '1',
+    entryTime: '0',
     buttonClicked: 'entry',
     message: 'To DLSU Laguna 06:00 AM',
     seats: Array.from({ length: 13 }, (_, i) => ({ number: i + 1, taken: false }))
@@ -165,7 +198,7 @@ var combinations = [
 
   {
     location: '0',
-    entryTime: '4',
+    entryTime: '1',
     buttonClicked: 'entry',
     message: 'To DLSU Laguna 07:30 AM',
     seats: Array.from({ length: 13 }, (_, i) => ({ number: i + 1, taken: false }))
@@ -174,15 +207,29 @@ var combinations = [
   // ENTRY TO PASEO
   {
     location: '1',
-    entryTime: '6',
+    entryTime: '0',
     buttonClicked: 'entry',
     message: 'To Laguna Central 09:00 AM',
-    seats: Array.from({ length: 13 }, (_, i) => ({ number: i + 1, taken: false }))
+    seats: [
+      { number: 1, taken: true },
+      { number: 2, taken: true },
+      { number: 3, taken: true },
+      { number: 4, taken: true },
+      { number: 5, taken: false },
+      { number: 6, taken: false },
+      { number: 7, taken: false },
+      { number: 8, taken: false },
+      { number: 9, taken: false },
+      { number: 10, taken: false },
+      { number: 11, taken: false },
+      { number: 12, taken: false },
+      { number: 13, taken: false },
+    ],
   },
 
   {
     location: '1',
-    entryTime: '9',
+    entryTime: '1',
     buttonClicked: 'entry',
     message: 'To Laguna Central 11:30 AM',
     seats: Array.from({ length: 13 }, (_, i) => ({ number: i + 1, taken: false }))
@@ -191,15 +238,29 @@ var combinations = [
   //ENTRY TO CARMONA
   {
     location: '2',
-    entryTime: '15',
+    entryTime: '0',
     buttonClicked: 'entry',
     message: 'To Carmona 4:45 PM',
-    seats: Array.from({ length: 13 }, (_, i) => ({ number: i + 1, taken: false }))
+    seats: [
+      { number: 1, taken: true },
+      { number: 2, taken: true },
+      { number: 3, taken: true },
+      { number: 4, taken: true },
+      { number: 5, taken: false },
+      { number: 6, taken: false },
+      { number: 7, taken: false },
+      { number: 8, taken: false },
+      { number: 9, taken: false },
+      { number: 10, taken: false },
+      { number: 11, taken: false },
+      { number: 12, taken: false },
+      { number: 13, taken: false },
+    ],
   },
 
   {
     location: '2',
-    entryTime: '16',
+    entryTime: '1',
     buttonClicked: 'entry',
     message: 'To Carmona 5:10 PM',
     seats: Array.from({ length: 13 }, (_, i) => ({ number: i + 1, taken: false }))
@@ -208,7 +269,7 @@ var combinations = [
   //ENTRY TO PAVILION
   {
     location: '3',
-    entryTime: '15',
+    entryTime: '0',
     buttonClicked: 'entry',
     message: 'To Pavilion 4:45 PM',
     seats: Array.from({ length: 13 }, (_, i) => ({ number: i + 1, taken: false }))
@@ -216,26 +277,54 @@ var combinations = [
 
   {
     location: '3',
-    entryTime: '16',
+    entryTime: '1',
     buttonClicked: 'entry',
     message: 'To Pavilion 5:10 PM',
-    seats: Array.from({ length: 13 }, (_, i) => ({ number: i + 1, taken: false }))
+    seats: [
+      { number: 1, taken: true },
+      { number: 2, taken: true },
+      { number: 3, taken: true },
+      { number: 4, taken: true },
+      { number: 5, taken: false },
+      { number: 6, taken: false },
+      { number: 7, taken: false },
+      { number: 8, taken: false },
+      { number: 9, taken: false },
+      { number: 10, taken: false },
+      { number: 11, taken: false },
+      { number: 12, taken: false },
+      { number: 13, taken: false },
+    ],
   },
 
   //ENTRY TO WALTERMART
   {
     location: '4',
-    entryTime: '2a',
+    entryTime: '0',
     buttonClicked: 'entry',
-    message: 'To DLSU Laguna From Waltermart 6:30AM',
-    seats: Array.from({ length: 13 }, (_, i) => ({ number: i + 1, taken: false }))
+    message: 'To Waltermart 4:45 PM',
+    seats: [
+      { number: 1, taken: true },
+      { number: 2, taken: true },
+      { number: 3, taken: true },
+      { number: 4, taken: true },
+      { number: 5, taken: false },
+      { number: 6, taken: false },
+      { number: 7, taken: false },
+      { number: 8, taken: false },
+      { number: 9, taken: false },
+      { number: 10, taken: false },
+      { number: 11, taken: false },
+      { number: 12, taken: false },
+      { number: 13, taken: false },
+    ],
   },
 
   {
     location: '4',
-    entryTime: '3',
+    entryTime: '1',
     buttonClicked: 'entry',
-    message: 'To DLSU Laguna From Waltermart 7:00 AM',
+    message: 'To Waltermart 5:10 PM',
     seats: Array.from({ length: 13 }, (_, i) => ({ number: i + 1, taken: false }))
   },
 
@@ -251,16 +340,30 @@ var combinations = [
 
   {
     location: '0',
-    entryTime: '2',
+    entryTime: '1',
     buttonClicked: 'exit',
     message: 'To DLSU Manila 06:15 AM',
-    seats: Array.from({ length: 13 }, (_, i) => ({ number: i + 1, taken: false }))
+    seats: [
+      { number: 1, taken: true },
+      { number: 2, taken: true },
+      { number: 3, taken: true },
+      { number: 4, taken: true },
+      { number: 5, taken: false },
+      { number: 6, taken: false },
+      { number: 7, taken: false },
+      { number: 8, taken: false },
+      { number: 9, taken: false },
+      { number: 10, taken: false },
+      { number: 11, taken: false },
+      { number: 12, taken: false },
+      { number: 13, taken: false },
+    ],
   },
 
   // EXIT FROM PASEO
   {
     location: '1',
-    entryTime: '1',
+    entryTime: '0',
     buttonClicked: 'exit',
     message: 'To DLSU Laguna From Paseo 06:00 AM',
     seats: Array.from({ length: 13 }, (_, i) => ({ number: i + 1, taken: false }))
@@ -268,7 +371,7 @@ var combinations = [
 
   {
     location: '1',
-    entryTime: '2a',
+    entryTime: '1',
     buttonClicked: 'exit',
     message: 'To DLSU Laguna From Paseo 6:30 AM',
     seats: Array.from({ length: 13 }, (_, i) => ({ number: i + 1, taken: false }))
@@ -277,7 +380,7 @@ var combinations = [
   //EXIT FROM CARMONA
   {
     location: '2',
-    entryTime: '2a',
+    entryTime: '0',
     buttonClicked: 'exit',
     message: 'To DLSU Laguna From Carmona 6:30 AM',
     seats: Array.from({ length: 13 }, (_, i) => ({ number: i + 1, taken: false }))
@@ -286,10 +389,24 @@ var combinations = [
   //EXIT FROM PAVILION
   {
     location: '3',
-    entryTime: '0a',
+    entryTime: '0',
     buttonClicked: 'exit',
     message: 'To DLSU Laguna From Pavilion 5:30AM',
-    seats: Array.from({ length: 13 }, (_, i) => ({ number: i + 1, taken: false }))
+    seats: [
+      { number: 1, taken: true },
+      { number: 2, taken: true },
+      { number: 3, taken: true },
+      { number: 4, taken: true },
+      { number: 5, taken: false },
+      { number: 6, taken: false },
+      { number: 7, taken: false },
+      { number: 8, taken: false },
+      { number: 9, taken: false },
+      { number: 10, taken: false },
+      { number: 11, taken: false },
+      { number: 12, taken: false },
+      { number: 13, taken: false },
+    ],
   },
 
   {
@@ -303,19 +420,34 @@ var combinations = [
   //EXIT FROM WALTERMART
   {
     location: '4',
-    entryTime: '15',
+    entryTime: '0',
     buttonClicked: 'exit',
-    message: 'To Waltermart 4:45 PM',
+    message: 'To DLSU Laguna From Waltermart 6:30AM',
     seats: Array.from({ length: 13 }, (_, i) => ({ number: i + 1, taken: false }))
   },
 
   {
     location: '4',
-    entryTime: '16',
+    entryTime: '1',
     buttonClicked: 'exit',
-    message: 'To Waltermart 5:10 PM',
-    seats: Array.from({ length: 13 }, (_, i) => ({ number: i + 1, taken: false }))
+    message: 'To DLSU Laguna From Waltermart 7:00 AM',
+    seats: [
+      { number: 1, taken: true },
+      { number: 2, taken: true },
+      { number: 3, taken: true },
+      { number: 4, taken: true },
+      { number: 5, taken: false },
+      { number: 6, taken: false },
+      { number: 7, taken: false },
+      { number: 8, taken: false },
+      { number: 9, taken: false },
+      { number: 10, taken: false },
+      { number: 11, taken: false },
+      { number: 12, taken: false },
+      { number: 13, taken: false },
+    ],
   },
+
 ];
 
 
