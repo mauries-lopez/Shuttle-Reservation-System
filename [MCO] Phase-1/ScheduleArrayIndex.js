@@ -91,7 +91,7 @@ const scheduleData = [
   },
   {
     id: 'sc-table7',
-    rows: [ 
+    rows: [
       ['DLSU Laguna to Paseo', 'Paseo to DLSU Laguna'],
       ['12:10 PM', '7:00 AM'],
     ],
