@@ -156,6 +156,7 @@ html{
 .schedule-container {
     display: flex;
     flex-wrap: wrap;
+    
 }
 
 .toprow {
@@ -191,7 +192,6 @@ html{
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
     padding: 5px;
-    height: 1010px;
     background: rgb(110, 110, 110);
 }
 
