@@ -54,7 +54,9 @@
 
 .content .schedule_container .reserved_schedule{
     display: flex;
-    flex-direction: row;
+    align-items: end;
+    justify-content: center;
+    flex-direction: column;
     position: relative;
     margin: 20px auto;
     top: 20px;
@@ -63,6 +65,64 @@
     height: 9%;
     background: green;
     border-radius: 30px;
+}
+
+.content .schedule_container .reserved_schedule .text_reserved_schedule{
+    position: absolute;
+    width: 80%;
+    height: 50px;
+    justify-content: center;
+    left: 0px;
+    margin-left: 20px;
+    display: flex; 
+    justify-content: start;
+}
+
+.text_reserved_schedule hr{
+    margin-left: 10px; 
+    border: 2px solid white; 
+    border-radius: 30px;
+}
+
+.text_reserved_schedule p{
+    line-height: 50px;
+    margin-left: 30px;
+    margin-right: 20px;
+    color: white;
+    font-weight: bold;
+}
+
+
+.reserved_schedule .reserved_schedule_btn{
+    display: flex;
+    position: relative;
+    border-radius: 25px;
+    width: 200px;
+    height: 40px;
+    background: transparent;
+    margin-right: 15px;
+}
+.reserved_schedule .reserved_schedule_btn button{
+    cursor: pointer;
+    position: relative;
+    width: 100%;
+    border-radius: 25px;    
+    border: 2px solid white;
+    font-weight: bold;
+    margin: 3px;
+    transition: 0.2s;
+}
+
+.reserved_schedule .reserved_schedule_btn #edit_btn{
+    background: rgb(255, 255, 112);
+}
+
+.reserved_schedule .reserved_schedule_btn #delete_btn{
+    background: rgb(255, 109, 109);
+}
+
+.reserved_schedule .reserved_schedule_btn button:hover{
+    width: 150%;
 }
 
 .button_box{

@@ -149,6 +149,17 @@ function generateSeats(combination) {
       seats[i].classList.add('taken');
     }
   }
+  
+    var div = document.createElement('div');
+    div.className = 'viewed_schedule';
+  
+    scheduleContainer.appendChild(div);
+
+    scheduleForm,addEventListener('submit', function(e) {
+        e.preventDefault();
+    })
+
+    scheduleForm.style.display = 'none';
 }
 
 var combinations = [
