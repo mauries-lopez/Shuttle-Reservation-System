@@ -70,12 +70,12 @@ function hideScheduleForm(){
     var div = document.createElement('div');
     div.className = 'reserved_schedule';
 	
-	count = scheduleContainer.childElementCount;
-	div.setAttribute('id', count );
+	  count = scheduleContainer.childElementCount;
+	  div.setAttribute('id', count );
 	
 	
     scheduleContainer.appendChild(div);
-	
+  
     var reserved_schedule_container = document.getElementsByClassName('reserved_schedule')[count];
     var divBtn = document.createElement('div');
     divBtn.className = 'reserved_schedule_btn';
@@ -84,14 +84,14 @@ function hideScheduleForm(){
     
     var edit_btn = document.createElement('button');
     edit_btn.className = 'edit_btn';
-	edit_btn.setAttribute('id', 'e_btn' + count);
+	  edit_btn.setAttribute('id', 'e_btn' + count);
     edit_btn.setAttribute('onclick','showEditForm(' + count + ')');
     edit_btn.innerHTML = 'EDIT';
 
     var delete_btn = document.createElement('button');
     delete_btn.className = 'delete_btn';
-	delete_btn.setAttribute('id', 'd_btn' + count);
-	delete_btn.setAttribute('onclick','showDeleteForm(' + count + ')');
+	  delete_btn.setAttribute('id', 'd_btn' + count);
+	  delete_btn.setAttribute('onclick','showDeleteForm(' + count + ')');
     delete_btn.innerHTML = 'DELETE';
 
     divBtn.appendChild(edit_btn);
