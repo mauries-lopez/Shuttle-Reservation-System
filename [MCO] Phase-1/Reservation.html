@@ -210,13 +210,13 @@
                         </div>
 
                         <div class = reserved_schedule_btn> 
-                            <button class="edit_btn" id="e_btn4" onclick="showEditForm(4)"> EDIT </button>
-                            <button class="delete_btn" id="d_btn4" onclick="showDeleteForm(4)"> DELETE </button>
+                            <button  type="button" class="edit_btn" id="e_btn4" onclick="showEditForm(4)"> EDIT </button>
+                            <button  type="button" class="delete_btn" id="d_btn4" onclick="showDeleteForm(4)"> DELETE </button>
                         </div>
                     </div>
                 </div>
                                 
-                <div class="form_box">
+                <div class="form_box" onsubmit="return false">
                     <div id="blur_box"> </div>
                     <h2> Reserve Now </h2>
                     <h4> Just one-click away </h4>
@@ -235,12 +235,11 @@
                                 <img src="Images/Help.png" style="width: 25px; height: 25px; position: relative; filter:invert(1); top: 15px; left:10px; cursor: help;" title="From home, location going to be picked up.">
                                 <select name="user_entry" id="user_entry" class="fillup" onchange="readyChangeTime('user_entry','user_entryTime');" style="width: 200px; margin: 10px; position: relative; left: 5px; ">
                                     <option value="" disabled selected hidden s> Entry Location </option>
-                                    <option value="0"> DLSU Laguna </option>
-                                    <option value="1"> Paseo </option>
-                                    <option value="2"> Carmona </option>
-                                    <option value="3"> Pavilion Mall </option>
-                                    <option value="4"> Walter Mart </option>
-                                    <option value="5"> N/A </option>
+                                    <option value="0"> Paseo -> DLSU LC </option>
+                                    <option value="1"> Carmona -> DLSU LC  </option>
+                                    <option value="2"> Pavilion Mall -> DLSU LC </option>
+                                    <option value="3"> Walter Mart -> DLSU LC </option>
+                                    <option value="4"> N/A </option>
                                 </select>
                                 <select name="user_entryTime" id="user_entryTime" class="fillup" style="width: 120px; ">
                                     <option value="" disabled selected hidden s> Time Slot </option>
@@ -261,13 +260,13 @@
     
                             <div class="exit"> </style>
                                 <img src="Images/Help.png" style="width: 25px; height: 25px; position: relative; filter:invert(1); top: 15px; left:10px; cursor: help;" title="From De La Salle University, location going to be dropped-off.">
-                                <select name="user_exit" id="user_exit" class="fillup" onchange="readyChangeTime('user_exit','user_exitTime');" style="width: 200px; margin: 10px; position: relative; left: 5px;">
+                                <select name="user_exit" id="user_exit" class="fillup" onchange="readyChangeTime('user_exit','user_exitTime');" style="width: 190px; margin: 10px; position: relative; left: 5px;">
                                     <option value="" disabled selected hidden s> Exit Location </option>
-                                    <option value="0"> DLSU Manila </option>
-                                    <option value="1"> Paseo </option>
-                                    <option value="2"> Carmona </option>
-                                    <option value="3"> Pavilion Mall </option>
-                                    <option value="4"> Walter Mart </option>
+                                    <option value="0"> DLSU LC -> DLSU Manila </option>
+                                    <option value="1"> DLSU LC -> Paseo </option>
+                                    <option value="2"> DLSU LC -> Carmona </option>
+                                    <option value="3"> DLSU LC -> Pavilion Mall </option>
+                                    <option value="4"> DLSU LC -> Walter Mart </option>
                                     <option value="5"> N/A </option>
                                 </select>
                                 <select name="user_exitTime" id="user_exitTime" class="fillup" style="width: 120px;">
