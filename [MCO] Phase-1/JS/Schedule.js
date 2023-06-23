@@ -138,7 +138,7 @@ function generateSeats(combination) {
   for (var i = 0; i < maxCapacity; i++) {
     var seatSquare = document.createElement('div');
     seatSquare.classList.add('seat');
-    seatSquare.textContent = i + 1;
+    seatSquare.textContent = 'Seat ' + (i + 1);
     seatContainer.appendChild(seatSquare);
   }
 

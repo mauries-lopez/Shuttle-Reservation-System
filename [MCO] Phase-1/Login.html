@@ -21,10 +21,10 @@
                 <hr>
                 <div class="input">
                     <form id="loginForm">
-                        <label for="user_email"></label>
-                        <input type="email" placeholder="E-mail" class="fillup" name="user_email" id="user_email" >
+                        <label for="user_idNumber"></label>
+                        <input type="text" placeholder="ID Number" class="fillup" name="user_idNumber" id="user_idNumber" required >
                         <label for="user_password"></label>
-                        <input type="password" placeholder="Password" class="fillup" name="user_password" id="user_password">
+                        <input type="password" placeholder="Password" class="fillup" name="user_password" id="user_password" required>
                         <button type="submit" class="toggle_btn" onclick="if (validate_User() == 0){ return false; }" > Login <style> .toggle_btn{ font-size: large; font-weight: bold;} </style> </button>
                     </form>
                 </div>

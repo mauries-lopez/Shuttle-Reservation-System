@@ -21,9 +21,9 @@
             
             <div class="content">
 
-                <h1 style="position: relative; color: white; left: 50px; top: 40px;"> User Settings </h1>
+                <h1 style="position: relative; color: white; left: 50px; top: 40px;"> User Edit </h1>
                 <p style="position: relative; color: white; left: 50px; margin-top: 40px; font-style: italic;"> Edit or view a user reservation information </p>
-                <button id="reserve_schedule_btn" onclick="showScheduleForm();"> User Lookup </button> 
+                <button id="reserve_schedule_btn" onclick="showScheduleForm();" style="margin-left: 40px;"> User Lookup </button> 
                 <style> 
                     #reserve_schedule_btn{
                         position: absolute; 
@@ -54,82 +54,21 @@
                                 
                 <div class="form_box">
                     <div id="blur_box"> </div>
-                    <h2> Reserve Now </h2>
-                    <h4> Just one-click away </h4>
+                    <h2> User Edit </h2>
+                    <h4> Edit reservation of a user </h4>
                     <hr>
                     <div class="input">
                         <form action="">
-                            <div class="button_box">
-                                <div id="btn"></div>
-                                <button type="button" class="switch" id="laguna_btn" onclick="leftClick();"> Laguna </button>
-                                <button type="button" class="switch" id="manila_btn" onclick="rightClick();"> Manila </button> 
-                            </div>
+                            <label for="user_idNumber"></label>
+                            <input type="text" placeholder="ID Number" class="fillup" name="user_idNumber" id="user_idNumber" required style="position: relative; top: 5px;">
     
-                            <input type="date" placeholder="Date" class="fillup" required name="user_date" id="user_date" >
-    
-                            <div class="entry">
-                                <img src="Images/Help.png" style="width: 25px; height: 25px; position: relative; filter:invert(1); top: 15px; left:10px; cursor: help;" title="From home, location going to be picked up.">
-                                <select name="user_entry" id="user_entry" class="fillup" onchange="readyChangeTime('user_entry','user_entryTime');" style="width: 200px; margin: 10px; position: relative; left: 5px; ">
-                                    <option value="" disabled selected hidden s> Entry Location </option>
-                                    <option value="0"> DLSU Laguna </option>
-                                    <option value="1"> Paseo </option>
-                                    <option value="2"> Carmona </option>
-                                    <option value="3"> Pavilion Mall </option>
-                                    <option value="4"> Walter Mart </option>
-                                    <option value="5"> N/A </option>
-                                </select>
-                                <select name="user_entryTime" id="user_entryTime" class="fillup" style="width: 120px; ">
-                                    <option value="" disabled selected hidden s> Time Slot </option>
-                                    <option value="0"> 06:00 AM </option>
-                                    <option value="1"> 07:30 AM </option>
-                                    <option value="2"> 09:30 AM </option>
-                                    <option value="3"> 11:00 AM </option>
-                                    <option value="4"> 01:00 PM </option>
-                                    <option value="5"> 02:30 PM </option>
-                                    <option value="6"> 03:30 PM </option>
-                                    <option value="7"> 05:10 PM </option>
-                                    <option value="8"> 06:15 PM </option>
-                                    <option value="9"> 05:10 PM </option>
-                                    <option value="10"> 07:45 PM </option>
-                                    <option value="11"> N/A </option>
-                                </select>
-                            </div>
-    
-                            <div class="exit"> </style>
-                                <img src="Images/Help.png" style="width: 25px; height: 25px; position: relative; filter:invert(1); top: 15px; left:10px; cursor: help;" title="From De La Salle University, location going to be dropped-off.">
-                                <select name="user_exit" id="user_exit" class="fillup" onchange="readyChangeTime('user_exit','user_exitTime');" style="width: 200px; margin: 10px; position: relative; left: 5px;">
-                                    <option value="" disabled selected hidden s> Exit Location </option>
-                                    <option value="0"> DLSU Manila </option>
-                                    <option value="1"> Paseo </option>
-                                    <option value="2"> Carmona </option>
-                                    <option value="3"> Pavilion Mall </option>
-                                    <option value="4"> Walter Mart </option>
-                                    <option value="5"> N/A </option>
-                                </select>
-                                <select name="user_exitTime" id="user_exitTime" class="fillup" style="width: 120px;">
-                                    <option value="" disabled selected hidden s> Time Slot </option>
-                                    <option value="0"> 06:00 AM </option>
-                                    <option value="1"> 07:30 AM </option>
-                                    <option value="2"> 09:30 AM </option>
-                                    <option value="3"> 11:00 AM </option>
-                                    <option value="4"> 01:00 PM </option>
-                                    <option value="5"> 02:30 PM </option>
-                                    <option value="6"> 03:30 PM </option>
-                                    <option value="7"> 05:10 PM </option>
-                                    <option value="8"> 06:15 PM </option>
-                                    <option value="9"> 05:10 PM </option>
-                                    <option value="10"> 07:45 PM </option>
-                                    <option value="11"> N/A </option>
-                                </select>
-                            </div>
-    
-                            <button type="submit" class="toggle_btn" id="reserve_btn" onclick="hideScheduleForm();"> Reserve <style> .toggle_btn{ font-size: large; font-weight: bold;}</style></button>
+                            <button type="submit" class="toggle_btn" id="reserve_btn" onclick="cancelScheduleForm();"> Lookup <style> .toggle_btn{ font-size: large; font-weight: bold;}</style></button>
                         </form>
                         
                     </div>
     
                     <div class="subtext">
-                        <a href="#"> How to use?</a>
+                        <a href="#"> How to use? </a>
                         <a onclick="cancelScheduleForm();" style="cursor:pointer;">Cancel </a>
                     </div>
     
@@ -139,5 +78,47 @@
 
         </div>
     </body>
+
+    <style>
+
+        .form_box{
+            height: 220px;
+            margin: 100px auto;
+        }
+
+        .form_box .input{
+            top: 10px;
+        }
+
+        .toggle_btn{
+            top: -10px;
+        }
+
+        .subtext{
+            position: relative;
+            top: 45px;
+        }
+
+        #error_box{
+            width: 380px;
+            height: 20px;
+            top: 12%;
+            margin: auto;
+            background: rgb(255, 54, 54);
+            padding: 5px;
+            position: relative;
+            border-radius: 20px;
+            display: none;
+        }
+
+        #error_box p{
+            text-align: center;
+            font-family: sans-serif;
+            font-size: 13px;
+            position: relative;
+            top: 3px;
+        }
+
+    </style>
 
 </html>
