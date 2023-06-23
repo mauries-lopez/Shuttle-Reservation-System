@@ -1,28 +1,27 @@
 var functionCalled = 0; // 0 = left (Laguna), 1 = right (Manila)
-var efunctionCalled = 0; //For editing form
 var count = null;
 
 function leftClick(){
     functionCalled = 0;
     btn.style.left = '0';
-    locationChangeFormHelper(0);
+    locationChangeFormHelper(0, false);
 }
 
 function rightClick(){
 
     functionCalled = 1;
     btn.style.left = '160px';
-    locationChangeFormHelper(1);
+    locationChangeFormHelper(1, false);
 }
 
 function eleftClick(){
-    functionCalled = 0;
     ebtn.style.left = '0';
+    locationChangeFormHelper(0, true);
 }
 
 function erightClick(){
-    functionCalled = 1;
     ebtn.style.left = '160px';
+    locationChangeFormHelper(1, true);
 }
 
 function showScheduleForm() {
@@ -322,29 +321,23 @@ function changeEntryTimeSlots(location_id, time_id){
     timeSlots.innerHTML = '';
 
     if( functionCalled == 0 ){
-        if ( location_id == 'user_entry' ){ //Entry Point
+        if ( location_id == 'user_entry' || location_id == 'editUser_entry'){ //Entry Point
             if ( location == 0 ){
-                var storage_time = ["05:45 AM", "06:15 AM", "07:00 AM", "08:00 AM", "09:00 AM", 
-                                    "11:00 AM", "01:00 PM", "02:30 PM", "03:30 PM", "05:10 PM", 
-                                    "06:15 PM", "07:45 PM", "N/A"];
-                changeTimeHelper( time_id, storage_time );
-            }
-            else if ( location == 1 ){
                 var storage_time = ["06:00 AM", "06:30 AM", "07:00 AM", "07:30 AM", "08:00 AM", 
                                     "08:30 AM", "09:00 AM", "09:30 AM", "10:30 AM", "11:30 AM", 
                                     "12:30 PM", "01:00 PM", "02:00 PM", "03:00 PM", "03:30 PM",
                                     "04:40 PM", "N/A"];
                 changeTimeHelper( time_id, storage_time );
             }
-            else if ( location == 2 ){
+            else if ( location == 1 ){
                 var storage_time = ["06:30 AM", "N/A"];
                 changeTimeHelper( time_id, storage_time );
             }
-            else if ( location == 3 ){
+            else if ( location == 2 ){
                 var storage_time = ["05:30 AM", "06:00 AM", "06:30 AM", "07:30 AM", "N/A"];
                 changeTimeHelper( time_id, storage_time );
             }
-            else if ( location == 4 ){
+            else if ( location == 3 ){
                 var storage_time = ["06:30 AM", "07:00 AM", "N/A"];
                 changeTimeHelper( time_id, storage_time );
             }
@@ -354,7 +347,7 @@ function changeEntryTimeSlots(location_id, time_id){
             }
         }
     
-        else if ( location_id = 'user_exit' ){ //Exit Point 
+        else if ( location_id = 'user_exit' || location_id == 'editUser_exit'){ //Exit Point 
             if ( location == 0 ){
                 var storage_time = ["06:00 AM", "07:30 AM", "09:30 AM", "11:00 AM", "01:00 PM", 
                                     "02:30 PM", "03:30 PM", "05:10 PM", "06:15 PM", "07:45 PM", 
@@ -391,7 +384,7 @@ function changeEntryTimeSlots(location_id, time_id){
     else{
 
         
-        if ( location_id == 'user_entry' ){ //Entry Point
+        if ( location_id == 'user_entry' || location_id == 'editUser_entry'){ //Entry Point
             if ( location == 0 ){
                 var storage_time = ["06:00 AM", "07:30 AM", "09:30 PM", "11:00 AM", "01:00 PM",
                                     "02:30 PM", "03:30 PM", "05:10 PM", "06:15 PM", "07:45 PM", "N/A"];
@@ -404,7 +397,7 @@ function changeEntryTimeSlots(location_id, time_id){
             }
         }
 
-        else if ( location_id = 'user_exit' ){ //Exit Point
+        else if ( location_id = 'user_exit' || location_id == 'editUser_exit'){ //Exit Point
             if ( location == 0 ){
                 var storage_time = ["06:00 AM", "07:30 AM", "09:30 AM", "11:00 AM", "01:00 PM", 
                                     "02:30 PM", "03:30 PM", "05:10 PM", "06:15 PM", "07:45 PM", 
@@ -457,54 +450,109 @@ function changeTimeHelper( time_id, storage_time ){
     }
 }
 
-function locationChangeFormHelper(location){
+function locationChangeFormHelper(location, isEditButton){
     //Location 0 - Laguna || 1 - Manila
 
-    var selectEntryContainer = document.getElementById('user_entry');
-    selectEntryContainer.innerHTML = '';
-
-    var selectExitContainer = document.getElementById('user_exit');
-    selectExitContainer.innerHTML = '';
-
-    if ( location == 0 ){  
-        var storage_entry = ["Paseo -> DLSU LC", "Carmona -> DLSU LC", "Pavilion Mall -> DLSU LC", "Walter Mart -> DLSU LC", "N/A"];
-        for ( var i = 0; i < storage_entry.length; i++ ){
-            var option = document.createElement('option');
-            option.value = i;
-            option.innerHTML = storage_entry[i];
-            selectEntryContainer.appendChild(option);
-        }
-
-        var storage_exit = ["DLSU LC -> DLSU Manila ", "DLSU LC -> Paseo ", "DLSU LC -> Carmona  ", "DLSU LC -> Pavilion Mall ", "DLSU LC -> Walter Mart ", "N/A"];
-        for ( var i = 0; i < storage_exit.length; i++ ){
-            var option = document.createElement('option');
-            option.value = i;
-            option.innerHTML = storage_exit[i];
-            selectExitContainer.appendChild(option);
-        }
         
+    if ( isEditButton == false )
+    {
+        var selectEntryContainer = document.getElementById('user_entry');
+        selectEntryContainer.innerHTML = '';
+    
+        var selectExitContainer = document.getElementById('user_exit');
+        selectExitContainer.innerHTML = '';
+
+        if ( location == 0 ){  
+
+            var storage_entry = ["Paseo -> DLSU LC", "Carmona -> DLSU LC", "Pavilion Mall -> DLSU LC", "Walter Mart -> DLSU LC", "N/A"];
+            for ( var i = 0; i < storage_entry.length; i++ ){
+                var option = document.createElement('option');
+                option.value = i;
+                option.innerHTML = storage_entry[i];
+                selectEntryContainer.appendChild(option);
+            }
+
+            var storage_exit = ["DLSU LC -> DLSU Manila ", "DLSU LC -> Paseo ", "DLSU LC -> Carmona  ", "DLSU LC -> Pavilion Mall ", "DLSU LC -> Walter Mart ", "N/A"];
+            for ( var i = 0; i < storage_exit.length; i++ ){
+                var option = document.createElement('option');
+                option.value = i;
+                option.innerHTML = storage_exit[i];
+                selectExitContainer.appendChild(option);
+            }
+
+        }
+        else {
+
+            selectEntryContainer.style.width = "185px";
+            var storage_entry = ["Yuchenco Bldg. -> DLSU LC", "East Canopy MMR -> DLSU LC", "N/A"];
+            for ( var i = 0; i < storage_entry.length; i++ ){
+                var option = document.createElement('option');
+                option.value = i;
+                option.innerHTML = storage_entry[i];
+                selectEntryContainer.appendChild(option);
+            }
+
+            var storage_exit = ["DLSU LC -> DLSU Manila ", "DLSU LC -> Paseo ", "DLSU LC -> Carmona  ", "DLSU LC -> Pavilion Mall ", "DLSU LC -> Walter Mart ", "N/A"];
+            for ( var i = 0; i < storage_exit.length; i++ ){
+                var option = document.createElement('option');
+                option.value = i;
+                option.innerHTML = storage_exit[i];
+                selectExitContainer.appendChild(option);
+            }
+
+    
+        }
+
+        changeEntryTimeSlots('user_entry', 'user_entryTime')
+        changeEntryTimeSlots('user_exit', 'user_exitTime')
+
     }
     else{
-        selectEntryContainer.style.width = "191px";
-        var storage_entry = ["Yuchenco Bldg. -> DLSU LC", "East Canopy MMR -> DLSU LC", "N/A"];
-        for ( var i = 0; i < storage_entry.length; i++ ){
-            var option = document.createElement('option');
-            option.value = i;
-            option.innerHTML = storage_entry[i];
-            selectEntryContainer.appendChild(option);
+        var selectEntryContainer = document.getElementById('editUser_entry');
+        selectEntryContainer.innerHTML = '';
+        var selectExitContainer = document.getElementById('editUser_exit');
+        selectExitContainer.innerHTML = '';
+
+        if ( location == 0 ){  
+            var storage_entry = ["Paseo -> DLSU LC", "Carmona -> DLSU LC", "Pavilion Mall -> DLSU LC", "Walter Mart -> DLSU LC", "N/A"];
+            for ( var i = 0; i < storage_entry.length; i++ ){
+                var option = document.createElement('option');
+                option.value = i;
+                option.innerHTML = storage_entry[i];
+                selectEntryContainer.appendChild(option);
+            }
+
+            var storage_exit = ["DLSU LC -> DLSU Manila ", "DLSU LC -> Paseo ", "DLSU LC -> Carmona  ", "DLSU LC -> Pavilion Mall ", "DLSU LC -> Walter Mart ", "N/A"];
+            for ( var i = 0; i < storage_exit.length; i++ ){
+                var option = document.createElement('option');
+                option.value = i;
+                option.innerHTML = storage_exit[i];
+                selectExitContainer.appendChild(option);
+            }
+
+        }
+        else {
+            selectEntryContainer.style.width = "185px";
+            var storage_entry = ["Yuchenco Bldg. -> DLSU LC", "East Canopy MMR -> DLSU LC", "N/A"];
+            for ( var i = 0; i < storage_entry.length; i++ ){
+                var option = document.createElement('option');
+                option.value = i;
+                option.innerHTML = storage_entry[i];
+                selectEntryContainer.appendChild(option);
+            }
+
+            var storage_exit = ["DLSU LC -> DLSU Manila ", "DLSU LC -> Paseo ", "DLSU LC -> Carmona  ", "DLSU LC -> Pavilion Mall ", "DLSU LC -> Walter Mart ", "N/A"];
+            for ( var i = 0; i < storage_exit.length; i++ ){
+                var option = document.createElement('option');
+                option.value = i;
+                option.innerHTML = storage_exit[i];
+                selectExitContainer.appendChild(option);
+            }
         }
 
-        var storage_exit = ["DLSU LC -> DLSU Manila ", "DLSU LC -> Paseo ", "DLSU LC -> Carmona  ", "DLSU LC -> Pavilion Mall ", "DLSU LC -> Walter Mart ", "N/A"];
-        for ( var i = 0; i < storage_exit.length; i++ ){
-            var option = document.createElement('option');
-            option.value = i;
-            option.innerHTML = storage_exit[i];
-            selectExitContainer.appendChild(option);
-        }
-        
+        changeEntryTimeSlots('editUser_entry', 'editUser_entryTime')
+        changeEntryTimeSlots('editUser_exit', 'editUser_exitTime')
+
     }
-
-    changeEntryTimeSlots('user_entry', 'user_entryTime')
-    changeEntryTimeSlots('user_exit', 'user_exitTime')
-    
+  
 }

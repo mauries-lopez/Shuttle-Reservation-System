@@ -26,7 +26,7 @@
     background-position: cover;
 }
 
-.form2 {
+.form_box2 {
     display: none;
     position: fixed;
     background: rgb(51, 255, 0);
@@ -39,7 +39,7 @@
     padding: 5px;
 }
 
-.form2 #blur_box{
+.form_box2 #blur_box{
     position: fixed;
     left: 0px;
     top: 0px;
@@ -50,7 +50,7 @@
     background-position: cover;
 }
 
-.form2 h2,h4{
+.form_box2 h2,h4{
     position: relative;
     width: 200px;
     margin-left: 30px;
@@ -58,18 +58,18 @@
     color: white;
 }
 
-.form2 hr {
+.form_box2 hr {
     position: relative;
     width: 100%;
     top: 30px;
 }
 
-.form2 .input {
+.form_box2 .input {
     position: relative;
     margin-top: 8%;
 }
 
-.form2 .input .fillup {
+.form_box2 .input .fillup {
     width: 300px;
     display: flex;
     margin: auto;

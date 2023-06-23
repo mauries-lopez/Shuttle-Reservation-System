@@ -10,23 +10,23 @@ function leftClick() {
   option0.innerHTML = 'Laguna';
 
   var option1 = document.createElement('option');
-  option1.value = 1;
+  option1.value = 0;
   option1.innerHTML = 'Paseo';
 
   var option2 = document.createElement('option');
-  option2.value = 2;
+  option2.value = 1;
   option2.innerHTML = 'Carmona';
 
   var option3 = document.createElement('option');
-  option3.value = 3;
+  option3.value = 2;
   option3.innerHTML = 'Pavilion Mall';
 
   var option4 = document.createElement('option');
-  option4.value = 4;
+  option4.value = 3;
   option4.innerHTML = 'Waltermart';
 
   var option5 = document.createElement('option');
-  option5.value = 5;
+  option5.value = 4;
   option5.innerHTML = 'N/A';
 
   var option = document.createElement('option');
