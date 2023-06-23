@@ -1,80 +1,18 @@
 var functionCalled = 0; // 0 = left (Laguna), 1 = right (Manila)
 var efunctionCalled = 0; //For editing form
-var count = 0;
+var count = null;
 
 function leftClick(){
     functionCalled = 0;
     btn.style.left = '0';
-    changeEntryTimeSlots('user_entry', 'user_entryTime');
+    locationChangeFormHelper(0);
 }
 
-function rightClick() {
-    btn.style.left = '160px';
-  
-    var user_entry = document.getElementById('user_entry');
-    var user_exit = document.getElementById('user_exit');
-  
-    user_entry.innerHTML = '';
-    user_exit.innerHTML = '';
-  
-    var option0 = document.createElement('option');
-    option0.value = 0;
-    option0.innerHTML = 'DLSU Manila';
-  
-    var option1 = document.createElement('option');
-    option1.value = 1;
-    option1.innerHTML = 'Paseo';
-  
-    var option2 = document.createElement('option');
-    option2.value = 2;
-    option2.innerHTML = 'Carmona';
-  
-    var option3 = document.createElement('option');
-    option3.value = 3;
-    option3.innerHTML = 'Pavilion Mall';
-  
-    var option4 = document.createElement('option');
-    option4.value = 4;
-    option4.innerHTML = 'Walter Mart';
-  
-    var option5 = document.createElement('option');
-    option5.value = 5;
-    option5.innerHTML = 'N/A';
-  
-    var option_entry = document.createElement('option');
-    option_entry.setAttribute('selected', true);
-    option_entry.setAttribute('disabled', true);
-    option_entry.setAttribute('hidden', true);
-    option_entry.innerHTML = 'Select Location';
-  
-    var option_exit_laguna = document.createElement('option');
-    option_exit_laguna.value = 0;
-    option_exit_laguna.innerHTML = 'DLSU Laguna';
+function rightClick(){
 
-    var option6 = document.createElement('option');
-    option6.value = 6;
-    option6.innerHTML = 'N/A';
-  
-    var option_array_entry = [option_entry, option0, option6];
-    var option_array_exit = [option_exit_laguna, option1, option2, option3, option4, option5];
-  
-    for (var i = 0; i < option_array_entry.length; i++) {
-      user_entry.appendChild(option_array_entry[i]);
-    }
-  
-    for (var j = 0; j < option_array_exit.length; j++) {
-      user_exit.appendChild(option_array_exit[j]);
-    }
-  }
-
-function eleftClick(){
-    functionCalled = 0;
-    ebtn.style.left = '0';
-}
-
-function erightClick(){
     functionCalled = 1;
-    ebtn.style.left = '160px';
+    btn.style.left = '160px';
+    locationChangeFormHelper(1);
 }
 
 function eleftClick(){
@@ -95,7 +33,12 @@ function showScheduleForm() {
 	var entryTimeBox = doc.getElementById('user_entryTime');
 	var exitBox = doc.getElementById('user_exit');
 	var exitTimeBox = doc.getElementById('user_exitTime');
-
+	var idBox = doc.getElementById('user_idNumber');
+	
+	if(idBox != null){
+		idBox.value="";
+	}
+	
 	date_box.value="";
 	entry_box.value="";
 	entryTimeBox.value="";
@@ -121,8 +64,6 @@ function showScheduleForm() {
 	
 	exitTimeBox.appendChild(newOption);
 	
-	
-	
     scheduleForm.style.display = 'block';
 	
 }
@@ -134,14 +75,18 @@ function hideScheduleForm(){
 
     var div = document.createElement('div');
     div.className = 'reserved_schedule';
-	
-	count = scheduleContainer.childElementCount;
+	if (count == null){
+		count = scheduleContainer.childElementCount + 1;
+	}
+	else{
+		count = count + 1;
+		
+	} 
 	div.setAttribute('id', count );
-	
 	
     scheduleContainer.appendChild(div);
 	
-    var reserved_schedule_container = document.getElementsByClassName('reserved_schedule')[count];
+    var reserved_schedule_container = document.getElementsByClassName('reserved_schedule')[scheduleContainer.childElementCount - 1];
     var divBtn = document.createElement('div');
     divBtn.className = 'reserved_schedule_btn';
     
@@ -149,12 +94,14 @@ function hideScheduleForm(){
     
     var edit_btn = document.createElement('button');
     edit_btn.className = 'edit_btn';
+    edit_btn.setAttribute('type', 'button');
 	edit_btn.setAttribute('id', 'e_btn' + count);
     edit_btn.setAttribute('onclick','showEditForm(' + count + ')');
     edit_btn.innerHTML = 'EDIT';
 
     var delete_btn = document.createElement('button');
     delete_btn.className = 'delete_btn';
+    delete_btn.setAttribute('type', 'button');
 	delete_btn.setAttribute('id', 'd_btn' + count);
 	delete_btn.setAttribute('onclick','showDeleteForm(' + count + ')');
     delete_btn.innerHTML = 'DELETE';
@@ -187,7 +134,6 @@ function showEditForm(i) {
 	exitBox.value="";
 	exitTimeBox.value="";
 	
-	
 	var newOption = doc.createElement('option');
 	var optionText = doc.createTextNode('Time Slot');
 	newOption.appendChild(optionText);
@@ -205,8 +151,6 @@ function showEditForm(i) {
 	newOption.setAttribute('hidden','');
 	
 	exitTimeBox.appendChild(newOption);
-	
-	
 	
     editForm.style.display = 'block';
 	
@@ -228,19 +172,26 @@ function showDeleteForm(i) {
 	var doc = document;
     var deleteForm = document.getElementById('delete_box');	
 	var deleteButton = doc.getElementById('delete_btn');
+	var cancelButton = doc.getElementById('cancel_btn');
 	
     deleteForm.style.display = 'block';
+
 	deleteButton.setAttribute('onclick', 'hideDeleteForm(' + i + ')');
+	cancelButton.setAttribute('onclick', 'hideDeleteForm(' + -1 + ')');
 }
 
 function hideDeleteForm(i){
 	var deleteForm = document.getElementById('delete_box');
 	
-	var deleteReservation = document.getElementById(i);
-	
-	deleteReservation.remove();
+	if(i != -1){
+		var deleteReservation = document.getElementById(i);
+		
+		deleteReservation.remove();
+	}
 	
 	deleteForm.style.display="none";
+
+    
 }
 
 function cancelDeleteForm(){
@@ -341,80 +292,201 @@ function cancelScheduleForm(){
 
 function readyChangeTime( location_id, time_id ){
     changeEntryTimeSlots(location_id, time_id);
+
 }
 
 function changeEntryTimeSlots(location_id, time_id){
+
     var selectedLocation = document.getElementById(location_id);
     var location = selectedLocation.options[selectedLocation.selectedIndex].value;
     
     var timeSlots = document.getElementById(time_id);
     timeSlots.innerHTML = '';
 
-    if ( location_id == 'user_entry' ){ //Entry Point
-        if ( location == 0 ){
-            var storage_time = ["05:45 AM", "06:15 AM", "07:00 AM", "08:00 AM", "09:00 AM", "11:00 AM", "01:00 PM", "02:30 PM", "03:30 PM", "05:10 PM", "06:15 PM", "07:45 PM"];
-            changeTimeHelper( time_id, storage_time );
+    if( functionCalled == 0 ){
+        if ( location_id == 'user_entry' ){ //Entry Point
+            if ( location == 0 ){
+                var storage_time = ["05:45 AM", "06:15 AM", "07:00 AM", "08:00 AM", "09:00 AM", 
+                                    "11:00 AM", "01:00 PM", "02:30 PM", "03:30 PM", "05:10 PM", 
+                                    "06:15 PM", "07:45 PM", "N/A"];
+                changeTimeHelper( time_id, storage_time );
+            }
+            else if ( location == 1 ){
+                var storage_time = ["06:00 AM", "06:30 AM", "07:00 AM", "07:30 AM", "08:00 AM", 
+                                    "08:30 AM", "09:00 AM", "09:30 AM", "10:30 AM", "11:30 AM", 
+                                    "12:30 PM", "01:00 PM", "02:00 PM", "03:00 PM", "03:30 PM",
+                                    "04:40 PM", "N/A"];
+                changeTimeHelper( time_id, storage_time );
+            }
+            else if ( location == 2 ){
+                var storage_time = ["06:30 AM", "N/A"];
+                changeTimeHelper( time_id, storage_time );
+            }
+            else if ( location == 3 ){
+                var storage_time = ["05:30 AM", "06:00 AM", "06:30 AM", "07:30 AM", "N/A"];
+                changeTimeHelper( time_id, storage_time );
+            }
+            else if ( location == 4 ){
+                var storage_time = ["06:30 AM", "07:00 AM", "N/A"];
+                changeTimeHelper( time_id, storage_time );
+            }
+            else{
+                var storage_time = ["N/A"];
+                changeTimeHelper( time_id, storage_time );
+            }
         }
-        else if ( location == 1 ){
-            var storage_time = ["06:00 AM", "06:30 AM", "07:00 AM", "12:15 PM", "01:00 PM", "03:00 PM", "03:30 PM"];
-            changeTimeHelper( time_id, storage_time );
-        }
-        else if ( location == 2 ){
-            var storage_time = ["06:30 AM"];
-            changeTimeHelper( time_id, storage_time );
-        }
-        else if ( location == 3 ){
-            var storage_time = ["05:30 AM", "06:00 AM", "06:30 AM", "07:00 AM"];
-            changeTimeHelper( time_id, storage_time );
-        }
-        else if ( location == 4 ){
-            var storage_time = ["06:30 AM", "07:00 AM"];
-            changeTimeHelper( time_id, storage_time );
-        }
-        else if ( location == 5 ){
-            var storage_time = ["/NA"];
-            changeTimeHelper( time_id, storage_time );
+    
+        else if ( location_id = 'user_exit' ){ //Exit Point 
+            if ( location == 0 ){
+                var storage_time = ["06:00 AM", "07:30 AM", "09:30 AM", "11:00 AM", "01:00 PM", 
+                                    "02:30 PM", "03:30 PM", "05:10 PM", "06:15 PM", "07:45 PM", 
+                                    "N/A"];
+                changeTimeHelper( time_id, storage_time );
+            }
+            else if ( location == 1 ){
+                var storage_time = ["05:45 AM", "06:15 AM", "07:00 AM", "08:00 AM", "09:00 AM", 
+                                    "11:00 AM", "01:00 PM", "02:30 PM", "03:30 PM", "05:10 PM", 
+                                    "06:15 PM", "07:45 PM", "N/A"];
+                changeTimeHelper( time_id, storage_time );
+            }
+            else if ( location == 2 ){
+                var storage_time = ["12:30 PM", "01:00 PM", "02:00 PM", "04:45 PM", "05:10 PM", 
+                                    "05:30 PM", "06:00 PM", "07:45 PM", "N/A"];
+                changeTimeHelper( time_id, storage_time );
+            }
+            else if ( location == 3 ){
+                var storage_time = ["12:30 PM", "01:00 PM", "02:00 PM", "04:45 PM", "05:10 PM",
+                                    "05:30 PM", "06:00 PM", "07:45 PM", "N/A"];
+                changeTimeHelper( time_id, storage_time );
+            }
+            else if ( location == 4 ){
+                var storage_time = ["12:30 PM", "01:00 PM", "02:00 PM", "04:45 PM", "05:10 PM",
+                                    "05:30 PM", "06:00 PM", "07:45 PM", "N/A"];
+                changeTimeHelper( time_id, storage_time );
+            }
+            else{
+                var storage_time = ["N/A"];
+                changeTimeHelper( time_id, storage_time );
+            }
         }
     }
+    else{
 
-    if ( location_id == 'user_exit' ){ //Entry Point
-        if ( location == 0 ){
-            var storage_time = ["06:00 AM", "07:30 AM", "09:30 AM", "11:00 AM", "01:00 PM", "02:30 PM", "03:30 PM", "05:10 PM", "06:15 PM", "07:45 PM"];
-            changeTimeHelper( time_id, storage_time );
+        
+        if ( location_id == 'user_entry' ){ //Entry Point
+            if ( location == 0 ){
+                var storage_time = ["06:00 AM", "07:30 AM", "09:30 PM", "11:00 AM", "01:00 PM",
+                                    "02:30 PM", "03:30 PM", "05:10 PM", "06:15 PM", "07:45 PM", "N/A"];
+                changeTimeHelper( time_id, storage_time );
+            }
+            else if ( location == 1 ){
+                var storage_time = ["05:45 AM", "06:15 AM", "07:00 AM", "11:00 AM", "01:00 PM",
+                                    "02:30 PM", "03:30 PM", "05:10 PM", "06:15 PM", "07:45 PM", "N/A"];
+                changeTimeHelper( time_id, storage_time );
+            }
         }
-        else if ( location == 1 ){
-            var storage_time = ["09:00 AM", "11:30 AM", "04:45 PM", "05:10 PM", "05:30 PM", "06:00 PM", "06:30 PM", "07:00 PM", "07:45 PM"];
-            changeTimeHelper( time_id, storage_time );
+
+        else if ( location_id = 'user_exit' ){ //Exit Point
+            if ( location == 0 ){
+                var storage_time = ["06:00 AM", "07:30 AM", "09:30 AM", "11:00 AM", "01:00 PM", 
+                                    "02:30 PM", "03:30 PM", "05:10 PM", "06:15 PM", "07:45 PM", 
+                                    "N/A"];
+                changeTimeHelper( time_id, storage_time );
+            }
+            else if ( location == 1 ){
+                var storage_time = ["09:00 AM", "10:00 AM", "11:00 AM", "11:30 AM", "12:00 PM", 
+                                    "01:30 PM", "02:30 PM", "03:30 PM", "04:45 PM", "05:10 PM", 
+                                    "05:30 PM", "06:00 PM", "06:30 PM", "07:00 PM", "07:45 PM",
+                                    "N/A"];
+                changeTimeHelper( time_id, storage_time );
+            }
+            else if ( location == 2 ){
+                var storage_time = ["12:30 PM", "01:00 PM", "02:00 PM", "04:45 PM", "05:10 PM", 
+                                    "05:30 PM", "06:00 PM", "07:45 PM", "N/A"];
+                changeTimeHelper( time_id, storage_time );
+            }
+            else if ( location == 3 ){
+                var storage_time = ["12:30 PM", "01:00 PM", "02:00 PM", "04:45 PM", "05:10 PM",
+                                    "05:30 PM", "06:00 PM", "07:45 PM", "N/A"];
+                changeTimeHelper( time_id, storage_time );
+            }
+            else if ( location == 4 ){
+                var storage_time = ["12:30 PM", "01:00 PM", "02:00 PM", "04:45 PM", "05:10 PM",
+                                    "05:30 PM", "06:00 PM", "07:45 PM", "N/A"];
+                changeTimeHelper( time_id, storage_time );
+            }
+            else{
+                var storage_time = ["N/A"];
+                changeTimeHelper( time_id, storage_time );
+            }
         }
-        else if ( location == 2 ){
-            var storage_time = ["04:45 PM", "05:10 PM", "05:30 PM", "06:00 PM", "07:45 PM"];
-            changeTimeHelper( time_id, storage_time );
-        }
-        else if ( location == 3 ){
-            var storage_time = ["04:45 PM", "05:10 PM", "05:30 PM", "06:00 PM", "07:45 PM"];
-            changeTimeHelper( time_id, storage_time );
-        }
-        else if ( location == 4 ){
-            var storage_time = ["04:45 PM", "05:10 PM", "05:30 PM", "06:00 PM", "07:45 PM"];
-            changeTimeHelper( time_id, storage_time );
-        }
-        else if ( location == 5 ){
-            var storage_time = ["/NA"];
-            changeTimeHelper( time_id, storage_time );
-        }
+        
     }
+    
+    
 
 }
 
-function changeTimeHelper(position, storage_time) {
-    var timeSlots = document.getElementById(position);
-    timeSlots.innerHTML = ''; 
-  
-    for (var i = 0; i < storage_time.length; i++) {
-      var option = document.createElement('option');
-      option.value = i;
-      option.innerHTML = storage_time[i];
-      timeSlots.appendChild(option);
+function changeTimeHelper( time_id, storage_time ){
+
+    var timeSlots = document.getElementById(time_id);
+
+    for ( var i = 0; i < storage_time.length; i++ ){
+        var option = document.createElement('option');
+        option.value = i;
+        option.innerHTML = storage_time[i];
+        timeSlots.appendChild(option);
     }
-  }
-  
+}
+
+function locationChangeFormHelper(location){
+    //Location 0 - Laguna || 1 - Manila
+
+    var selectEntryContainer = document.getElementById('user_entry');
+    selectEntryContainer.innerHTML = '';
+
+    var selectExitContainer = document.getElementById('user_exit');
+    selectExitContainer.innerHTML = '';
+
+    if ( location == 0 ){  
+        var storage_entry = ["Paseo -> DLSU LC", "Carmona -> DLSU LC", "Pavilion Mall -> DLSU LC", "Walter Mart -> DLSU LC", "N/A"];
+        for ( var i = 0; i < storage_entry.length; i++ ){
+            var option = document.createElement('option');
+            option.value = i;
+            option.innerHTML = storage_entry[i];
+            selectEntryContainer.appendChild(option);
+        }
+
+        var storage_exit = ["DLSU LC -> DLSU Manila ", "DLSU LC -> Paseo ", "DLSU LC -> Carmona  ", "DLSU LC -> Pavilion Mall ", "DLSU LC -> Walter Mart ", "N/A"];
+        for ( var i = 0; i < storage_exit.length; i++ ){
+            var option = document.createElement('option');
+            option.value = i;
+            option.innerHTML = storage_exit[i];
+            selectExitContainer.appendChild(option);
+        }
+        
+    }
+    else{
+        selectEntryContainer.style.width = "191px";
+        var storage_entry = ["Yuchenco Bldg. -> DLSU LC", "East Canopy MMR -> DLSU LC", "N/A"];
+        for ( var i = 0; i < storage_entry.length; i++ ){
+            var option = document.createElement('option');
+            option.value = i;
+            option.innerHTML = storage_entry[i];
+            selectEntryContainer.appendChild(option);
+        }
+
+        var storage_exit = ["DLSU LC -> DLSU Manila ", "DLSU LC -> Paseo ", "DLSU LC -> Carmona  ", "DLSU LC -> Pavilion Mall ", "DLSU LC -> Walter Mart ", "N/A"];
+        for ( var i = 0; i < storage_exit.length; i++ ){
+            var option = document.createElement('option');
+            option.value = i;
+            option.innerHTML = storage_exit[i];
+            selectExitContainer.appendChild(option);
+        }
+        
+    }
+
+    changeEntryTimeSlots('user_entry', 'user_entryTime')
+    changeEntryTimeSlots('user_exit', 'user_exitTime')
+    
+}
