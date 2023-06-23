@@ -174,17 +174,21 @@ function showDeleteForm(i) {
 	var doc = document;
     var deleteForm = document.getElementById('delete_box');	
 	var deleteButton = doc.getElementById('delete_btn');
+	var cancelButton = doc.getElementById('cancel_btn');
 	
     deleteForm.style.display = 'block';
 	deleteButton.setAttribute('onclick', 'hideDeleteForm(' + i + ')');
+	cancelButton.setAttribute('onclick', 'hideDeleteForm(' + -1 + ')');
 }
 
 function hideDeleteForm(i){
 	var deleteForm = document.getElementById('delete_box');
 	
-	var deleteReservation = document.getElementById(i);
-	
-	deleteReservation.remove();
+	if(i != -1){
+		var deleteReservation = document.getElementById(i);
+		
+		deleteReservation.remove();
+	}
 	
 	deleteForm.style.display="none";
 }
