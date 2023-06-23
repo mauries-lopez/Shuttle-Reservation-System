@@ -1,3 +1,4 @@
+var count = null;
 function userReserve(){
 
     var scheduleContainer = document.getElementsByClassName('schedule_container')[0];
@@ -5,25 +6,37 @@ function userReserve(){
 
     var div = document.createElement('div');
     div.className = 'reserved_schedule';
-
+	
+	alert(count + " | "+ scheduleContainer.childElementCount + 1);
+	
+	if (count == null){
+		count = scheduleContainer.childElementCount + 1;
+	}
+	else{
+		count = count + 1;
+		
+	} 
+	div.setAttribute('id', count );
+	
+	
     scheduleContainer.appendChild(div);
 
-    var count = scheduleContainer.childElementCount;
-    count = count - 1;
-
-    var reserved_schedule_container = document.getElementsByClassName('reserved_schedule')[count];
+    var reserved_schedule_container = document.getElementsByClassName('reserved_schedule')[scheduleContainer.childElementCount - 1];
     var divBtn = document.createElement('div');
     divBtn.className = 'reserved_schedule_btn';
     
     reserved_schedule_container.appendChild(divBtn);
     
     var edit_btn = document.createElement('button');
-    edit_btn.setAttribute('id', 'edit_btn');
-    edit_btn.setAttribute('onclick','editSchedule()');
+    edit_btn.className = 'edit_btn';
+	edit_btn.setAttribute('id', 'e_btn' + count);
+    edit_btn.setAttribute('onclick','showEditForm(' + count + ')');
     edit_btn.innerHTML = 'EDIT';
 
     var delete_btn = document.createElement('button');
-    delete_btn.setAttribute('id', 'delete_btn');
+    delete_btn.className = 'delete_btn';
+	delete_btn.setAttribute('id', 'd_btn' + count);
+	delete_btn.setAttribute('onclick','showDeleteForm(' + count + ')');
     delete_btn.innerHTML = 'DELETE';
 
     divBtn.appendChild(edit_btn);
@@ -33,7 +46,6 @@ function userReserve(){
 
     scheduleForm,addEventListener('submit', function(e) {
         e.preventDefault();
-
     })
 
     scheduleForm.style.display = 'none';
