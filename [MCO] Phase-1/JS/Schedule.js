@@ -7,26 +7,26 @@ function leftClick() {
 
   var option0 = document.createElement('option');
   option0.value = 0;
-  option0.innerHTML = 'Laguna';
+  option0.innerHTML = 'DLSU MNL -> DLSU LC';
 
   var option1 = document.createElement('option');
-  option1.value = 0;
-  option1.innerHTML = 'Paseo';
+  option1.value = 1;
+  option1.innerHTML = 'Paseo -> DLSU LC';
 
   var option2 = document.createElement('option');
-  option2.value = 1;
-  option2.innerHTML = 'Carmona';
+  option2.value = 2;
+  option2.innerHTML = 'Carmona -> DLSU LC';
 
   var option3 = document.createElement('option');
-  option3.value = 2;
-  option3.innerHTML = 'Pavilion Mall';
+  option3.value = 3;
+  option3.innerHTML = 'Pavilion Mall -> DLSU LC';
 
   var option4 = document.createElement('option');
-  option4.value = 3;
-  option4.innerHTML = 'Waltermart';
+  option4.value = 4;
+  option4.innerHTML = 'Waltermart -> DLSU LC';
 
   var option5 = document.createElement('option');
-  option5.value = 4;
+  option5.value = 5;
   option5.innerHTML = 'N/A';
 
   var option = document.createElement('option');
@@ -41,6 +41,8 @@ function leftClick() {
   for (var i = 0; i < option_array.length; i++) {
     user_location.appendChild(option_array[i]);
   }
+
+  user_location.style.width = '189px';
 }
 
 function rightClick() {
@@ -52,23 +54,23 @@ function rightClick() {
 
   var option0 = document.createElement('option');
   option0.value = 0;
-  option0.innerHTML = 'Manila';
+  option0.innerHTML = 'DLSU LC -> DLSU MNL';
 
   var option1 = document.createElement('option');
   option1.value = 1;
-  option1.innerHTML = 'Paseo';
+  option1.innerHTML = 'DLSU LC -> Paseo';
 
   var option2 = document.createElement('option');
   option2.value = 2;
-  option2.innerHTML = 'Carmona';
+  option2.innerHTML = 'DLSU LC -> Carmona';
 
   var option3 = document.createElement('option');
   option3.value = 3;
-  option3.innerHTML = 'Pavilion Mall';
+  option3.innerHTML = 'DLSU LC -> Pavilion Mall';
 
   var option4 = document.createElement('option');
   option4.value = 4;
-  option4.innerHTML = 'Walter Mart';
+  option4.innerHTML = 'DLSU LC -> Walter Mart';
 
   var option5 = document.createElement('option');
   option5.value = 5;
@@ -85,6 +87,8 @@ function rightClick() {
   for (var i = 0; i < option_array.length; i++) {
     user_location.appendChild(option_array[i]);
   }
+
+  user_location.style.width = '250px';
 }
 
 function showScheduleForm() {
@@ -107,19 +111,21 @@ function changeTimeSlots() {
   var buttonClicked = document.getElementById('btn').style.left === '0px' ? 'entry' : 'exit';
 
   const exitTimeSlots = {
-    0: ["06:00 AM", "07:30 AM", "09:30 AM", "11:00 AM", "01:00 PM", "02:30 PM", "03:30 PM", "05:10 PM", "06:15 PM", "07:45 PM"],
+    0: ["05:45 AM", "06:15 AM", "07:00 AM", "08:00 AM", "09:00 AM", "11:00 AM", "01:00 PM", "02:30 PM", "03:30 PM", "05:10 PM", "06:15 PM", "07:45 PM"],
     1: ["09:00 AM", "11:30 AM", "04:45 PM", "05:10 PM", "05:30 PM", "06:00 PM", "06:30 PM", "07:00 PM", "07:45 PM"],
     2: ["04:45 PM", "05:10 PM", "05:30 PM", "06:00 PM", "07:45 PM"],
     3: ["04:45 PM", "05:10 PM", "05:30 PM", "06:00 PM", "07:45 PM"],
     4: ["04:45 PM", "05:10 PM", "05:30 PM", "06:00 PM", "07:45 PM"],
+    5: ["N/A"],
   }
 
   const entryTimeSlots = {
-    0: ["05:45 AM", "06:15 AM", "07:00 AM", "08:00 AM", "09:00 AM", "11:00 AM", "01:00 PM", "02:30 PM", "03:30 PM", "05:10 PM", "06:15 PM", "07:45 PM"],
+    0: ["06:00 AM", "07:30 AM", "09:30 AM", "11:00 AM", "01:00 PM", "02:30 PM", "03:30 PM", "05:10 PM", "06:15 PM", "07:45 PM"],
     1: ["06:00 AM", "06:30 AM", "07:00 AM", "12:15 PM", "01:00 PM", "03:00 PM", "03:30 PM"],
     2: ["06:30 AM"],
     3: ["05:30 AM", "06:00 AM", "06:30 AM", "07:00 AM"],
     4: ["06:30 AM", "07:00 AM"],
+    5: ["N/A"],
   }
 
   var timeSlots = document.getElementById('user_entryTime');
@@ -148,10 +154,10 @@ function findMatchingSeats(event) {
       combination.buttonClicked === buttonClicked
     );
   });
+  
 
   if (filteredCombinations.length > 0) {
     var matchedCombination = filteredCombinations[0];
-    alert('Schedule Match: ' + matchedCombination.message);
     var scheduleLabel = document.getElementById('schedule_label');
     scheduleLabel.textContent = matchedCombination.message;
     generateSeats(matchedCombination);
@@ -203,7 +209,7 @@ var combinations = [
     location: '0',
     entryTime: '0',
     buttonClicked: 'entry',
-    message: 'From DLSU LC to MNL 05:45 AM',
+    message: 'From DLSU MNL to DLSU LC 06:00 AM',
     seats: Array.from({ length: 13 }, (_, i) => ({ number: i + 1, taken: false }))
   },
 
@@ -211,7 +217,7 @@ var combinations = [
     location: '0',
     entryTime: '1',
     buttonClicked: 'entry',
-    message: 'From DLSU LC to MNL 06:15 AM',
+    message: 'From DLSU MNL to DLSU LC 07:30 AM',
     seats: Array.from({ length: 13 }, (_, i) => ({ number: i + 1, taken: false }))
   },
 
@@ -337,7 +343,7 @@ var combinations = [
     location: '0',
     entryTime: '0',
     buttonClicked: 'exit',
-    message: 'From MNL to DLSU LC 06:00 AM',
+    message: 'From DLSU LC to MNL 05:45 AM',
     seats: Array.from({ length: 13 }, (_, i) => ({ number: i + 1, taken: false }))
   },
 
@@ -345,7 +351,7 @@ var combinations = [
     location: '0',
     entryTime: '1',
     buttonClicked: 'exit',
-    message: 'From MNL to DLSU LC 07:30 AM',
+    message: 'From DLSU LC to MNL 06:15 AM',
     seats: [
       { number: 1, taken: true },
       { number: 2, taken: true },
@@ -368,7 +374,7 @@ var combinations = [
     location: '1',
     entryTime: '0',
     buttonClicked: 'exit',
-    message: 'From DLSU Laguna to Paseo 09:00 AM',
+    message: 'From DLSU LC to Paseo 09:00 AM',
     seats: Array.from({ length: 13 }, (_, i) => ({ number: i + 1, taken: false }))
   },
 
@@ -376,7 +382,7 @@ var combinations = [
     location: '1',
     entryTime: '1',
     buttonClicked: 'exit',
-    message: 'From DLSU Laguna to Paseo 11:30 AM',
+    message: 'From DLSU LC to Paseo 11:30 AM',
     seats: Array.from({ length: 13 }, (_, i) => ({ number: i + 1, taken: false }))
   },
 
@@ -385,7 +391,7 @@ var combinations = [
     location: '2',
     entryTime: '0',
     buttonClicked: 'exit',
-    message: 'To DLSU Laguna From Carmona 04:45 PM',
+    message: 'From DLSU LC to Carmona 04:45 PM',
     seats: Array.from({ length: 13 }, (_, i) => ({ number: i + 1, taken: false }))
   },
 
@@ -393,7 +399,7 @@ var combinations = [
     location: '2',
     entryTime: '1',
     buttonClicked: 'exit',
-    message: 'To DLSU Laguna From Carmona 05:10 PM',
+    message: 'From DLSU LC to Carmona 05:10 PM',
     seats: Array.from({ length: 13 }, (_, i) => ({ number: i + 1, taken: false }))
   },
 
@@ -402,7 +408,7 @@ var combinations = [
     location: '3',
     entryTime: '0',
     buttonClicked: 'exit',
-    message: 'To DLSU Laguna From Pavilion 04:45 PM',
+    message: 'From DLSU LC to Pavilion Mall 04:45 PM',
     seats: [
       { number: 1, taken: true },
       { number: 2, taken: true },
@@ -424,7 +430,7 @@ var combinations = [
     location: '3',
     entryTime: '1',
     buttonClicked: 'exit',
-    message: 'To DLSU Laguna From Pavilion 05:10 PM',
+    message: 'From DLSU LC to Pavilion Mall 05:10 PM',
     seats: Array.from({ length: 13 }, (_, i) => ({ number: i + 1, taken: false }))
   },
 
@@ -433,7 +439,7 @@ var combinations = [
     location: '4',
     entryTime: '0',
     buttonClicked: 'exit',
-    message: 'To DLSU Laguna From Waltermart 04:45 PM',
+    message: 'From DLSU LC to Waltermart 04:45 PM',
     seats: Array.from({ length: 13 }, (_, i) => ({ number: i + 1, taken: false }))
   },
 
@@ -441,7 +447,7 @@ var combinations = [
     location: '4',
     entryTime: '1',
     buttonClicked: 'exit',
-    message: 'To DLSU Laguna From Waltermart 05:10 PM',
+    message: 'From DLSU LC to Waltermart 05:10 PM',
     seats: [
       { number: 1, taken: true },
       { number: 2, taken: true },

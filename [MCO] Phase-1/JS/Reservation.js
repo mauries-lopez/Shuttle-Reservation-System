@@ -351,30 +351,29 @@ function changeEntryTimeSlots(location_id, time_id){
     
         else if ( location_id = 'user_exit' || location_id == 'editUser_exit'){ //Exit Point 
             if ( location == 0 ){
-                var storage_time = ["06:00 AM", "07:30 AM", "09:30 AM", "11:00 AM", "01:00 PM", 
-                                    "02:30 PM", "03:30 PM", "05:10 PM", "06:15 PM", "07:45 PM", 
-                                    "N/A"];
-                changeTimeHelper( time_id, storage_time );
-            }
-            else if ( location == 1 ){
                 var storage_time = ["05:45 AM", "06:15 AM", "07:00 AM", "08:00 AM", "09:00 AM", 
                                     "11:00 AM", "01:00 PM", "02:30 PM", "03:30 PM", "05:10 PM", 
                                     "06:15 PM", "07:45 PM", "N/A"];
                 changeTimeHelper( time_id, storage_time );
             }
+            else if ( location == 1 ){
+                var storage_time = ["09:00 AM", "11:30 AM", "04:45 PM", "05:10 AM", "05:30 PM", 
+                                    "06:00 PM", "06:30 PM", "07:00 PM", "07:45 PM", "N/A"];
+                changeTimeHelper( time_id, storage_time );
+            }
             else if ( location == 2 ){
-                var storage_time = ["12:30 PM", "01:00 PM", "02:00 PM", "04:45 PM", "05:10 PM", 
-                                    "05:30 PM", "06:00 PM", "07:45 PM", "N/A"];
+                var storage_time = ["04:45 PM", "05:10 PM", "05:30 PM", "06:00 PM", "07:45 PM", 
+                                    "N/A"];
                 changeTimeHelper( time_id, storage_time );
             }
             else if ( location == 3 ){
-                var storage_time = ["12:30 PM", "01:00 PM", "02:00 PM", "04:45 PM", "05:10 PM",
-                                    "05:30 PM", "06:00 PM", "07:45 PM", "N/A"];
+                var storage_time = ["04:45 PM", "05:10 PM", "05:30 PM", "06:00 PM", "07:45 PM", 
+                                    "N/A"];
                 changeTimeHelper( time_id, storage_time );
             }
             else if ( location == 4 ){
-                var storage_time = ["12:30 PM", "01:00 PM", "02:00 PM", "04:45 PM", "05:10 PM",
-                                    "05:30 PM", "06:00 PM", "07:45 PM", "N/A"];
+                var storage_time = ["04:45 PM", "05:10 PM", "05:30 PM", "06:00 PM", "07:45 PM", 
+                                    "N/A"];
                 changeTimeHelper( time_id, storage_time );
             }
             else{
@@ -401,31 +400,29 @@ function changeEntryTimeSlots(location_id, time_id){
 
         else if ( location_id = 'user_exit' || location_id == 'editUser_exit'){ //Exit Point
             if ( location == 0 ){
-                var storage_time = ["06:00 AM", "07:30 AM", "09:30 AM", "11:00 AM", "01:00 PM", 
-                                    "02:30 PM", "03:30 PM", "05:10 PM", "06:15 PM", "07:45 PM", 
-                                    "N/A"];
+                var storage_time = ["05:45 AM", "06:15 AM", "07:00 AM", "08:00 AM", "09:00 AM", 
+                                    "11:00 AM", "01:00 PM", "02:30 PM", "03:30 PM", "05:10 PM", 
+                                    "06:15 PM", "07:45 PM", "N/A"];
                 changeTimeHelper( time_id, storage_time );
             }
             else if ( location == 1 ){
-                var storage_time = ["09:00 AM", "10:00 AM", "11:00 AM", "11:30 AM", "12:00 PM", 
-                                    "01:30 PM", "02:30 PM", "03:30 PM", "04:45 PM", "05:10 PM", 
-                                    "05:30 PM", "06:00 PM", "06:30 PM", "07:00 PM", "07:45 PM",
-                                    "N/A"];
+                var storage_time = ["09:00 AM", "11:30 AM", "04:45 PM", "05:10 AM", "05:30 PM", 
+                                    "06:00 PM", "06:30 PM", "07:00 PM", "07:45 PM", "N/A"];
                 changeTimeHelper( time_id, storage_time );
             }
             else if ( location == 2 ){
-                var storage_time = ["12:30 PM", "01:00 PM", "02:00 PM", "04:45 PM", "05:10 PM", 
-                                    "05:30 PM", "06:00 PM", "07:45 PM", "N/A"];
+                var storage_time = ["04:45 PM", "05:10 PM", "05:30 PM", "06:00 PM", "07:45 PM", 
+                                    "N/A"];
                 changeTimeHelper( time_id, storage_time );
             }
             else if ( location == 3 ){
-                var storage_time = ["12:30 PM", "01:00 PM", "02:00 PM", "04:45 PM", "05:10 PM",
-                                    "05:30 PM", "06:00 PM", "07:45 PM", "N/A"];
+                var storage_time = ["04:45 PM", "05:10 PM", "05:30 PM", "06:00 PM", "07:45 PM", 
+                                    "N/A"];
                 changeTimeHelper( time_id, storage_time );
             }
             else if ( location == 4 ){
-                var storage_time = ["12:30 PM", "01:00 PM", "02:00 PM", "04:45 PM", "05:10 PM",
-                                    "05:30 PM", "06:00 PM", "07:45 PM", "N/A"];
+                var storage_time = ["04:45 PM", "05:10 PM", "05:30 PM", "06:00 PM", "07:45 PM", 
+                                    "N/A"];
                 changeTimeHelper( time_id, storage_time );
             }
             else{
@@ -435,7 +432,6 @@ function changeEntryTimeSlots(location_id, time_id){
         }
         
     }
-    
     
 
 }
@@ -474,7 +470,7 @@ function locationChangeFormHelper(location, isEditButton){
                 selectEntryContainer.appendChild(option);
             }
 
-            var storage_exit = ["DLSU LC -> DLSU Manila ", "DLSU LC -> Paseo ", "DLSU LC -> Carmona  ", "DLSU LC -> Pavilion Mall ", "DLSU LC -> Walter Mart ", "N/A"];
+            var storage_exit = ["DLSU LC -> Yuchenco Bldg. ", "DLSU LC -> Paseo ", "DLSU LC -> Carmona  ", "DLSU LC -> Pavilion Mall ", "DLSU LC -> Walter Mart ", "N/A"];
             for ( var i = 0; i < storage_exit.length; i++ ){
                 var option = document.createElement('option');
                 option.value = i;
@@ -486,7 +482,7 @@ function locationChangeFormHelper(location, isEditButton){
         else {
 
             selectEntryContainer.style.width = "185px";
-            var storage_entry = ["Yuchenco Bldg. -> DLSU LC", "East Canopy MMR -> DLSU LC", "N/A"];
+            var storage_entry = ["Yuchenco Bldg. -> DLSU LC", "N/A"];
             for ( var i = 0; i < storage_entry.length; i++ ){
                 var option = document.createElement('option');
                 option.value = i;
@@ -494,7 +490,7 @@ function locationChangeFormHelper(location, isEditButton){
                 selectEntryContainer.appendChild(option);
             }
 
-            var storage_exit = ["DLSU LC -> DLSU Manila ", "DLSU LC -> Paseo ", "DLSU LC -> Carmona  ", "DLSU LC -> Pavilion Mall ", "DLSU LC -> Walter Mart ", "N/A"];
+            var storage_exit = ["DLSU LC -> Yuchenco Bldg. ", "DLSU LC -> Paseo ", "DLSU LC -> Carmona  ", "DLSU LC -> Pavilion Mall ", "DLSU LC -> Walter Mart ", "N/A"];
             for ( var i = 0; i < storage_exit.length; i++ ){
                 var option = document.createElement('option');
                 option.value = i;
@@ -524,7 +520,7 @@ function locationChangeFormHelper(location, isEditButton){
                 selectEntryContainer.appendChild(option);
             }
 
-            var storage_exit = ["DLSU LC -> DLSU Manila ", "DLSU LC -> Paseo ", "DLSU LC -> Carmona  ", "DLSU LC -> Pavilion Mall ", "DLSU LC -> Walter Mart ", "N/A"];
+            var storage_exit = ["DLSU LC -> Yuchenco Bldg. ", "DLSU LC -> Paseo ", "DLSU LC -> Carmona  ", "DLSU LC -> Pavilion Mall ", "DLSU LC -> Walter Mart ", "N/A"];
             for ( var i = 0; i < storage_exit.length; i++ ){
                 var option = document.createElement('option');
                 option.value = i;
@@ -535,7 +531,7 @@ function locationChangeFormHelper(location, isEditButton){
         }
         else {
             selectEntryContainer.style.width = "185px";
-            var storage_entry = ["Yuchenco Bldg. -> DLSU LC", "East Canopy MMR -> DLSU LC", "N/A"];
+            var storage_entry = ["Yuchenco Bldg. -> DLSU LC", "N/A"];
             for ( var i = 0; i < storage_entry.length; i++ ){
                 var option = document.createElement('option');
                 option.value = i;
@@ -543,7 +539,7 @@ function locationChangeFormHelper(location, isEditButton){
                 selectEntryContainer.appendChild(option);
             }
 
-            var storage_exit = ["DLSU LC -> DLSU Manila ", "DLSU LC -> Paseo ", "DLSU LC -> Carmona  ", "DLSU LC -> Pavilion Mall ", "DLSU LC -> Walter Mart ", "N/A"];
+            var storage_exit = ["DLSU LC -> Yuchenco Bldg. ", "DLSU LC -> Paseo ", "DLSU LC -> Carmona  ", "DLSU LC -> Pavilion Mall ", "DLSU LC -> Walter Mart ", "N/A"];
             for ( var i = 0; i < storage_exit.length; i++ ){
                 var option = document.createElement('option');
                 option.value = i;
