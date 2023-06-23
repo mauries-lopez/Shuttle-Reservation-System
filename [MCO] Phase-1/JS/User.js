@@ -78,7 +78,6 @@ function validate_User() {
   var password = document.getElementById('user_password').value;
   var registeredUser;
   
-
   for ( var i = 0 ; i < localStorage.length ; i++ ) {
 
     var key = localStorage.key(i);
@@ -89,7 +88,15 @@ function validate_User() {
       break;
     }
     else{
-      isValidUser = 0;
+      for (var i = 0; i < valid_user.length; i++) {
+        if (idNumber === valid_user[i].getIdNumber() && password === valid_user[i].getPassword()) { //Admin Validation
+          isValidUser = 2;
+          break;
+        }
+        else{
+          isValidUser = 0;
+        }
+      }
     }
   }
 
