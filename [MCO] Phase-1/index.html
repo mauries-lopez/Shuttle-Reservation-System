@@ -10,6 +10,10 @@
             #staff::-webkit-scrollbar{
                 display: none;
             }
+			
+			#schedules::-webkit-scrollbar{
+                display: none;
+            }
         </style>
     </head>
 
@@ -22,6 +26,7 @@
                     <li><a href="Login.html"> Reserve Now </a></li>
                     <li><a href="#schedules"> Schedules </a></li>
                     <li><a href="#staff"> Staff </a></li>
+                    <li><a href="Search.html"> Search </a></li>
                     <li><a href="Login.html"> Login </a></li>
                 </ul>
             </div>
@@ -44,11 +49,11 @@
                 <p>We are proud to present our CCAPDEV Project, designed by Maurice, Benmar, and Nathan. Our project aims to improve the existing scheduling system for the Arrows Express Shuttle, introducing innovative features and a user-friendly profile system for ease-of-access.</p>
                 <p>With our collective expertise and passion for creating efficient solutions, we have developed a platform that enhances the shuttle-commuting experience of students, faculty, and staff at De La Salle University. Our project incorporates the concept of a profile system, allowing users to easily manage their reservations and personalize their shuttle experience.</p>
                 <p>We are dedicated to providing reliable and convenient ways to access shuttle services that align with the hard work and dedication of the DLSU community. By simplifying the scheduling process and introducing user-friendly features, we aim to ensure a comfortable and stress-free journey for all passengers.</p>
-                <p>A simplified booking experience for Arrows Express, designed by Maurice, Benmar, and Nathan, is a testament to our commitment to innovation and our drive to serve the needs of the DLSU community. Join us in experiencing a new level of convenience and efficiency in school transportation.</p>
+                <p>A simplified booking experience for Arrows Express, designed by Mauries, Benmar, and Nathan, is a testament to our commitment to innovation and our drive to serve the needs of the DLSU community. Join us in experiencing a new level of convenience and efficiency in school transportation.</p>
             </div>
         </div>
 
-        <div class="arrows" id="schedules">
+        <div class="arrows" id="schedules" style="overflow: scroll; -ms-overflow-style: none; scrollbar-width: none;">
             <div class="schedule-container">
               <div class="toprow">
                 <div class="tc">
@@ -111,7 +116,7 @@
             </div>
           </div> 
 
-          <script src="ScheduleArrayIndex.js"></script>      
+          <script src="JS/ScheduleArrayIndex.js"></script>      
 
         <div id="staff" style="display: flex; flex-wrap: wrap; justify-content: center; overflow: scroll; -ms-overflow-style: none; scrollbar-width: none;">
             <style>
@@ -146,9 +151,10 @@
                     height: 240px;
                     border: 3px solid gray;
                     border-radius: 8px;
-                    padding: 0px 10px 0px 10px;
                 }
                 #staff .unit photo img{
+					width: 100%;
+					height: 100%;
                     max-width: 100%;
                     max-height: 100%;
                 }
@@ -180,7 +186,7 @@
                     John Magsaysay
                 </name>
                 <photo>
-                    <img src="/Images/DLSU_Logo.png">
+                    <img src="Images/staff1.png" title="https://ent.abs-cbn.com/starmagic/articles-photos/58052617-46-off-cam-photos-of-piolo-pascual-that-proved-hes-human-too-star-magic-12861">
                 </photo>
                 <description>
                     Driver - Paseo <br>
@@ -192,7 +198,9 @@
                 <name>
                     May Flores
                 </name>
-                <photo> <img src="/Images/DLSU_Logo.png"> </photo>
+                <photo> 
+					<img src="Images/staff2.png" title="https://play.nintendo.com/themes/friends/isabelle/"> 
+				</photo>
                 <description> Driver - Carmona <br> may.flores@gmail.com </description>
             </div>
             
@@ -200,57 +208,71 @@
                 <name>
                     Juan Dela Cruz
                 </name>
-                <photo> <img src="/Images/DLSU_Logo.png"> </photo>
+                <photo> 
+					<img src="Images/staff3.png" title="https://www.filipinojapanesejournal.com/coco-martin-is-filipino-japanese-journals-march-2023-cover-star/">
+				</photo>
                 <description> Driver - Pavilion <br> juan.cruz@gmail.com </description>
             </div>
             <div class="unit">
                 <name>
                     Flynn Driver
                 </name>
-                <photo> <img src="/Images/DLSU_Logo.png"> </photo>
+                <photo> 
+					<img src="Images/staff4.png" title="Disney's Tangled - Flynn Rider">
+				</photo>
                 <description> Driver - Walter Mart  <br> flynn.driver@gmail.com </description>
             </div>
             <div class="unit">
                 <name>
                     Gil Puyat
                 </name>
-                <photo> <img src="/Images/DLSU_Logo.png"> </photo>
+                <photo> 
+					<img src="Images/staff5.png" title="https://foursquare.com/v/lrt1--gil-puyat-station/4c10750aa6c19521885036dd?tipsPage=2">
+				</photo>
                 <description> Driver - Manila <br> gil.puyat.avenue@gmail.com </description>
             </div>
             <div class="unit">
                 <name>
                     Sarah Do
                 </name>
-                <photo> <img src="/Images/DLSU_Logo.png"> </photo>
+                <photo> 
+					<img src="Images/staff6.png" style="https://heroes-and-villain.fandom.com/wiki/Scooby-Doo?file=Scooby_Doo.webp">
+				</photo>
                 <description> Site Administrator <br> sarah.do@gmail.com </description>
             </div>
             <div class="unit">
                 <name>
                     Mauries Lopez
                 </name>
-                <photo> <img src="/Images/DLSU_Logo.png"> </photo>
-                <description> Web Developer <br> email@email </description>
+                <photo> 
+					<img src="Images/staff7.png">
+				</photo>
+                <description> Web Developer <br> mauries_lopez@dlsu.edu.ph </description>
             </div>
             <div class="unit">
                 <name>
                     Benmar Ramirez
                 </name>
-                <photo> <img src="/Images/DLSU_Logo.png"> </photo>
+                <photo> 
+					<img src="Images/staff8.png"> 
+				</photo>
                 <description> Web Developer <br> email@email </description>
             </div>
             <div class="unit">
                 <name>
                     Nathan Asnan
                 </name>
-                <photo> <img src="/Images/DLSU_Logo.png"> </photo>
+                <photo> 
+					<img src="Images/staff9.png">
+				</photo>
                 <description> Web Developer <br> nathan_andrei_asnan@email.com </description>
             </div>
         </div>
 
         <div class = "footer">
             <div class = "footer_contents">
-                <a href="#"> Group Members </a> <br>
-                <a href="#"> About the Website </a>
+                <a href="#staff"> Group Members </a> <br>
+                <a href="#about"> About the Website </a>
             </div>
         </div>
         

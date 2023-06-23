@@ -156,6 +156,7 @@ html{
 .schedule-container {
     display: flex;
     flex-wrap: wrap;
+    
 }
 
 .toprow {
@@ -190,6 +191,7 @@ html{
 .s-title {
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
+    padding: 5px;
     background: rgb(110, 110, 110);
 }
 

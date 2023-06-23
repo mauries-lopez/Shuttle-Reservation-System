@@ -1,8 +1,9 @@
 class user_storage {
-    constructor(firstName, lastName, email, password, designation, passengerType) {
+    constructor(firstName, lastName, email, idNumber, password, designation, passengerType) {
       this.firstName = firstName;
       this.lastName = lastName;
       this.email = email;
+      this.idNumber = idNumber;
       this.password = password;
       this.designation = designation;
       this.passengerType = passengerType;
@@ -10,6 +11,10 @@ class user_storage {
 
     getEmail() {
       return this.email;
+    }
+
+    getIdNumber() {
+      return this.idNumber;
     }
 
     getPassword() {
@@ -35,13 +40,13 @@ class user_storage {
 }
 
 class loggedInUser {
-  constructor(email, password) {
-    this.email = email;
+  constructor(idNumber, password) {
+    this.idNumber = idNumber;
     this.password = password;
   }
 
-  getEmail() {
-    return this.email;
+  getIdNumber() {
+    return this.idNumber;
   }
 
   getPassword() {
@@ -50,10 +55,11 @@ class loggedInUser {
 
 }
 
-var user0 = new user_storage("admin", "admin", "admin@gmail.com", "admin", "student", "student");
-var user1 = new user_storage("maui", "lopez", "maui@gmail.com", "maui", "student", "student");
-var user2 = new user_storage("benmar", "ramirez", "benmar@gmail.com", "benmar", "student", "student");
-var user3 = new user_storage("nathan", "asnan", "asnan@gmail.com", "asnan", "student", "student");
+var user0 = new user_storage("admin", "admin", "admin@gmail.com", "99999999",/* REPLACE WITH ID NUMBER, */ "admin", "employee", "employee");
+var user1 = new user_storage("maui", "lopez", "maui@gmail.com", "12177539", "maui", "employee", "employee");
+var user2 = new user_storage("benmar", "ramirez", "benmar@gmail.com", "00000000",/* REPLACE "00000000" WITH ID NUMBER, */ "benmar", "employee", "employee");
+var user3 = new user_storage("nathan", "asnan", "asnan@gmail.com", "00000000",/* REPLACE WITH ID NUMBER, */ "asnan", "employee", "employee");
+var user4 = new user_storage("admin1", "admin1", "admin1@gmail.com", "88888888",/* REPLACE WITH ID NUMBER, */ "admin1", "employee", "employee")
 
 var registerdUserCount = localStorage.length; //For key in local storage
 
@@ -67,8 +73,8 @@ function hideErrorBox(){
 }
 
 function validate_User() {
-  var valid_user = new Array(user0, user1, user2, user3);
-  var email = document.getElementById('user_email').value;
+  var valid_user = new Array(user0, user1, user2, user3, user4);
+  var idNumber = document.getElementById('user_idNumber').value;
   var password = document.getElementById('user_password').value;
   var registeredUser;
   
@@ -78,7 +84,7 @@ function validate_User() {
     var key = localStorage.key(i);
     registeredUser = localStorage.getItem(key);
 
-    if ( registeredUser && (registeredUser.match(email) && registeredUser.match(password))) {
+    if ( registeredUser && (registeredUser.match(idNumber) && registeredUser.match(password))) {
       isValidUser = 1;
       break;
     }
@@ -94,14 +100,14 @@ function validate_User() {
   loginForm.addEventListener('submit', function(e){
     e.preventDefault();
 
-    var user_loggedIn = new loggedInUser(email, password);
+    var user_loggedIn = new loggedInUser(idNumber, password);
 
-    if ( registeredUser && (registeredUser.match(email) && registeredUser.match(password))) {
+    if ( registeredUser && (registeredUser.match(idNumber) && registeredUser.match(password))) { //Local Storage Validation
       isValidUser = 1;
     } else {
       for (var i = 0; i < valid_user.length; i++) {
-        if (email === valid_user[i].getEmail() && password === valid_user[i].getPassword()) {
-          isValidUser = 1;
+        if (idNumber === valid_user[i].getIdNumber() && password === valid_user[i].getPassword()) { //Admin Validation
+          isValidUser = 2;
           break;
         }
         else{
@@ -110,28 +116,30 @@ function validate_User() {
       }
     }
 
-    if (isValidUser == 1 && email != "" && password != "") {
-      //localStorage.clear();  // Iibahin lugar nito pag may html na for profile para idedelete
+    if (isValidUser == 1 && (idNumber != "" && password != "")) {
       localStorage.setItem('loggedInUser', JSON.stringify(user_loggedIn));
       window.location.href = "Profile.html";
       return 1;
-    } else {
+    } else if ( isValidUser == 2 && (idNumber != "" && password != "")) {
+      localStorage.setItem('loggedInUser', JSON.stringify(user_loggedIn));
+      window.location.href = "ProfileAdmin.html";
+      return 1;
+    }
+    else{
       showErrorBox();
       return 0;
     }
 
   });
 
-
 }
-
-
 
 function create_User(){
 
     var tempFirstName = document.getElementById('user_firstName').value;
     var tempLastName = document.getElementById('user_lastName').value;
     var tempEmail = document.getElementById('user_email').value;
+    var tempIdNumber = document.getElementById('user_idNumber').value;
     var tempPassword = document.getElementById('user_password').value;
 
     var storeDesignation = document.getElementById('user_designation');
@@ -140,24 +148,8 @@ function create_User(){
     var storePassengerType = document.getElementById('user_passengerType');
     var tempPassengerType = storePassengerType.options[storePassengerType.selectedIndex].text;
 
-    /*
-    localStorage.setItem('firstName', tempFirstName);
-    localStorage.setItem('lastName', tempLastName);
-    localStorage.setItem('email', tempEmail);
-    localStorage.setItem('password', tempPassword);
-    localStorage.setItem('designation', tempDesignation);
-    localStorage.setItem('passengerType', tempPassengerType);
-    
-    localStorage.removeItem('firstName');
-    localStorage.removeItem('lastName');
-    localStorage.removeItem('email');
-    localStorage.removeItem('password');
-    localStorage.removeItem('designation');
-    localStorage.removeItem('passengerType');
-    */
-
     alert('User Created! Directing to Login Page...');
-    var newUser = new user_storage(tempFirstName, tempLastName, tempEmail, tempPassword, tempDesignation, tempPassengerType);
+    var newUser = new user_storage(tempFirstName, tempLastName, tempEmail, tempIdNumber, tempPassword, tempDesignation, tempPassengerType);
 
     localStorage.setItem('valid_user['+registerdUserCount+']' , JSON.stringify(newUser));
 
@@ -165,5 +157,8 @@ function create_User(){
 
 }
 
+function logoutAccount(){
+  localStorage.removeItem('loggedInUser');
+}
 
 

@@ -77,6 +77,16 @@ function erightClick(){
     ebtn.style.left = '160px';
 }
 
+function eleftClick(){
+    functionCalled = 0;
+    ebtn.style.left = '0';
+}
+
+function erightClick(){
+    functionCalled = 1;
+    ebtn.style.left = '160px';
+}
+
 function showScheduleForm() {
 	var doc = document;
     var scheduleForm = document.getElementsByClassName('form_box')[0];

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title> Arrow Express - Search Users </title>
+        <link rel="icon" type="image/png" href="Images/DLSU_Logo.png">
+        <link rel="stylesheet" href="CSS/FormStyle.css">  <!-- Kailangan to if may separate CSS file -->
+        <link rel="stylesheet" href="CSS/ReservationStyle.css">
+    </head>
+
+    <body>
+        
+        <div class = "banner"> 
+
+            <div class="navbar">
+                <a onclick="history.back()"><img src="Images/Leftarrow.png" class = "back_img"></a>
+                <a> <img src= "Images/DLSU_Logo.png" class = "website_logo"> </a> 
+            </div>
+            
+            <div class="content">
+
+                <h1 style="position: relative; color: white; left: 60px; top: 40px; margin-bottom: 30px;">Search</h1>
+
+				<div style="background: rgba(100,100,100, 0.2); border-radius: 20px; width: 88%; height: 6%; margin-left: 50px; margin-top: 55px;">
+					<style>
+						input[name="search"]{
+							width: 95%;
+							background: transparent;
+							border-style: none none solid none;
+							border-bottom-color: gray;
+							font-size: 25px;
+							position: relative;
+							top: 50%;
+							transform: translateY(-50%);
+							margin-left: 15px;
+							color: white;
+							float: left;
+						}
+						
+						#searchIcon{
+							position: relative;
+							top: 23px;
+							left: 15px;
+							float: right;
+							transform: translate(110%,-50%);
+							width: 40px;
+							height: 40px;
+						}
+						
+						#searchIcon:hover{
+							cursor: pointer;
+						}
+					</style>
+					<input type="text" placeholder="Search user by name..." name="search" id="search">
+
+                    <img src="Images/SearchIcon.png" id="searchIcon" action="">
+				</div>
+
+                <div class="results_container">
+                    
+                </div>
+
+            </div>
+
+        </div>
+    </body>
+
+</html>
