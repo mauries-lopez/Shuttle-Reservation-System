@@ -6,9 +6,7 @@ function userReserve(){
 
     var div = document.createElement('div');
     div.className = 'reserved_schedule';
-	
-	alert(count + " | "+ scheduleContainer.childElementCount + 1);
-	
+		
 	if (count == null){
 		count = scheduleContainer.childElementCount + 1;
 	}
