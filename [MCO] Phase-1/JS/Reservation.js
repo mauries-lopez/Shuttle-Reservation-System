@@ -63,6 +63,24 @@ function showScheduleForm() {
 	newOption.setAttribute('hidden','');
 	
 	exitTimeBox.appendChild(newOption);
+
+	newOption = doc.createElement('option');
+	optionText = doc.createTextNode('Entry Location');
+	newOption.appendChild(optionText);
+	newOption.setAttribute('value','');
+	newOption.setAttribute('selected','');
+	newOption.setAttribute('hidden','');
+	
+	entry_box.appendChild(newOption);
+	
+	newOption = doc.createElement('option');
+	optionText = doc.createTextNode('Exit Location');
+	newOption.appendChild(optionText);
+	newOption.setAttribute('value','');
+	newOption.setAttribute('selected','');
+	newOption.setAttribute('hidden','');
+	
+	exitBox.appendChild(newOption);
 	
     scheduleForm.style.display = 'block';
 	
