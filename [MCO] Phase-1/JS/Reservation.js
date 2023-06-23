@@ -1,6 +1,6 @@
 var functionCalled = 0; // 0 = left (Laguna), 1 = right (Manila)
 var efunctionCalled = 0; //For editing form
-var count = 0;
+var count = null;
 
 function leftClick(){
     functionCalled = 0;
@@ -30,7 +30,12 @@ function showScheduleForm() {
 	var entryTimeBox = doc.getElementById('user_entryTime');
 	var exitBox = doc.getElementById('user_exit');
 	var exitTimeBox = doc.getElementById('user_exitTime');
-
+	var idBox = doc.getElementById('user_idNumber');
+	
+	if(idBox != null){
+		idBox.value="";
+	}
+	
 	date_box.value="";
 	entry_box.value="";
 	entryTimeBox.value="";
@@ -70,13 +75,21 @@ function hideScheduleForm(){
     var div = document.createElement('div');
     div.className = 'reserved_schedule';
 	
-	  count = scheduleContainer.childElementCount;
-	  div.setAttribute('id', count );
+	alert(count + " | "+ scheduleContainer.childElementCount + 1);
+	
+	if (count == null){
+		count = scheduleContainer.childElementCount + 1;
+	}
+	else{
+		count = count + 1;
+		
+	} 
+	div.setAttribute('id', count );
 	
 	
     scheduleContainer.appendChild(div);
-  
-    var reserved_schedule_container = document.getElementsByClassName('reserved_schedule')[count];
+	
+    var reserved_schedule_container = document.getElementsByClassName('reserved_schedule')[scheduleContainer.childElementCount - 1];
     var divBtn = document.createElement('div');
     divBtn.className = 'reserved_schedule_btn';
     
@@ -84,14 +97,14 @@ function hideScheduleForm(){
     
     var edit_btn = document.createElement('button');
     edit_btn.className = 'edit_btn';
-	  edit_btn.setAttribute('id', 'e_btn' + count);
+	edit_btn.setAttribute('id', 'e_btn' + count);
     edit_btn.setAttribute('onclick','showEditForm(' + count + ')');
     edit_btn.innerHTML = 'EDIT';
 
     var delete_btn = document.createElement('button');
     delete_btn.className = 'delete_btn';
-	  delete_btn.setAttribute('id', 'd_btn' + count);
-	  delete_btn.setAttribute('onclick','showDeleteForm(' + count + ')');
+	delete_btn.setAttribute('id', 'd_btn' + count);
+	delete_btn.setAttribute('onclick','showDeleteForm(' + count + ')');
     delete_btn.innerHTML = 'DELETE';
 
     divBtn.appendChild(edit_btn);
