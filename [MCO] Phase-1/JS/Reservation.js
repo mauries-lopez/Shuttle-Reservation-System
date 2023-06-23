@@ -1,18 +1,120 @@
 var functionCalled = 0; // 0 = left (Laguna), 1 = right (Manila)
+var efunctionCalled = 0; //For editing form
+var count = 0;
 
 function leftClick(){
     functionCalled = 0;
     btn.style.left = '0';
+    changeEntryTimeSlots('user_entry', 'user_entryTime');
 }
 
-function rightClick(){
-    functionCalled = 1;
+function rightClick() {
     btn.style.left = '160px';
+  
+    var user_entry = document.getElementById('user_entry');
+    var user_exit = document.getElementById('user_exit');
+  
+    user_entry.innerHTML = '';
+    user_exit.innerHTML = '';
+  
+    var option0 = document.createElement('option');
+    option0.value = 0;
+    option0.innerHTML = 'DLSU Manila';
+  
+    var option1 = document.createElement('option');
+    option1.value = 1;
+    option1.innerHTML = 'Paseo';
+  
+    var option2 = document.createElement('option');
+    option2.value = 2;
+    option2.innerHTML = 'Carmona';
+  
+    var option3 = document.createElement('option');
+    option3.value = 3;
+    option3.innerHTML = 'Pavilion Mall';
+  
+    var option4 = document.createElement('option');
+    option4.value = 4;
+    option4.innerHTML = 'Walter Mart';
+  
+    var option5 = document.createElement('option');
+    option5.value = 5;
+    option5.innerHTML = 'N/A';
+  
+    var option_entry = document.createElement('option');
+    option_entry.setAttribute('selected', true);
+    option_entry.setAttribute('disabled', true);
+    option_entry.setAttribute('hidden', true);
+    option_entry.innerHTML = 'Select Location';
+  
+    var option_exit_laguna = document.createElement('option');
+    option_exit_laguna.value = 0;
+    option_exit_laguna.innerHTML = 'DLSU Laguna';
+
+    var option6 = document.createElement('option');
+    option6.value = 6;
+    option6.innerHTML = 'N/A';
+  
+    var option_array_entry = [option_entry, option0, option6];
+    var option_array_exit = [option_exit_laguna, option1, option2, option3, option4, option5];
+  
+    for (var i = 0; i < option_array_entry.length; i++) {
+      user_entry.appendChild(option_array_entry[i]);
+    }
+  
+    for (var j = 0; j < option_array_exit.length; j++) {
+      user_exit.appendChild(option_array_exit[j]);
+    }
+  }
+
+function eleftClick(){
+    functionCalled = 0;
+    ebtn.style.left = '0';
+}
+
+function erightClick(){
+    functionCalled = 1;
+    ebtn.style.left = '160px';
 }
 
 function showScheduleForm() {
+	var doc = document;
     var scheduleForm = document.getElementsByClassName('form_box')[0];
+	var date_box = document.getElementById('user_date');
+	var entry_box = doc.getElementById('user_entry');
+	var entryTimeBox = doc.getElementById('user_entryTime');
+	var exitBox = doc.getElementById('user_exit');
+	var exitTimeBox = doc.getElementById('user_exitTime');
+
+	date_box.value="";
+	entry_box.value="";
+	entryTimeBox.value="";
+	exitBox.value="";
+	exitTimeBox.value="";
+	
+	
+	var newOption = doc.createElement('option');
+	var optionText = doc.createTextNode('Time Slot');
+	newOption.appendChild(optionText);
+	newOption.setAttribute('value','');
+	newOption.setAttribute('selected','');
+	newOption.setAttribute('hidden','');
+	
+	entryTimeBox.appendChild(newOption);
+	
+	newOption = doc.createElement('option');
+	optionText = doc.createTextNode('Time Slot');
+	newOption.appendChild(optionText);
+	newOption.setAttribute('value','');
+	newOption.setAttribute('selected','');
+	newOption.setAttribute('hidden','');
+	
+	exitTimeBox.appendChild(newOption);
+	
+	
+	
     scheduleForm.style.display = 'block';
+	
 }
 
 function hideScheduleForm(){
@@ -22,12 +124,13 @@ function hideScheduleForm(){
 
     var div = document.createElement('div');
     div.className = 'reserved_schedule';
-
+	
+	count = scheduleContainer.childElementCount;
+	div.setAttribute('id', count );
+	
+	
     scheduleContainer.appendChild(div);
-
-    var count = scheduleContainer.childElementCount;
-    count = count - 1;
-
+	
     var reserved_schedule_container = document.getElementsByClassName('reserved_schedule')[count];
     var divBtn = document.createElement('div');
     divBtn.className = 'reserved_schedule_btn';
@@ -35,12 +138,15 @@ function hideScheduleForm(){
     reserved_schedule_container.appendChild(divBtn);
     
     var edit_btn = document.createElement('button');
-    edit_btn.setAttribute('id', 'edit_btn');
-    edit_btn.setAttribute('onclick','editSchedule()');
+    edit_btn.className = 'edit_btn';
+	edit_btn.setAttribute('id', 'e_btn' + count);
+    edit_btn.setAttribute('onclick','showEditForm(' + count + ')');
     edit_btn.innerHTML = 'EDIT';
 
     var delete_btn = document.createElement('button');
-    delete_btn.setAttribute('id', 'delete_btn');
+    delete_btn.className = 'delete_btn';
+	delete_btn.setAttribute('id', 'd_btn' + count);
+	delete_btn.setAttribute('onclick','showDeleteForm(' + count + ')');
     delete_btn.innerHTML = 'DELETE';
 
     divBtn.appendChild(edit_btn);
@@ -49,12 +155,88 @@ function hideScheduleForm(){
     createTextInfo(div);
 
     scheduleForm,addEventListener('submit', function(e) {
-        e.preventDefault();
-
-    })
+       e.preventDefault();
+	})
 
     scheduleForm.style.display = 'none';
 
+}
+
+function showEditForm(i) {
+	var doc = document;
+    var editForm = document.getElementById('edit_box');
+	var date_box = document.getElementById('user_date');
+	var entry_box = doc.getElementById('user_entry');
+	var entryTimeBox = doc.getElementById('user_entryTime');
+	var exitBox = doc.getElementById('user_exit');
+	var exitTimeBox = doc.getElementById('user_exitTime');
+
+	date_box.value="";
+	entry_box.value="";
+	entryTimeBox.value="";
+	exitBox.value="";
+	exitTimeBox.value="";
+	
+	
+	var newOption = doc.createElement('option');
+	var optionText = doc.createTextNode('Time Slot');
+	newOption.appendChild(optionText);
+	newOption.setAttribute('value','');
+	newOption.setAttribute('selected','');
+	newOption.setAttribute('hidden','');
+	
+	entryTimeBox.appendChild(newOption);
+	
+	newOption = doc.createElement('option');
+	optionText = doc.createTextNode('Time Slot');
+	newOption.appendChild(optionText);
+	newOption.setAttribute('value','');
+	newOption.setAttribute('selected','');
+	newOption.setAttribute('hidden','');
+	
+	exitTimeBox.appendChild(newOption);
+	
+	
+	
+    editForm.style.display = 'block';
+	
+}
+
+function hideEditForm(){
+	var editForm = document.getElementById('edit_box');
+	
+	editForm.style.display="none";
+}
+
+function cancelEditForm(){
+    var editForm = document.getElementById('edit_box');
+	
+	editForm.style.display="none";
+}
+
+function showDeleteForm(i) {
+	var doc = document;
+    var deleteForm = document.getElementById('delete_box');	
+	var deleteButton = doc.getElementById('delete_btn');
+	
+    deleteForm.style.display = 'block';
+	deleteButton.setAttribute('onclick', 'hideDeleteForm(' + i + ')');
+}
+
+function hideDeleteForm(i){
+	var deleteForm = document.getElementById('delete_box');
+	
+	var deleteReservation = document.getElementById(i);
+	
+	deleteReservation.remove();
+	
+	deleteForm.style.display="none";
+}
+
+function cancelDeleteForm(){
+	var deleteForm = document.getElementById('delete_box');
+	
+	deleteForm.style.display="none";
 }
 
 function createTextInfo(main_div){
@@ -160,57 +342,69 @@ function changeEntryTimeSlots(location_id, time_id){
 
     if ( location_id == 'user_entry' ){ //Entry Point
         if ( location == 0 ){
-            var storage_time = ["05:45 AM", "06:15 AM", "07:00 AM", "08:00 AM", "09:00 AM", "11:00 AM", "01:00 PM", "02:30 PM", "03:30 PM", "05:10 PM", "06:15 PM", "07:45 PM", "N/A"];
+            var storage_time = ["05:45 AM", "06:15 AM", "07:00 AM", "08:00 AM", "09:00 AM", "11:00 AM", "01:00 PM", "02:30 PM", "03:30 PM", "05:10 PM", "06:15 PM", "07:45 PM"];
             changeTimeHelper( time_id, storage_time );
         }
         else if ( location == 1 ){
-            var storage_time = ["06:00 AM", "06:30 AM", "07:00 AM", "07:30 AM", "08:00 AM", 
-                                "08:30 AM", "09:00 AM", "09:30 AM", "10:30 AM", "11:30 AM", 
-                                "12:30 PM", "01:00 PM", "02:00 PM", "03:00 PM", "03:30 PM",
-                                "04:40 PM", "N/A"];
+            var storage_time = ["06:00 AM", "06:30 AM", "07:00 AM", "12:15 PM", "01:00 PM", "03:00 PM", "03:30 PM"];
             changeTimeHelper( time_id, storage_time );
         }
         else if ( location == 2 ){
-            //Paki continue nalang nito. Paulit ulit lang to.
-            /*
-                location:
-                #2 = Carmona
-                #3 = Pavilion
-                #4 = Walter mart
-                #5 = N/A
-
-                copy paste nalang ung mga nasa loob ng blocks, tapos ibahin lang ung time.
-            */
+            var storage_time = ["06:30 AM"];
+            changeTimeHelper( time_id, storage_time );
+        }
+        else if ( location == 3 ){
+            var storage_time = ["05:30 AM", "06:00 AM", "06:30 AM", "07:00 AM"];
+            changeTimeHelper( time_id, storage_time );
+        }
+        else if ( location == 4 ){
+            var storage_time = ["06:30 AM", "07:00 AM"];
+            changeTimeHelper( time_id, storage_time );
+        }
+        else if ( location == 5 ){
+            var storage_time = ["/NA"];
+            changeTimeHelper( time_id, storage_time );
         }
     }
 
-    if ( location_id = 'user_exit' ){ //Exit Point 
+    if ( location_id == 'user_exit' ){ //Entry Point
         if ( location == 0 ){
-            // Same lang din dito pero PAUWI naman ung time na susundan.
-            /*
-                location:
-                #0 = DLSU Manila
-                #1 = Paseo
-                #2 = Carmona
-                #3 = Pavilion
-                #4 = Walter mart
-                #5 = N/A
-
-                copy paste nalang ung mga nasa loob ng blocks, tapos ibahin lang ung time.
-            */
+            var storage_time = ["06:00 AM", "07:30 AM", "09:30 AM", "11:00 AM", "01:00 PM", "02:30 PM", "03:30 PM", "05:10 PM", "06:15 PM", "07:45 PM"];
+            changeTimeHelper( time_id, storage_time );
+        }
+        else if ( location == 1 ){
+            var storage_time = ["09:00 AM", "11:30 AM", "04:45 PM", "05:10 PM", "05:30 PM", "06:00 PM", "06:30 PM", "07:00 PM", "07:45 PM"];
+            changeTimeHelper( time_id, storage_time );
+        }
+        else if ( location == 2 ){
+            var storage_time = ["04:45 PM", "05:10 PM", "05:30 PM", "06:00 PM", "07:45 PM"];
+            changeTimeHelper( time_id, storage_time );
+        }
+        else if ( location == 3 ){
+            var storage_time = ["04:45 PM", "05:10 PM", "05:30 PM", "06:00 PM", "07:45 PM"];
+            changeTimeHelper( time_id, storage_time );
+        }
+        else if ( location == 4 ){
+            var storage_time = ["04:45 PM", "05:10 PM", "05:30 PM", "06:00 PM", "07:45 PM"];
+            changeTimeHelper( time_id, storage_time );
+        }
+        else if ( location == 5 ){
+            var storage_time = ["/NA"];
+            changeTimeHelper( time_id, storage_time );
         }
     }
 
 }
 
-function changeTimeHelper( position, storage_time ){
-
+function changeTimeHelper(position, storage_time) {
     var timeSlots = document.getElementById(position);
-
-    for ( var i = 0; i < storage_time.length; i++ ){
-        var option = document.createElement('option');
-        option.value = i;
-        option.innerHTML = storage_time[i];
-        timeSlots.appendChild(option);
+    timeSlots.innerHTML = ''; 
+  
+    for (var i = 0; i < storage_time.length; i++) {
+      var option = document.createElement('option');
+      option.value = i;
+      option.innerHTML = storage_time[i];
+      timeSlots.appendChild(option);
     }
-}
+  }
+  
