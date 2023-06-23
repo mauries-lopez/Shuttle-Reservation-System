@@ -1,3 +1,4 @@
+var count = null;
 function userReserve(){
 
     var scheduleContainer = document.getElementsByClassName('schedule_container')[0];
@@ -5,13 +6,20 @@ function userReserve(){
 
     var div = document.createElement('div');
     div.className = 'reserved_schedule';
-	
-	count = scheduleContainer.childElementCount;
+	if (count == null){
+		count = scheduleContainer.childElementCount + 1;
+	}
+	else{
+		count = count + 1;
+		
+	} 
 	div.setAttribute('id', count );
 	
+	
     scheduleContainer.appendChild(div);
-  
-    var reserved_schedule_container = document.getElementsByClassName('reserved_schedule')[count];
+
+    var reserved_schedule_container = document.getElementsByClassName('reserved_schedule')[scheduleContainer.childElementCount - 1];
+
     var divBtn = document.createElement('div');
     divBtn.className = 'reserved_schedule_btn';
     
@@ -34,9 +42,9 @@ function userReserve(){
 
     createTextInfo(div);
 
-    scheduleForm.addEventListener('submit', function(e) {
-       e.preventDefault();
-	})
+    scheduleForm,addEventListener('submit', function(e) {
+        e.preventDefault();
+    })
 
     scheduleForm.style.display = 'none';
 
@@ -138,6 +146,3 @@ function createTextInfo(main_div){
     text_info.appendChild(border[4]);
 
 }
-
-
-

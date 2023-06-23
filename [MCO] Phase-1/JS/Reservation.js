@@ -1,6 +1,6 @@
 var functionCalled = 0; // 0 = left (Laguna), 1 = right (Manila)
 var efunctionCalled = 0; //For editing form
-var count = 0;
+var count = null;
 
 function leftClick(){
     functionCalled = 0;
@@ -33,7 +33,12 @@ function showScheduleForm() {
 	var entryTimeBox = doc.getElementById('user_entryTime');
 	var exitBox = doc.getElementById('user_exit');
 	var exitTimeBox = doc.getElementById('user_exitTime');
-
+	var idBox = doc.getElementById('user_idNumber');
+	
+	if(idBox != null){
+		idBox.value="";
+	}
+	
 	date_box.value="";
 	entry_box.value="";
 	entryTimeBox.value="";
@@ -71,12 +76,18 @@ function hideScheduleForm(){
     var div = document.createElement('div');
     div.className = 'reserved_schedule';
 	
-	count = scheduleContainer.childElementCount;
+	if (count == null){
+		count = scheduleContainer.childElementCount + 1;
+	}
+	else{
+		count = count + 1;
+		
+	} 
 	div.setAttribute('id', count );
 	
     scheduleContainer.appendChild(div);
-  
-    var reserved_schedule_container = document.getElementsByClassName('reserved_schedule')[count];
+	
+    var reserved_schedule_container = document.getElementsByClassName('reserved_schedule')[scheduleContainer.childElementCount - 1];
     var divBtn = document.createElement('div');
     divBtn.className = 'reserved_schedule_btn';
     
@@ -92,6 +103,7 @@ function hideScheduleForm(){
     var delete_btn = document.createElement('button');
     delete_btn.className = 'delete_btn';
     delete_btn.setAttribute('type', 'button');
+
 	delete_btn.setAttribute('id', 'd_btn' + count);
 	delete_btn.setAttribute('onclick','showDeleteForm(' + count + ')');
     delete_btn.innerHTML = 'DELETE';
@@ -162,18 +174,22 @@ function showDeleteForm(i) {
 	var doc = document;
     var deleteForm = document.getElementById('delete_box');	
 	var deleteButton = doc.getElementById('delete_btn');
+	var cancelButton = doc.getElementById('cancel_btn');
 	
     deleteForm.style.display = 'block';
 
 	deleteButton.setAttribute('onclick', 'hideDeleteForm(' + i + ')');
+	cancelButton.setAttribute('onclick', 'hideDeleteForm(' + -1 + ')');
 }
 
 function hideDeleteForm(i){
 	var deleteForm = document.getElementById('delete_box');
 	
-	var deleteReservation = document.getElementById(i);
-	
-	deleteReservation.remove();
+	if(i != -1){
+		var deleteReservation = document.getElementById(i);
+		
+		deleteReservation.remove();
+	}
 	
 	deleteForm.style.display="none";
 
