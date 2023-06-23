@@ -55,11 +55,11 @@ class loggedInUser {
 
 }
 
-var user0 = new user_storage("admin", "admin", "admin@gmail.com", "99999999",/* REPLACE WITH ID NUMBER, */ "admin", "employee", "employee");
+var user0 = new user_storage("admin", "admin", "admin@gmail.com", "99999999", "admin", "employee", "employee");
 var user1 = new user_storage("maui", "lopez", "maui@gmail.com", "12177539", "maui", "employee", "employee");
-var user2 = new user_storage("benmar", "ramirez", "benmar@gmail.com", "00000000",/* REPLACE "00000000" WITH ID NUMBER, */ "benmar", "employee", "employee");
-var user3 = new user_storage("nathan", "asnan", "asnan@gmail.com", "00000000",/* REPLACE WITH ID NUMBER, */ "asnan", "employee", "employee");
-var user4 = new user_storage("admin1", "admin1", "admin1@gmail.com", "88888888",/* REPLACE WITH ID NUMBER, */ "admin1", "employee", "employee")
+var user2 = new user_storage("benmar", "ramirez", "benmar@gmail.com", "12116866", "benmar", "employee", "employee");
+var user3 = new user_storage("nathan", "asnan", "asnan@gmail.com", "12043338", "asnan", "employee", "employee");
+var user4 = new user_storage("admin1", "admin1", "admin1@gmail.com", "88888888","admin1", "employee", "employee")
 
 var registerdUserCount = localStorage.length; //For key in local storage
 

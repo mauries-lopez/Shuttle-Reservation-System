@@ -128,7 +128,7 @@ function hideScheduleForm(){
 
     createTextInfo(div);
 
-    scheduleForm,addEventListener('submit', function(e) {
+    scheduleForm.addEventListener('submit', function(e) {
        e.preventDefault();
 	})
 
@@ -195,6 +195,11 @@ function showDeleteForm(i) {
 
 	deleteButton.setAttribute('onclick', 'hideDeleteForm(' + i + ')');
 	cancelButton.setAttribute('onclick', 'hideDeleteForm(' + -1 + ')');
+
+    // Prevent form submission from refreshing the page
+    deleteForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+    });
 }
 
 function hideDeleteForm(i){
@@ -202,13 +207,10 @@ function hideDeleteForm(i){
 	
 	if(i != -1){
 		var deleteReservation = document.getElementById(i);
-		
 		deleteReservation.remove();
 	}
 	
 	deleteForm.style.display="none";
-
-    
 }
 
 function cancelDeleteForm(){
