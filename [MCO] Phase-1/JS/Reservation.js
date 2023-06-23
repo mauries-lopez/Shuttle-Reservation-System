@@ -1,4 +1,6 @@
 var functionCalled = 0; // 0 = left (Laguna), 1 = right (Manila)
+var efunctionCalled = 0; //For editing form
+var count = 0;
 
 function leftClick(){
     functionCalled = 0;
@@ -10,9 +12,54 @@ function rightClick(){
     btn.style.left = '160px';
 }
 
+function eleftClick(){
+    functionCalled = 0;
+    ebtn.style.left = '0';
+}
+
+function erightClick(){
+    functionCalled = 1;
+    ebtn.style.left = '160px';
+}
+
 function showScheduleForm() {
+	var doc = document;
     var scheduleForm = document.getElementsByClassName('form_box')[0];
+	var date_box = document.getElementById('user_date');
+	var entry_box = doc.getElementById('user_entry');
+	var entryTimeBox = doc.getElementById('user_entryTime');
+	var exitBox = doc.getElementById('user_exit');
+	var exitTimeBox = doc.getElementById('user_exitTime');
+
+	date_box.value="";
+	entry_box.value="";
+	entryTimeBox.value="";
+	exitBox.value="";
+	exitTimeBox.value="";
+	
+	
+	var newOption = doc.createElement('option');
+	var optionText = doc.createTextNode('Time Slot');
+	newOption.appendChild(optionText);
+	newOption.setAttribute('value','');
+	newOption.setAttribute('selected','');
+	newOption.setAttribute('hidden','');
+	
+	entryTimeBox.appendChild(newOption);
+	
+	newOption = doc.createElement('option');
+	optionText = doc.createTextNode('Time Slot');
+	newOption.appendChild(optionText);
+	newOption.setAttribute('value','');
+	newOption.setAttribute('selected','');
+	newOption.setAttribute('hidden','');
+	
+	exitTimeBox.appendChild(newOption);
+	
+	
+	
     scheduleForm.style.display = 'block';
+	
 }
 
 function hideScheduleForm(){
@@ -22,12 +69,13 @@ function hideScheduleForm(){
 
     var div = document.createElement('div');
     div.className = 'reserved_schedule';
-
+	
+	  count = scheduleContainer.childElementCount;
+	  div.setAttribute('id', count );
+	
+	
     scheduleContainer.appendChild(div);
-
-    var count = scheduleContainer.childElementCount;
-    count = count - 1;
-
+  
     var reserved_schedule_container = document.getElementsByClassName('reserved_schedule')[count];
     var divBtn = document.createElement('div');
     divBtn.className = 'reserved_schedule_btn';
@@ -35,12 +83,15 @@ function hideScheduleForm(){
     reserved_schedule_container.appendChild(divBtn);
     
     var edit_btn = document.createElement('button');
-    edit_btn.setAttribute('id', 'edit_btn');
-    edit_btn.setAttribute('onclick','editSchedule()');
+    edit_btn.className = 'edit_btn';
+	  edit_btn.setAttribute('id', 'e_btn' + count);
+    edit_btn.setAttribute('onclick','showEditForm(' + count + ')');
     edit_btn.innerHTML = 'EDIT';
 
     var delete_btn = document.createElement('button');
-    delete_btn.setAttribute('id', 'delete_btn');
+    delete_btn.className = 'delete_btn';
+	  delete_btn.setAttribute('id', 'd_btn' + count);
+	  delete_btn.setAttribute('onclick','showDeleteForm(' + count + ')');
     delete_btn.innerHTML = 'DELETE';
 
     divBtn.appendChild(edit_btn);
@@ -49,12 +100,88 @@ function hideScheduleForm(){
     createTextInfo(div);
 
     scheduleForm,addEventListener('submit', function(e) {
-        e.preventDefault();
-
-    })
+       e.preventDefault();
+	})
 
     scheduleForm.style.display = 'none';
 
+}
+
+function showEditForm(i) {
+	var doc = document;
+    var editForm = document.getElementById('edit_box');
+	var date_box = document.getElementById('user_date');
+	var entry_box = doc.getElementById('user_entry');
+	var entryTimeBox = doc.getElementById('user_entryTime');
+	var exitBox = doc.getElementById('user_exit');
+	var exitTimeBox = doc.getElementById('user_exitTime');
+
+	date_box.value="";
+	entry_box.value="";
+	entryTimeBox.value="";
+	exitBox.value="";
+	exitTimeBox.value="";
+	
+	
+	var newOption = doc.createElement('option');
+	var optionText = doc.createTextNode('Time Slot');
+	newOption.appendChild(optionText);
+	newOption.setAttribute('value','');
+	newOption.setAttribute('selected','');
+	newOption.setAttribute('hidden','');
+	
+	entryTimeBox.appendChild(newOption);
+	
+	newOption = doc.createElement('option');
+	optionText = doc.createTextNode('Time Slot');
+	newOption.appendChild(optionText);
+	newOption.setAttribute('value','');
+	newOption.setAttribute('selected','');
+	newOption.setAttribute('hidden','');
+	
+	exitTimeBox.appendChild(newOption);
+	
+	
+	
+    editForm.style.display = 'block';
+	
+}
+
+function hideEditForm(){
+	var editForm = document.getElementById('edit_box');
+	
+	editForm.style.display="none";
+}
+
+function cancelEditForm(){
+    var editForm = document.getElementById('edit_box');
+	
+	editForm.style.display="none";
+}
+
+function showDeleteForm(i) {
+	var doc = document;
+    var deleteForm = document.getElementById('delete_box');	
+	var deleteButton = doc.getElementById('delete_btn');
+	
+    deleteForm.style.display = 'block';
+	deleteButton.setAttribute('onclick', 'hideDeleteForm(' + i + ')');
+}
+
+function hideDeleteForm(i){
+	var deleteForm = document.getElementById('delete_box');
+	
+	var deleteReservation = document.getElementById(i);
+	
+	deleteReservation.remove();
+	
+	deleteForm.style.display="none";
+}
+
+function cancelDeleteForm(){
+	var deleteForm = document.getElementById('delete_box');
+	
+	deleteForm.style.display="none";
 }
 
 function createTextInfo(main_div){
