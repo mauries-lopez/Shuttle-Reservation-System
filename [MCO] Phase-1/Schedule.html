@@ -4,7 +4,7 @@
     <head>
         <title> Arrow Express - Reserve </title>
         <link rel="icon" type="image/png" href="Images/DLSU_Logo.png">
-        <link rel="stylesheet" href="CSS/FormStyle.css">  <!-- Kailangan to if may separate CSS file -->
+        <link rel="stylesheet" href="CSS/FormStyle.css"> 
         <link rel="stylesheet" href="CSS/ReservationStyle.css">
         <script src="JS/User.js"> </script>
         <script src="JS/Schedule.js"> </script>
@@ -65,50 +65,19 @@
                         <form onsubmit="return findMatchingSeats(event);">
                             <div class="button_box">
                                 <div id="btn"></div>
-                                <button type="button" class="switch" id="entry_btn" onclick="leftClick();" style="text-align: center; left: 10px;"> Entry </button>
-                                <button type="button" class="switch" id="exit_btn" onclick="rightClick();" style="right: -30px;"> Exit </button> 
+                                <button type="button" class="switch" id="entry_btn" onclick="leftClick();" style="text-align: center; left: 10px;" onchange="changeTimeSlots();"> Entry </button>
+                                <button type="button" class="switch" id="exit_btn" onclick="rightClick();" style="right: -30px;" onchange="changeTimeSlots();"> Exit </button> 
                             </div>
     
-                            <input type="date" placeholder="Date" class="fillup" required name="user_date" id="user_date" >
+                            <input type="date" placeholder="Date" class="fillup" required name="user_date" id="user_date">
     
                             <div class="location">
                                 <img src="Images/Help.png" style="width: 25px; height: 25px; position: relative; filter:invert(1); top: 15px; left:10px; cursor: help;" title="Select a designated location">
-                                <select name="user_location" id="user_location" class="fillup" style="width: 200px; margin: 10px; position: relative; left: 5px; ">
+                                <select name="user_location" id="user_location" class="fillup" style="width: 200px; margin: 10px; position: relative; left: 5px; " onchange="changeTimeSlots();">
                                     <option value="" disabled selected hidden s> Select Location </option>
-                                    <option value="0"> Laguna </option>
-                                    <option value="1"> Paseo </option>
-                                    <option value="2"> Carmona </option>
-                                    <option value="3"> Pavilion </option>
-                                    <option value="4"> Waltermart </option>
-                                    <option value="5"> N/A </option>
                                 </select>
                                 <select name="user_entryTime" id="user_entryTime" class="fillup" style="width: 120px; ">
                                     <option value="" disabled selected hidden s> Time Slot </option>
-                                    <option value="0a"> 05:30 AM </option>
-                                    <option value="0"> 05:45 AM </option>
-                                    <option value="1"> 06:00 AM </option>
-                                    <option value="2"> 06:15 AM </option>
-                                    <option value="2a"> 06:30 AM </option>
-                                    <option value="3"> 07:00 AM </option>
-                                    <option value="4"> 07:30 AM </option>
-                                    <option value="5"> 08:00 AM </option>
-                                    <option value="6"> 09:00 AM </option>
-                                    <option value="7"> 09:30 AM </option>
-                                    <option value="8"> 11:00 AM </option>
-                                    <option value="9"> 11:30 AM </option>
-                                    <option value="10"> 12:10 PM </option>
-                                    <option value="11"> 12:15 PM </option>
-                                    <option value="12"> 01:00 PM </option>
-                                    <option value="13"> 02:30 PM </option>
-                                    <option value="14"> 03:30 PM </option>
-                                    <option value="15"> 04:45 PM </option>
-                                    <option value="16"> 05:10 PM </option>
-                                    <option value="17"> 05:30 PM </option>
-                                    <option value="18"> 05:45 PM </option>
-                                    <option value="19"> 06:00 PM </option>
-                                    <option value="20"> 06:15 PM </option>
-                                    <option value="21"> 06:30 AM </option>
-                                    <option value="22"> 07:45 PM </option>
                                 </select>
                             </div>
 
@@ -204,7 +173,20 @@
             justify-content: center;
             align-items: center;
             font-weight: bold;
-            border-radius: 30px;
+            font-size: x-large;
+        }
+
+        .seat.taken {
+            width: 150px;
+            height: 150px;
+            margin: 5px;
+            background-color: red;
+            border: 1px solid black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: x-large;
         }
 
         .schedule_container p {

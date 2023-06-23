@@ -75,7 +75,6 @@ function hideScheduleForm(){
 
     var div = document.createElement('div');
     div.className = 'reserved_schedule';
-	
 	if (count == null){
 		count = scheduleContainer.childElementCount + 1;
 	}
@@ -103,7 +102,6 @@ function hideScheduleForm(){
     var delete_btn = document.createElement('button');
     delete_btn.className = 'delete_btn';
     delete_btn.setAttribute('type', 'button');
-
 	delete_btn.setAttribute('id', 'd_btn' + count);
 	delete_btn.setAttribute('onclick','showDeleteForm(' + count + ')');
     delete_btn.innerHTML = 'DELETE';
