@@ -103,9 +103,6 @@ function validate_User() {
           isValidUser = 2;
           break;
         }
-        else{
-          isValidUser = 0;
-        }
       }
     }
 
