@@ -7,6 +7,7 @@ class user_storage {
       this.password = password;
       this.designation = designation;
       this.passengerType = passengerType;
+      this.fullName = firstName + " " + lastName;
     }
 
     getEmail() {
@@ -55,11 +56,11 @@ class loggedInUser {
 
 }
 
-var user0 = new user_storage("admin", "admin", "admin@gmail.com", "99999999", "admin", "employee", "employee");
-var user1 = new user_storage("maui", "lopez", "maui@gmail.com", "12177539", "maui", "employee", "employee");
-var user2 = new user_storage("benmar", "ramirez", "benmar@gmail.com", "12116866", "benmar", "employee", "employee");
-var user3 = new user_storage("nathan", "asnan", "asnan@gmail.com", "12043338", "asnan", "employee", "employee");
-var user4 = new user_storage("admin1", "admin1", "admin1@gmail.com", "88888888","admin1", "employee", "employee")
+var user0 = new user_storage("Admin", "Admin", "admin@gmail.com", "99999999", "admin", "Employee", "Employee");
+var user1 = new user_storage("Maui", "Lopez", "maui@gmail.com", "12177539", "maui", "Employee", "Employee");
+var user2 = new user_storage("Benmar", "Ramirez", "benmar@gmail.com", "12116866", "benmar", "Employee", "Employee");
+var user3 = new user_storage("Nathan", "Asnan", "asnan@gmail.com", "12043338", "asnan", "Employee", "Employee");
+var user4 = new user_storage("Admin1", "Admin1", "admin1@gmail.com", "88888888","admin1", "Employee", "Employee")
 
 var registerdUserCount = localStorage.length; //For key in local storage
 

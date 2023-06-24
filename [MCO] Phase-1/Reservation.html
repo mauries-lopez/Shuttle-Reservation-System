@@ -53,11 +53,7 @@
 						display: none;
 					}
 					
-					/* override reserved_schedule width so that it's not being cut off by the invisible scrollbar */
-					.content .schedule_container .reserved_schedule{
-						width: calc(100% - 12px);
-					}
-	
+
                 </style>
 
                 <hr style="position: relative; margin-top: 30px; border: 2px solid white;">
@@ -69,7 +65,7 @@
                         <div class = "text_reserved_schedule"> 
                             <p> Laguna </p>
                             <hr style="margin-left: 10px; border: 2px solid white; border-radius: 30px;"> 
-                            <p> 2023-06-2023 </p>  
+                            <p> 2023-06-23 </p>  
                             <hr style="margin-left: 10px; border: 2px solid white; border-radius: 30px;"> 
                             <p> Paseo -> DLSU LC </p> 
                             <p> 05:45 AM </p>
@@ -89,7 +85,7 @@
                         <div class = "text_reserved_schedule"> 
                             <p> Laguna </p>
                             <hr style="margin-left: 10px; border: 2px solid white; border-radius: 30px;"> 
-                            <p> 2023-07-2023 </p>  
+                            <p> 2023-07-24 </p>  
                             <hr style="margin-left: 10px; border: 2px solid white; border-radius: 30px;"> 
                             <p> Carmona -> DLSU LC </p> 
                             <p> 06:00 AM </p>
@@ -110,7 +106,7 @@
                         <div class = "text_reserved_schedule"> 
                             <p> Laguna </p>
                             <hr style="margin-left: 10px; border: 2px solid white; border-radius: 30px;"> 
-                            <p> 2023-07-2023 </p>  
+                            <p> 2023-07-25 </p>  
                             <hr style="margin-left: 10px; border: 2px solid white; border-radius: 30px;"> 
                             <p> Pavilion Mall -> DLSU LC </p> 
                             <p> 06:30 AM </p>
@@ -129,9 +125,9 @@
                     <div class = "reserved_schedule" id="3"> 
 
                         <div class = "text_reserved_schedule"> 
-                            <p> Manila </p>
+                            <p> Laguna </p>
                             <hr style="margin-left: 10px; border: 2px solid white; border-radius: 30px;"> 
-                            <p> 2023-08-2023 </p>  
+                            <p> 2023-08-26 </p>  
                             <hr style="margin-left: 10px; border: 2px solid white; border-radius: 30px;"> 
                             <p> Paseo -> DLSU LC </p> 
                             <p> 09:00 AM </p>
@@ -152,7 +148,7 @@
                         <div class = "text_reserved_schedule"> 
                             <p> Laguna </p>
                             <hr style="margin-left: 10px; border: 2px solid white; border-radius: 30px;"> 
-                            <p> 2023-09-2023 </p>  
+                            <p> 2023-09-27 </p>  
                             <hr style="margin-left: 10px; border: 2px solid white; border-radius: 30px;"> 
                             <p> Walter Mart -> DLSU LC </p> 
                             <p> 07:00 AM </p>
@@ -181,8 +177,8 @@
                                 <button type="button" class="switch" id="laguna_btn" onclick="leftClick();"> Laguna </button>
                                 <button type="button" class="switch" id="manila_btn" onclick="rightClick();"> Manila </button> 
                             </div>
-    
-                            <input type="date" placeholder="Date" class="fillup" required name="user_date" id="user_date" >
+                        
+                            <input type="date" class="fillup" required name="user_date" id="user_date" >
     
                             <div class="entry">
                                 <img src="Images/Help.png" style="width: 25px; height: 25px; position: relative; filter:invert(1); top: 15px; left:10px; cursor: help;" title="From home, location going to be picked up.">

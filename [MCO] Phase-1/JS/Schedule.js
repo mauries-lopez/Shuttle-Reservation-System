@@ -87,8 +87,6 @@ function rightClick() {
   for (var i = 0; i < option_array.length; i++) {
     user_location.appendChild(option_array[i]);
   }
-
-  user_location.style.width = '250px';
 }
 
 function showScheduleForm() {
@@ -109,6 +107,9 @@ function cancelScheduleForm() {
 function changeTimeSlots() {
   var user_location = document.getElementById('user_location').value;
   var buttonClicked = document.getElementById('btn').style.left === '0px' ? 'entry' : 'exit';
+
+  var container = document.getElementById('user_location');
+  container.style.width = '188px';
 
   const exitTimeSlots = {
     0: ["05:45 AM", "06:15 AM", "07:00 AM", "08:00 AM", "09:00 AM", "11:00 AM", "01:00 PM", "02:30 PM", "03:30 PM", "05:10 PM", "06:15 PM", "07:45 PM"],

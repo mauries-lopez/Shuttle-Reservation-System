@@ -481,7 +481,7 @@ function locationChangeFormHelper(location, isEditButton){
         }
         else {
 
-            selectEntryContainer.style.width = "185px";
+            selectEntryContainer.style.width = "191px";
             var storage_entry = ["Yuchenco Bldg. -> DLSU LC", "N/A"];
             for ( var i = 0; i < storage_entry.length; i++ ){
                 var option = document.createElement('option');

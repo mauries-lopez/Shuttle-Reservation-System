@@ -2,18 +2,20 @@
 
 <html>
     <head>
-        <title> Arrow Express - Search Users </title>
+        <title> Arrow Express - Search </title>
         <link rel="icon" type="image/png" href="Images/DLSU_Logo.png">
         <link rel="stylesheet" href="CSS/FormStyle.css">  <!-- Kailangan to if may separate CSS file -->
         <link rel="stylesheet" href="CSS/ReservationStyle.css">
+		<link rel="stylesheet" href="CSS/SearchStyle.css">
+		<script rel="text/javascript" src="JS/Search.js" defer></script>
     </head>
 
-    <body>
+    <body onload="create_User();">
         
         <div class = "banner"> 
 
             <div class="navbar">
-                <a onclick="history.back()"><img src="Images/Leftarrow.png" class = "back_img"></a>
+                <a onclick="history.back(); clear_User();"><img src="Images/Leftarrow.png" class = "back_img"></a>
                 <a> <img src= "Images/DLSU_Logo.png" class = "website_logo"> </a> 
             </div>
             
@@ -51,14 +53,88 @@
 							cursor: pointer;
 						}
 					</style>
-					<input type="text" placeholder="Search user by name..." name="search" id="search">
+					<label for="search"></label>
+					<input type="search" placeholder="View a profile..." name="search" id="search" onsubmit="search_User();">
+                    <img src="Images/SearchIcon.png" id="searchIcon" >
 
-                    <img src="Images/SearchIcon.png" id="searchIcon" action="">
+					<script>
+						const searchBar = document.getElementById("search");
+						const searchIcon = document.getElementById("searchIcon");
+
+						search.addEventListener("keypress", function(e) {
+
+							if ( e.key === 'Enter')
+							{
+								const searchTerm = searchBar.value;
+								search_User(searchTerm);
+							}
+						
+						});
+
+						searchIcon.addEventListener("click", function(e) {
+							const searchTerm = searchBar.value;
+							search_User(searchTerm);
+						});
+
+					</script>
+
 				</div>
 
                 <div class="results_container">
+					<a href="Temp/TempProfile/DummyProfile1.html" style="text-decoration: none;">
+						<div class="card"> 
+							<img src="Images/DLSU_Logo.png">
+							<p class="name"> Maui Lopez </p>
+							<p class="designation"> Student </p>
+						</div>
+					</a>
                     
+					<a href="Temp/TempProfile/DummyProfile2.html" style="text-decoration: none;">
+						<div class="card"> 
+							<img src="Images/DLSU_Logo.png">
+							<p class="name"> Nathan Asnan </p>
+							<p class="designation"> Student </p>
+						</div>
+					</a>
+					
+
+					<a href="Temp/TempProfile/DummyProfile3.html" style="text-decoration: none;">
+						<div class="card"> 
+							<img src="Images/DLSU_Logo.png">
+							<p class="name"> Benmar Ramirez </p>
+							<p class="designation"> Student </p>
+						</div>
+					</a>
+					
+
+					<a href="Temp/TempProfile/DummyProfile4.html" style="text-decoration: none;">
+						<div class="card"> 
+							<img src="Images/DLSU_Logo.png">
+							<p class="name"> Shin Ryujin </p>
+							<p class="designation"> Student </p>
+						</div>
+					</a>
+					
+
+					<a href="Temp/TempProfile/DummyProfile5.html" style="text-decoration: none;">
+						<div class="card"> 
+							<img src="Images/DLSU_Logo.png">
+							<p class="name"> Hwang Yeji </p>
+							<p class="designation"> Student </p>
+						</div>
+					</a>
+					
                 </div>
+
+				<template> 
+					<div class="card">
+						<a class="htmlLink" href="#" style="text-decoration: none;">
+							<img src="Images/DLSU_Logo.png">
+							<p class="name"></p>
+							<p class="designation"></p>
+						</a> 
+					</div>
+				</template>
 
             </div>
 
