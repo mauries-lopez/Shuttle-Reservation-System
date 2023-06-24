@@ -1,4 +1,5 @@
 var functionCalled = 0; // 0 = left (Laguna), 1 = right (Manila)
+var editFunctionCalled = 0;
 var count = null;
 
 function leftClick(){
@@ -8,18 +9,19 @@ function leftClick(){
 }
 
 function rightClick(){
-
     functionCalled = 1;
     btn.style.left = '160px';
     locationChangeFormHelper(1, false);
 }
 
 function eleftClick(){
+    editFunctionCalled = 0;
     ebtn.style.left = '0';
     locationChangeFormHelper(0, true);
 }
 
 function erightClick(){
+    editFunctionCalled = 1;
     ebtn.style.left = '160px';
     locationChangeFormHelper(1, true);
 }
@@ -140,10 +142,10 @@ function showEditForm(i) {
 	var doc = document;
     var editForm = document.getElementById('edit_box');
 	var date_box = document.getElementById('user_date');
-	var entry_box = doc.getElementById('user_entry');
-	var entryTimeBox = doc.getElementById('user_entryTime');
-	var exitBox = doc.getElementById('user_exit');
-	var exitTimeBox = doc.getElementById('user_exitTime');
+	var entry_box = doc.getElementById('editUser_entry');
+	var entryTimeBox = doc.getElementById('editUser_entryTime');
+	var exitBox = doc.getElementById('editUser_exit');
+	var exitTimeBox = doc.getElementById('editUser_exitTime');
 
 	date_box.value="";
 	entry_box.value="";
@@ -315,14 +317,16 @@ function readyChangeTime( location_id, time_id ){
 }
 
 function changeEntryTimeSlots(location_id, time_id){
-
-    var selectedLocation = document.getElementById(location_id);
-    var location = selectedLocation.options[selectedLocation.selectedIndex].value;
     
     var timeSlots = document.getElementById(time_id);
     timeSlots.innerHTML = '';
+    
+    var selectedLocation = document.getElementById(location_id);
+    var location = selectedLocation.options[selectedLocation.selectedIndex].value;
 
-    if( functionCalled == 0 ){
+    if( functionCalled == 0 || editFunctionCalled == 0 ){ //From Laguna
+
+
         if ( location_id == 'user_entry' || location_id == 'editUser_entry'){ //Entry Point
             if ( location == 0 ){
                 var storage_time = ["06:00 AM", "06:30 AM", "07:00 AM", "07:30 AM", "08:00 AM", 
@@ -382,9 +386,9 @@ function changeEntryTimeSlots(location_id, time_id){
             }
         }
     }
-    else{
+    else if (functionCalled == 1 || editFunctionCalled == 1)
+    { //From Manila
 
-        
         if ( location_id == 'user_entry' || location_id == 'editUser_entry'){ //Entry Point
             if ( location == 0 ){
                 var storage_time = ["06:00 AM", "07:30 AM", "09:30 PM", "11:00 AM", "01:00 PM",
@@ -506,6 +510,7 @@ function locationChangeFormHelper(location, isEditButton){
 
     }
     else{
+
         var selectEntryContainer = document.getElementById('editUser_entry');
         selectEntryContainer.innerHTML = '';
         var selectExitContainer = document.getElementById('editUser_exit');
