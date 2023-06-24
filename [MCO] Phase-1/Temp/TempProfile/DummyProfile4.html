@@ -15,35 +15,35 @@
         <div class="content">
 
             <div id="info_box">
-                <img src = "../../Images/DummyProfile4.jpg" id = "profile_picture">
-                <p class = "title_text" style="top: 50px; left: 110px; font-size: 40px; color: white;">Francesca Cruza </p>
-                <p class = "sub_text" style="top: 50px; left: 210px; font-size: 25px; color: white; font-style: normal;"> 12116867 </p>
-                <p class = "sub_text" style="top: 80px; left: 230px; font-size: 20px; color: white;"> Employee </p>
+                <img src = "../../Images/ProfilePicture.jpg" id = "profile_picture">
+                <p class = "title_text" style="top: 50px; text-align: center; font-size: 40px; color: white;"> Shin Ryujin </p>
+                <p class = "sub_text" style="top: 50px; text-align: center; font-size: 25px; color: white; font-style: normal;"> 12116867 </p>
+                <p class = "sub_text" style="top: 80px; text-align: center; font-size: 20px; color: white;"> Student </p>
             </div>
             
             <div class="right"> 
 
                 <a href="../../Temp/TempReservation/ReservationDummy4.html">
                     <div class="box">
-                        <img src = "../../Images/ViewReservation.png" id = "schedule_logo">
-                        <p class = "title_text" style="top: 50px"> Reservations </p>
-                        <p class = "sub_text" style="top: 50px"> View their Shuttle Reservations </p>
+                        <img src = "../../Images/ViewReservation.png" class = "logo">
+                        <p class = "title_text" style="top: 50px; text-align: center;" > Reservations </p>
+                        <p class = "sub_text" style="top: 50px; text-align: center;"> View their Shuttle Reservations </p>
                     </div>
                 </a>
         
                 <a href="../../Temp/TempSchedule/ScheduleDummy4.html">
                     <div class="box">
-                        <img src = "../../Images/ViewSeat.png" id = "schedule_logo">
-                        <p class = "title_text" style="top: 50px; left: 20px;"> Scheduled Seating </p>
-                        <p class = "sub_text" style="top: 50px; left: 60px;"> View their seat availability </p>
+                        <img src = "../../Images/ViewSeat.png" class = "logo">
+                        <p class = "title_text" style="top: 50px; text-align: center;"> Scheduled Seating </p>
+                        <p class = "sub_text" style="top: 50px; text-align: center;"> View their seat availability </p>
                     </div>
                 </a>
         
                 <a onclick="history.back()">
                     <div class="logout_box">
-                        <img src = "../../Images/Back2Search.png" id = "logout_logo">
-                        <p class = "title_text" style="top: 50px; left: 45px;" > Back to Search </p>
-                        <p class = "sub_text" style="top: 50px; left: 85px;"> Continue Searching </p>
+                        <img src = "../../Images/Back2Search.png" class = "logo">
+                        <p class = "title_text" style="top: 50px; text-align: center;" > Back to Search </p>
+                        <p class = "sub_text" style="top: 50px; text-align: center;"> Continue Searching </p>
                     </div>
                 </a>
 
@@ -66,36 +66,26 @@
             display: block;
         }
 
-        #schedule_logo{
+        .logo{
             position: relative;
-            top: 30px;
-            width: 150px;
-            height: 150px;
-            margin: auto;
-            display: block;
-        }
-
-        #logout_logo{
-            position: relative;
-            top: 30px;
-            width: 160px;
-            height: 160px;
+            top: 60px;
+            width: 130px;
+            height: 130px;
             margin: auto;
             display: block;
         }
 
         .title_text{
             position: relative;
-            left: 60px;
             font-size: 30px;
             font-weight: bold;
             text-decoration: none;
             color: black;
+            margin-top: 30px;
         }
 
         .sub_text{
             position: relative;
-            left: 50px;
             font-style: italic;
             text-decoration: none;
             color: black;
