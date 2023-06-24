@@ -1,9 +1,3 @@
-*{
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-}
-
 .input{
     top: 20px;
 }
@@ -17,8 +11,11 @@
     position: fixed;
     background: rgb(51, 255, 0);
     height: 390px;
-    top: 300px;
-    right: 770px;
+    top: 50%;
+    left: 50%;
+    margin-top: -13em;
+    margin-left: -12em;
+    position: fixed;
 }
 
 .form_box #blur_box{
@@ -40,10 +37,14 @@
     top: 300px;
     right: 770px;
     width: 380px;
-    margin: auto;
     border-radius: 20px;
     padding: 5px;
-}
+    top: 50%;
+    left: 50%;
+    margin-top: -13em;
+    margin-left: -12em;
+    position: fixed;
+}   
 
 .form_box2 #blur_box{
     position: fixed;
@@ -107,11 +108,12 @@
 
 .content .schedule_container{
     margin: auto;
+    width: 90%;
+    height: 80%;
     position: relative;
 }
 
 .content .schedule_container .reserved_schedule{
-    position: relative;
     display: flex;
     align-items: end;
     justify-content: center;
@@ -120,15 +122,10 @@
     margin: 20px auto;
     top: 20px;
     border: 5px solid white;
-    width: 95%;
-    height: 7%;
+    width: 100%;
+    height: 9%;
     background: green;
     border-radius: 30px;
-    transition: 0.5s;
-}
-
-.content .schedule_container .reserved_schedule:hover{
-    transform: scale(1.02);
 }
 
 .content .schedule_container .reserved_schedule .text_reserved_schedule{
