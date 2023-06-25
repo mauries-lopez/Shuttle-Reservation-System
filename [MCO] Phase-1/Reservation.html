@@ -8,11 +8,12 @@
         <link rel="stylesheet" href="CSS/ReservationStyle.css">
         <script src="JS/User.js"> </script>
         <script src="JS/Reservation.js" defer> </script>
+        <script src="JS/UserAdmin.js" defer> </script>
     </head>
 
-    <body>
+    <body onload="readyHTML();">
         
-        <div class = "banner"> 
+        <div class = "banner" > 
 
             <div class="navbar">
                 <a onclick="history.back()"><img src="Images/Leftarrow.png" class = "back_img"></a>
@@ -23,12 +24,13 @@
 
                 <h1 style="position: relative; color: white; left: 50px; top: 40px;"> Reserve </h1>
                 <p style="position: relative; color: white; left: 50px; margin-top: 40px; font-style: italic;"> Reserve your spot now on your designated place </p>
-                <button id="reserve_schedule_btn" onclick="showScheduleForm();"> Reserve Schedule </button> 
+                <button class="reserve_btn" id="reserve_schedule_btn" onclick="showUserForm();"> Reserve schedule </button> 
+                <button class="reserve_btn" id="reserveUser_schedule_btn" onclick="showAdminForm();" style="margin-left: 20px; display: none;"> User reserve </button> 
                 <style> 
-                    #reserve_schedule_btn{
+                    .reserve_btn{
                         position: absolute; 
-                        left: 85%; 
-                        top: 5%; 
+                        left: 75%;
+                        bottom: 5%;
                         padding: 15px; 
                         font-weight: bold; 
                         background: transparent;
@@ -36,27 +38,31 @@
                         color: white;
                         cursor: pointer; 
                         border-radius: 30px; 
-                        transition: 0.5s;
                     }
-
-                    #reserve_schedule_btn:hover{
+                    
+                    .reserve_btn:hover{
                         background: green;
                         color: black;
                     } 
-					
-					.schedule_container{
-						overflow-y: scroll;
-						-ms-overflow-style: none;
-						scrollbar-width: none;
-					}
-					.schedule_container::-webkit-scrollbar{
-						display: none;
-					}
+
+                    #reserve_schedule_btn{
+                        position: relative;
+                    }
+
+                    #reserveUser_schedule_btn{
+                        position: relative;
+                        border: 5px solid yellow;
+                    }
+
+                    #reserveUser_schedule_btn:hover{
+                        position: relative;
+                        background: yellow;
+                    }
 					
 
                 </style>
 
-                <hr style="position: relative; margin-top: 30px; border: 2px solid white;">
+                <hr style="position: relative; margin-top: 2px; border: 2px solid white;">
 
                 <div class = "schedule_container">
                     
@@ -177,7 +183,9 @@
                                 <button type="button" class="switch" id="laguna_btn" onclick="leftClick();"> Laguna </button>
                                 <button type="button" class="switch" id="manila_btn" onclick="rightClick();"> Manila </button> 
                             </div>
-                        
+                            
+                            <label for="user_idNumber"></label>
+                            <input type="text" placeholder="ID Number" class="fillup" name="user_idNumber" id="user_idNumber" required style="position: relative; top: -25px; display: block;">
                             <input type="date" class="fillup" required name="user_date" id="user_date" >
     
                             <div class="entry">
@@ -246,7 +254,7 @@
                     </div>
     
                 </div>
-				
+
 				<div class="form_box2" id="edit_box" style="display: none; height: 370px">
                     <div id="blur_box"> </div>
                     <h2> Edit Reservation</h2>

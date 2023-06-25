@@ -56,13 +56,25 @@ class loggedInUser {
 
 }
 
+class user_reservation extends user_storage {
+
+    constructor(firstName, lastName, email, idNumber, password, designation, passengerType, location, date, entry, entryTime, exit, exitTime) {
+      super(firstName, lastName, email, idNumber, password, designation, passengerType);
+      this.location = location;
+      this.date = date;
+      this.entry = entry;
+      this.entryTime = entryTime;
+      this.exit = exit;
+      this.exitTime = exitTime;
+    }
+
+}
+
 var user0 = new user_storage("Admin", "Admin", "admin@gmail.com", "99999999", "admin", "Employee", "Employee");
 var user1 = new user_storage("Maui", "Lopez", "maui@gmail.com", "12177539", "maui", "Employee", "Employee");
 var user2 = new user_storage("Benmar", "Ramirez", "benmar@gmail.com", "12116866", "benmar", "Employee", "Employee");
 var user3 = new user_storage("Nathan", "Asnan", "asnan@gmail.com", "12043338", "asnan", "Employee", "Employee");
 var user4 = new user_storage("Admin1", "Admin1", "admin1@gmail.com", "88888888","admin1", "Employee", "Employee")
-
-var registerdUserCount = localStorage.length; //For key in local storage
 
 function showErrorBox(){
     document.getElementById('error_box').style.display = "block";
@@ -78,15 +90,7 @@ function validate_User() {
   var idNumber = document.getElementById('user_idNumber').value;
   var password = document.getElementById('user_password').value;
   var registeredUser;
-
   var isValidUser = 0;
-  
-  for ( var i = 0 ; i < localStorage.length ; i++ ) {
-
-    var key = localStorage.key(i);
-    registeredUser = localStorage.getItem(key);
-    
-  }
 
   var loginForm = document.getElementById('loginForm');
 
@@ -95,34 +99,52 @@ function validate_User() {
 
     var user_loggedIn = new loggedInUser(idNumber, password);
 
-    if ( registeredUser && (registeredUser.match(idNumber) && registeredUser.match(password))) { //Local Storage Validation
-      isValidUser = 1;
-    } else {
+    for (var i = 0; i < localStorage.length; i++) {
+      var key = localStorage.key(i);
+
+      if ( key.startsWith('valid_user') ){ 
+        registeredUser = localStorage.getItem(key);
+      }
+     
+      try{
+        var tempIdNumber = JSON.parse(registeredUser).idNumber;
+        var tempPassword = JSON.parse(registeredUser).password;
+      }
+      catch{
+        console.log("Error 404");
+      }
+
+      if (idNumber == tempIdNumber && password == tempPassword ) { //Local Storage Validation
+        isValidUser = 1;
+        break; // Exit the loop since a valid registered user is found
+      }
+    }
+
+    if (isValidUser === 0) {
       for (var i = 0; i < valid_user.length; i++) {
-        if (idNumber === valid_user[i].getIdNumber() && password === valid_user[i].getPassword()) { //Admin Validation
+        if ((idNumber === valid_user[i].getIdNumber()) && (password === valid_user[i].getPassword())) { //Admin Validation
           isValidUser = 2;
-          break;
+          break; // Exit the loop since a valid admin is found
         }
       }
     }
 
-    if (isValidUser == 1 && (idNumber != "" && password != "")) {
+    if (isValidUser === 1 && (idNumber !== "" && password !== "")) {
       localStorage.setItem('loggedInUser', JSON.stringify(user_loggedIn));
-      window.location.href = "Profile.html";
+      window.location.href = "Profile.html"; //Go to Registered User profile
       return 1;
-    } else if ( isValidUser == 2 && (idNumber != "" && password != "")) {
+    } else if (isValidUser === 2 && (idNumber !== "" && password !== "")) {
       localStorage.setItem('loggedInUser', JSON.stringify(user_loggedIn));
-      window.location.href = "ProfileAdmin.html";
+      window.location.href = "ProfileAdmin.html"; //Go to Admin Profile
       return 1;
-    }
-    else{
+    } else {
       showErrorBox();
       return 0;
     }
-
   });
-
 }
+
+var registeredUserCount = localStorage.length + 1; //For key in local storage
 
 function create_User(){
 
@@ -141,9 +163,21 @@ function create_User(){
     alert('User Created! Directing to Login Page...');
     var newUser = new user_storage(tempFirstName, tempLastName, tempEmail, tempIdNumber, tempPassword, tempDesignation, tempPassengerType);
 
-    localStorage.setItem('valid_user['+registerdUserCount+']' , JSON.stringify(newUser));
+    var tempKey = 'valid_user['+registeredUserCount+']';
 
-    registerdUserCount++;
+    var tempKeyPrefix = 'valid_user[';
+    var tempKeySuffix = ']';
+
+    for ( var i = 0; i < localStorage.length; i++ ) {
+        var key = localStorage.key(i);
+
+        if ( key == tempKey ){
+            registeredUserCount++;
+            console.log(key);
+        }
+    }
+
+    localStorage.setItem('valid_user['+registeredUserCount+']' , JSON.stringify(newUser));
 
 }
 

@@ -1,4 +1,5 @@
 var functionCalled = 0; // 0 = left (Laguna), 1 = right (Manila)
+var adminFunctionCall = 0; // 0 = registered user, 1 = admin
 var editFunctionCalled = 0;
 var count = null;
 
@@ -26,15 +27,83 @@ function erightClick(){
     locationChangeFormHelper(1, true);
 }
 
+function showUserForm(){
+    adminFunctionCall = 0;
+    showScheduleForm();
+}
+
+function showAdminForm(){
+    adminFunctionCall = 1;
+    showScheduleForm();
+}
+
+function readyHTML(){
+    var admin_user0 = new loggedInUser("99999999", "admin");
+    var admin_user1 = new loggedInUser("12177539", "maui");
+    var admin_user2 = new loggedInUser("12116866", "benmar");
+    var admin_user3 = new loggedInUser("12043338", "asnan");
+    var admin_user4 = new loggedInUser("88888888", "admin1");
+
+    var admin_users = [admin_user0, admin_user1, admin_user2, admin_user3, admin_user4];
+    var admin_user = null;
+    for ( var i = 0 ; i < localStorage.length ; i++ ) {
+
+        var key = localStorage.key(i);
+        if ( key == "loggedInUser" ){ //Only looks at Key loggedInUser
+            admin_user = JSON.parse(localStorage.getItem(key));
+        }
+
+    }
+
+    var displayUI;
+
+    for ( var k = 0 ; k < admin_users.length ; k++){
+        if ( admin_user.idNumber == admin_users[k].idNumber ){
+            console.log('Admin found!');
+            console.log(admin_user.idNumber);
+            displayUI = 1; //Display Admin UI
+            break;
+        }
+        else{
+            displayUI = 0 //Display Registered User UI
+            console.log('Admin not found!');
+        }
+    }
+
+    if ( displayUI == 1 ){
+        document.getElementById('reserveUser_schedule_btn').style.display = 'inline';
+    }
+    else{
+        document.getElementById('reserve_schedule_btn').style.left = '85%';
+        document.getElementById('reserveUser_schedule_btn').style.display = 'none';
+    }
+    
+}
+
 function showScheduleForm() {
 	var doc = document;
-    var scheduleForm = document.getElementsByClassName('form_box')[0];
-	var date_box = document.getElementById('user_date');
+    var scheduleForm = null;
+    var date_box = document.getElementById('user_date');
 	var entry_box = doc.getElementById('user_entry');
 	var entryTimeBox = doc.getElementById('user_entryTime');
 	var exitBox = doc.getElementById('user_exit');
 	var exitTimeBox = doc.getElementById('user_exitTime');
 	var idBox = doc.getElementById('user_idNumber');
+
+    if ( adminFunctionCall == 0 ){
+        idBox.style.display = 'none';
+        scheduleForm = document.getElementsByClassName('form_box')[0];
+        scheduleForm.querySelector('h2').innerHTML = 'Reserve Now';
+        scheduleForm.querySelector('h4').innerHTML = 'Just one-click away';
+        scheduleForm.style.height = '385px';
+    }
+    else{
+        idBox.style.display = 'block';
+        scheduleForm = document.getElementsByClassName('form_box')[0];
+        scheduleForm.querySelector('h2').innerHTML = 'Admin Reserve';
+        scheduleForm.querySelector('h4').innerHTML = 'Fillup to reserve for a user';
+        scheduleForm.style.height = '450px';
+    }
 	
 	if(idBox != null){
 		idBox.value="";
@@ -45,8 +114,7 @@ function showScheduleForm() {
 	entryTimeBox.value="";
 	exitBox.value="";
 	exitTimeBox.value="";
-	
-	
+
 	var newOption = doc.createElement('option');
 	var optionText = doc.createTextNode('Time Slot');
 	newOption.appendChild(optionText);
@@ -128,7 +196,13 @@ function hideScheduleForm(){
     divBtn.appendChild(edit_btn);
     divBtn.appendChild(delete_btn);
 
-    createTextInfo(div);
+    if( adminFunctionCall == 0 ) { 
+        createTextInfo(div); //Show only for registered user
+    }
+    else {
+        div.style.border = '5px solid yellow';
+        createTextInfoAdmin(div); //Show only for admin
+    }
 
     scheduleForm.addEventListener('submit', function(e) {
        e.preventDefault();

@@ -43,18 +43,32 @@
 				var password = document.getElementById("password").value;
 
 				if ( ( user_loggedIn && (user_loggedIn.match(password)) && password != "")){
-					localStorage.removeItem('loggedInUser');
+
 					for ( var i = 0 ; i < localStorage.length ; i++ ) {
 
 						var key = localStorage.key(i);
-    					registeredUser = localStorage.getItem(key);
-
-						if ( registeredUser && registeredUser.match(password)) {
-							localStorage.removeItem(key);
-							break;
+						if( key.startsWith('valid_user') ){
+							registeredUser = localStorage.getItem(key);
 						}
-					}				
+
+						try{
+							var tempRegIdNumber = JSON.parse(registeredUser).idNumber;
+							var tempRegPassword = JSON.parse(registeredUser).password;
+							var tempLogIdNumber = JSON.parse(user_loggedIn).idNumber;
+							var tempLogPassword = JSON.parse(user_loggedIn).password;
+						}
+						catch{
+							console.log("Error 404");
+						}
+    					
+						if ( tempRegIdNumber == tempLogIdNumber && tempRegPassword == tempLogPassword ) {
+							localStorage.removeItem(key); //Removes the user from the localstorage
+						}
+					}			
+					
+					localStorage.removeItem('loggedInUser');
 					return 1;
+
 				}
 				else{
 					alert("Password is incorrect! Please try again.");

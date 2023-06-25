@@ -4,11 +4,28 @@
     font-family: sans-serif;
 }
 
+.container{
+    position: relative;
+    top: 20px;
+    height: 77%;
+    width: 100%;
+    margin: auto;
+    overflow-y: scroll;
+}
+
+.container::-webkit-scrollbar {
+    display: none;
+}
+.container{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
 .results_container{
     position: relative;
     height: 70px;
     width: 92%;
-    margin: auto;;
+    margin: auto;
 }
 
 .results_container .card{

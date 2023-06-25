@@ -22,26 +22,25 @@
             
             <div class="content">
 
-                <h1 style="position: relative; color: white; left: 50px; top: 40px;"> User Reservation </h1>
-                <p style="position: relative; color: white; left: 50px; margin-top: 40px; font-style: italic;"> Admin / Employee can reserve for a user </p>
-                <button id="reserve_schedule_btn" onclick="showScheduleForm();" style="margin-left: 20px;"> Reserve for a user  </button> 
+                <h1 style="position: relative; color: white; left: 50px; top: 40px;"> User Remove Reservation </h1>
+                <p style="position: relative; color: white; left: 50px; margin-top: 40px; font-style: italic;"> Delete/Edit a user reservation </p>
+                <button id="search_user_btn" onclick="showSearchForm();" style="margin-left: 50px;"> Search User  </button> 
                 <style> 
-                    #reserve_schedule_btn{
+                    #search_user_btn{
                         position: absolute; 
                         left: 85%; 
                         top: 5%; 
                         padding: 15px; 
                         font-weight: bold; 
                         background: transparent;
-                        border: 5px solid green;
+                        border: 5px solid yellow;
                         color: white;
                         cursor: pointer; 
                         border-radius: 30px; 
-                        transition: 0.5s;
                     }
 
-                    #reserve_schedule_btn:hover{
-                        background: green;
+                    #search_user_btn:hover{
+                        background: yellow;
                         color: black;
                     } 
 
@@ -55,7 +54,7 @@
                         <div class = "text_reserved_schedule"> 
                             <p> Laguna </p>
                             <hr>
-                            <p>12177539</p>
+                            <p>12132539</p>
                             <hr style="margin-left: 10px; border: 2px solid white; border-radius: 30px;"> 
                             <p> 2023-07-01 </p>  
                             <hr style="margin-left: 10px; border: 2px solid white; border-radius: 30px;"> 
@@ -99,7 +98,7 @@
                         <div class = "text_reserved_schedule"> 
                             <p> Laguna </p>
                             <hr>
-                            <p>12063439</p>
+                            <p>12132539</p>
                             <hr style="margin-left: 10px; border: 2px solid white; border-radius: 30px;"> 
                             <p> 2023-06-30 </p>  
                             <hr style="margin-left: 10px; border: 2px solid white; border-radius: 30px;"> 
@@ -121,7 +120,7 @@
                         <div class = "text_reserved_schedule"> 
                             <p> Laguna </p>
                             <hr>
-                            <p>12234339</p>
+                            <p>12132539</p>
                             <hr style="margin-left: 10px; border: 2px solid white; border-radius: 30px;"> 
                             <p> 2023-06-28 </p>  
                             <hr style="margin-left: 10px; border: 2px solid white; border-radius: 30px;"> 
@@ -143,7 +142,7 @@
                         <div class = "text_reserved_schedule"> 
                             <p> Laguna </p>
                             <hr>
-                            <p>12177539</p>
+                            <p>12132539</p>
                             <hr style="margin-left: 10px; border: 2px solid white; border-radius: 30px;"> 
                             <p> 2023-07-02 </p>  
                             <hr style="margin-left: 10px; border: 2px solid white; border-radius: 30px;"> 
@@ -164,79 +163,18 @@
                 </div>
 
            
-                <div class="form_box">
+                <div class="form_box" onsubmit="return false">
                     <div id="blur_box"> </div>
-                    <h2> Reserve Now </h2>
-                    <h4> Just one-click away </h4>
+                    <h2> Search User </h2>
+                    <h4> View schedule of a user </h4>
                     <hr>
                     <div class="input">
                         <form action="">
-                            <div class="button_box">
-                                <div id="btn"></div>
-                                <button type="button" class="switch" id="laguna_btn" onclick="leftClick();"> Laguna </button>
-                                <button type="button" class="switch" id="manila_btn" onclick="rightClick();"> Manila </button> 
-                            </div>
 
                             <label for="user_idNumber"></label>
-                            <input type="text" placeholder="ID Number" class="fillup" name="user_idNumber" id="user_idNumber" required style="position: relative; margin-top: -25px;">
-                            <input type="date" placeholder="Date" class="fillup" required name="user_date" id="user_date" style="position: relative; margin-top: 35px;">
-    
-                            <div class="entry">
-                                <img src="Images/Help.png" style="width: 25px; height: 25px; position: relative; filter:invert(1); top: 15px; left:10px; cursor: help;" title="From home, location going to be picked up.">
-                                <select name="user_entry" id="user_entry" class="fillup" onchange="readyChangeTime('user_entry','user_entryTime');" style="width: 200px; margin: 10px; position: relative; left: 5px; ">
-                                    <option value="" disabled selected hidden s> Entry Location </option>
-                                    <option value="0"> Paseo -> DLSU LC </option>
-                                    <option value="1"> Carmona -> DLSU LC  </option>
-                                    <option value="2"> Pavilion Mall -> DLSU LC </option>
-                                    <option value="3"> Walter Mart -> DLSU LC </option>
-                                    <option value="4"> N/A </option>
-                                </select>
-                                <select name="user_entryTime" id="user_entryTime" class="fillup" style="width: 120px; ">
-                                    <option value="" disabled selected hidden s> Time Slot </option>
-                                    <option value="0"> 06:00 AM </option>
-                                    <option value="1"> 07:30 AM </option>
-                                    <option value="2"> 09:30 AM </option>
-                                    <option value="3"> 11:00 AM </option>
-                                    <option value="4"> 01:00 PM </option>
-                                    <option value="5"> 02:30 PM </option>
-                                    <option value="6"> 03:30 PM </option>
-                                    <option value="7"> 05:10 PM </option>
-                                    <option value="8"> 06:15 PM </option>
-                                    <option value="9"> 05:10 PM </option>
-                                    <option value="10"> 07:45 PM </option>
-                                    <option value="11"> N/A </option>
-                                </select>
-                            </div>
-    
-                            <div class="exit"> </style>
-                                <img src="Images/Help.png" style="width: 25px; height: 25px; position: relative; filter:invert(1); top: 15px; left:10px; cursor: help;" title="From De La Salle University, location going to be dropped-off.">
-                                <select name="user_exit" id="user_exit" class="fillup" onchange="readyChangeTime('user_exit','user_exitTime');" style="width: 190px; margin: 10px; position: relative; left: 5px;">
-                                    <option value="" disabled selected hidden s> Exit Location </option>
-                                    <option value="0"> DLSU LC -> DLSU Manila </option>
-                                    <option value="1"> DLSU LC -> Paseo </option>
-                                    <option value="2"> DLSU LC -> Carmona </option>
-                                    <option value="3"> DLSU LC -> Pavilion Mall </option>
-                                    <option value="4"> DLSU LC -> Walter Mart </option>
-                                    <option value="5"> N/A </option>
-                                </select>
-                                <select name="user_exitTime" id="user_exitTime" class="fillup" style="width: 120px;">
-                                    <option value="" disabled selected hidden s> Time Slot </option>
-                                    <option value="0"> 06:00 AM </option>
-                                    <option value="1"> 07:30 AM </option>
-                                    <option value="2"> 09:30 AM </option>
-                                    <option value="3"> 11:00 AM </option>
-                                    <option value="4"> 01:00 PM </option>
-                                    <option value="5"> 02:30 PM </option>
-                                    <option value="6"> 03:30 PM </option>
-                                    <option value="7"> 05:10 PM </option>
-                                    <option value="8"> 06:15 PM </option>
-                                    <option value="9"> 05:10 PM </option>
-                                    <option value="10"> 07:45 PM </option>
-                                    <option value="11"> N/A </option>
-                                </select>
-                            </div>
-    
-                            <button type="submit" class="toggle_btn" id="reserve_btn" onclick="hideScheduleForm();"> Reserve <style> .toggle_btn{ font-size: large; font-weight: bold;}</style></button>
+                            <input type="text" placeholder="ID Number" class="fillup" name="user_idNumber" id="user_idNumber" required style="position: relative; margin-top: 40px;">
+                            <button type="submit" class="toggle_btn" id="reserve_btn" onclick="displayUserSchedule();" style="position: relative; font-size: large; font-weight: bold; margin-top: 60px;"> Search </button>
+                        
                         </form>
                         
                     </div>
