@@ -6,52 +6,108 @@ var user2 = new user_reservation("Benmar", "Ramirez", "benmar@gmail.com", "12116
 var user3 = new user_reservation("Nathan", "Asnan", "asnan@gmail.com", "12043338", "asnan", "Student", "Student", "Laguna", "2023-07-01", "Paseo -> DLSU LC", "05:45AM", "N/A", "N/A");
 var user4 = new user_reservation("Hwang", "Yeji", "hwangyeji@gmail.com", "12245678","yeji", "Student", "Student", "Laguna", "2023-07-01", "Paseo -> DLSU LC", "05:45AM", "N/A", "N/A");
 
-function createTextInfoAdmin(main_div){
+function createTextInfoAdmin(main_div, isSearch){
     
     var text_info = document.createElement('div');
     text_info.className = 'text_reserved_schedule';
     main_div.appendChild(text_info);
 
     var idValue = document.getElementById('user_idNumber');
-
-    var userArray = new Array(user0, user1, user2, user3, user4);
-    var foundUser;
-
-    for ( var i = 0; i < userArray.length; i++ ){
-        if ( userArray[i].idNumber == idValue.value ){
-            foundUser = userArray[i];
-            
-            break;
-        }
-    }
+    var dateValue = document.getElementById('user_date');
+    var entryValue = document.getElementById('user_entry');
+    var entryTimeValue = document.getElementById('user_entryTime');
+    var exitValue = document.getElementById('user_exit');
+    var exitTimeValue = document.getElementById('user_exitTime');
 
     var locationText = document.createElement('p');
-    locationText.innerHTML = foundUser.location;
-
     var idText = document.createElement('p');
-    if ( idValue.value == '' ){
-        idText.innerHTML = 'N/A';
-    }
-    else{
-        
-        idText.innerHTML = idValue.value;
-    }
-
     var dateText = document.createElement('p');
-    dateText.setAttribute('id', 'date_text');
-    dateText.innerHTML = foundUser.date;
-
     var entryText = document.createElement('p');
-    entryText.innerHTML = foundUser.entry;
-
     var entryTimeText = document.createElement('p');
-    entryTimeText.innerHTML = foundUser.entryTime;
-
     var exitText = document.createElement('p');
-    exitText.innerHTML = foundUser.exit;
- 
     var exitTimeText = document.createElement('p');
-    exitTimeText.innerHTML = foundUser.exitTime;
+
+    if ( isSearch == true ){
+        var userArray = new Array(user0, user1, user2, user3, user4);
+        var foundUser;
+
+        for ( var i = 0; i < userArray.length; i++ ){
+            if ( userArray[i].idNumber == idValue.value ){
+                foundUser = userArray[i];
+                break;
+            }
+        }
+
+        
+        locationText.innerHTML = foundUser.location;
+
+        if ( idValue.value == '' ){
+            idText.innerHTML = 'N/A';
+        }
+        else{
+            
+            idText.innerHTML = idValue.value;
+        }
+
+        dateText.innerHTML = foundUser.date;
+        entryText.innerHTML = foundUser.entry;
+        entryTimeText.innerHTML = foundUser.entryTime;
+        exitText.innerHTML = foundUser.exit;
+        exitTimeText.innerHTML = foundUser.exitTime;
+        
+
+    }else{
+        
+        if ( functionCalled == 0 ){
+            locationValue = document.getElementById('laguna_btn');
+        }
+        else{
+            locationValue = document.getElementById('manila_btn');
+        }
+
+        if ( idValue.value == '' ){
+            idText.innerHTML = 'N/A';
+        }else{
+            idText.innerHTML = idValue.value;
+        }
+        
+        if ( dateValue.value == '' ){
+            dateText.innerHTML = 'N/A';
+        }else{
+            dateText.innerHTML = dateValue.value;
+        }
+
+        if (entryValue.options[entryValue.selectedIndex].text == 'N/A' || entryValue.options[entryValue.selectedIndex].text == "Entry Location"){
+            entryText.innerHTML = 'N/A';
+        }else{
+            entryText.innerHTML = entryValue.options[entryValue.selectedIndex].text;
+        }   
+
+        if (entryTimeValue.options[entryTimeValue.selectedIndex].text == 'N/A' || entryTimeValue.options[entryTimeValue.selectedIndex].text == "Time Slot"){
+            entryTimeText.innerHTML = 'N/A';
+        }else{
+            entryTimeText.innerHTML = entryTimeValue.options[entryTimeValue.selectedIndex].text;
+        }
+
+        if ( exitValue.options[exitValue.selectedIndex].text == 'N/A' || exitValue.options[exitValue.selectedIndex].text == "Exit Location" ){
+            exitText.innerHTML = 'N/A';
+        }else{
+            exitText.innerHTML = exitValue.options[exitValue.selectedIndex].text;
+        }
+
+        if ( exitTimeValue.options[exitTimeValue.selectedIndex].text == 'N/A' || exitTimeValue.options[exitTimeValue.selectedIndex].text == "Time Slot"){
+            exitTimeText.innerHTML = 'N/A';
+        }else{
+            exitTimeText.innerHTML = exitTimeValue.options[exitTimeValue.selectedIndex].text;
+        }
+
+        locationText.innerHTML = locationValue.innerHTML;
+        //
+        //
+
+    }
+    
+
 
     var border = new Array();
 
@@ -81,7 +137,7 @@ function showSearchForm(){
     formBox.style.height = '245px';
 }
 
-function displayUserSchedule(){
+function displayUserSchedule(isSearch){
     
     var scheduleContainer = document.getElementsByClassName('schedule_container')[0];
     var formBox = document.getElementsByClassName('form_box')[0];
@@ -124,7 +180,13 @@ function displayUserSchedule(){
     divBtn.appendChild(edit_btn);
     divBtn.appendChild(delete_btn);
 
-    createTextInfoAdmin(div); //Show only for admin
+    if ( isSearch == true ){
+        createTextInfoAdmin(div, true); //Show searched users
+    }
+    else{
+        createTextInfoAdmin(div, false); //Show admin resserved users
+    }
+    
 
     formBox.addEventListener('submit', function(e) {
        e.preventDefault();

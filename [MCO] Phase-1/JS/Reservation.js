@@ -201,7 +201,7 @@ function hideScheduleForm(){
     }
     else {
         div.style.border = '5px solid yellow';
-        createTextInfoAdmin(div); //Show only for admin
+        createTextInfoAdmin(div,false); //Show only for admin
     }
 
     scheduleForm.addEventListener('submit', function(e) {
