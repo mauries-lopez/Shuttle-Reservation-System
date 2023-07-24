@@ -1,42 +1,34 @@
 var mongoose = require('mongoose');
 
-var UserSchema = new mongoose.Schema({
-    firstName: {
+var ReservationSchema = new mongoose.Schema({
+    startCampus: {
         type: String,
         required: true,
     },
-    lastName: {
+    date: {
         type: String,
         require: true,
     },
-    email: {
+    entryLoc: {
         type: String,
         required: true,
     },
-    idNumber: {
+    entryTime: {
+        type: String,
+        required: true,
+    },
+    exitLoc: {
+        type: String,
+        required: true,
+    },
+    exitTime: {
+        type: String,
+        required: true,
+    },
+    idNumber: { //This is used to bind a reservation to a user. Many-to-one relation.
         type: Number,
-        required: true,
-    },
-    password: {
-        type: String,
-        required: true,
-    },
-    securityCode: {
-        type: Number,
-        required: true,
-    },
-    designation: {
-        type: String,
-        required: true,
-    },
-    passengerType: {
-        type: String,
-        required: true,
-    },
-    profilePicture:{
-        type: String,
         required: false,
     }
 });
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('Reservation', ReservationSchema);

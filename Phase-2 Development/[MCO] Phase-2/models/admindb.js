@@ -21,6 +21,10 @@ var AdminSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    securityCode: {
+        type: Number,
+        required: true,
+    },
     designation: {
         type: String,
         required: true,
@@ -28,6 +32,10 @@ var AdminSchema = new mongoose.Schema({
     passengerType: {
         type: String,
         required: true,
+    },
+    profilePicture:{
+        type: String,
+        required: false,
     }
 });
 

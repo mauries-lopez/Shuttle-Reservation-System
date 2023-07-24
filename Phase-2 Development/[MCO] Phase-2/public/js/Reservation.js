@@ -15,6 +15,10 @@ function rightClick(){
     locationChangeFormHelper(1, false);
 }
 
+function getStartCampus(){
+	return functionCalled;
+}
+
 function eleftClick(){
     editFunctionCalled = 0;
     ebtn.style.left = '0';
@@ -25,6 +29,10 @@ function erightClick(){
     editFunctionCalled = 1;
     ebtn.style.left = '160px';
     locationChangeFormHelper(1, true);
+}
+
+function egetStartCampus(){
+	return editFunctionCalled;
 }
 
 function showUserForm(){
@@ -38,7 +46,7 @@ function showAdminForm(){
 }
 
 function readyHTML(displayUI){
-
+    
     if ( displayUI == 1 ){ //Admin 
         document.getElementById('reserveUser_schedule_btn').style.display = 'inline';
     }
@@ -53,14 +61,15 @@ function showScheduleForm() {
 	var doc = document;
     var scheduleForm = null;
     var date_box = document.getElementById('user_date');
-	var entry_box = doc.getElementById('user_entry');
-	var entryTimeBox = doc.getElementById('user_entryTime');
-	var exitBox = doc.getElementById('user_exit');
-	var exitTimeBox = doc.getElementById('user_exitTime');
-	var idBox = doc.getElementById('user_idNumber');
+    var entry_box = doc.getElementById('user_entry');
+    var entryTimeBox = doc.getElementById('user_entryTime');
+    var exitBox = doc.getElementById('user_exit');
+    var exitTimeBox = doc.getElementById('user_exitTime');
+    var idBox = doc.getElementById('user_idNumber');
 
     if ( adminFunctionCall == 0 ){
         idBox.style.display = 'none';
+        idBox.type = 'hidden';
         scheduleForm = document.getElementsByClassName('form_box')[0];
         scheduleForm.querySelector('h2').innerHTML = 'Reserve Now';
         scheduleForm.querySelector('h4').innerHTML = 'Just one-click away';
@@ -68,15 +77,16 @@ function showScheduleForm() {
     }
     else{
         idBox.style.display = 'block';
+        idBox.type = 'text';
         scheduleForm = document.getElementsByClassName('form_box')[0];
         scheduleForm.querySelector('h2').innerHTML = 'Admin Reserve';
         scheduleForm.querySelector('h4').innerHTML = 'Fillup to reserve for a user';
         scheduleForm.style.height = '450px';
     }
-	
-	if(idBox != null){
-		idBox.value="";
-	}
+    
+    if(idBox != null){
+        idBox.value="";
+    }
 	
 	date_box.value="";
 	entry_box.value="";
@@ -124,7 +134,44 @@ function showScheduleForm() {
 	
 }
 
-function hideScheduleForm(){
+function fillHiddenField(_box, _hiddenBox){
+	var box = document.getElementById(_box);
+	var hiddenBox = document.getElementById(_hiddenBox);
+	hiddenBox.value = box.options[box.selectedIndex].text;
+}
+function populateFields(){
+	var startCampusBox = document.getElementById('hiddenStartCampus');
+	
+	var idNumberBox = document.getElementById('user_idNumber');
+	var hiddenIdNumberBox = document.getElementById('hiddenIdNumber');
+	var adminIdBox = document.getElementById('adminId');
+	
+	adminIdBox.value = getIdNumber();
+	
+	var startVal;
+	if(!getStartCampus())
+		startVal = 'Laguna';
+	else
+		startVal = 'Manila';
+	
+	startCampusBox.value = startVal;
+	
+	if(idNumberBox.value != ""){
+		hiddenIdNumberBox.value = idNumberBox.value;
+	}
+	else
+		hiddenIdNumberBox.value = getIdNumber();
+	
+	fillHiddenField('user_entry', 'hiddenEntryLoc');
+	fillHiddenField('user_entryTime', 'hiddenEntryTime');
+	fillHiddenField('user_exit', 'hiddenExitLoc');
+	fillHiddenField('user_exitTime', 'hiddenExitTime');
+}
+
+function getIdNumber(){
+	return new URLSearchParams(window.location.search).get('idNumber');
+}
+function hideScheduleForm(fromLoad = 0, resultArr = [], isSearch){
 
     var scheduleContainer = document.getElementsByClassName('schedule_container')[0];
     var scheduleForm = document.getElementsByClassName('form_box')[0];
@@ -132,13 +179,16 @@ function hideScheduleForm(){
     var div = document.createElement('div');
     div.className = 'reserved_schedule';
 	if (count == null){
-		count = scheduleContainer.childElementCount + 1;
+		count = scheduleContainer.childElementCount;
 	}
 	else{
 		count = count + 1;
 		
 	} 
 	div.setAttribute('id', count );
+	if(resultArr.length != 0) var userID = resultArr[6];
+	else var userID = getIdNumber();
+	div.setAttribute('linkedidnumber', userID); 
 	
     scheduleContainer.appendChild(div);
 	
@@ -148,36 +198,29 @@ function hideScheduleForm(){
     
     reserved_schedule_container.appendChild(divBtn);
     
-    var edit_btn = document.createElement('button');
-    edit_btn.className = 'edit_btn';
-    edit_btn.setAttribute('type', 'button');
-	edit_btn.setAttribute('id', 'e_btn' + count);
-    edit_btn.setAttribute('onclick','showEditForm(' + count + ')');
-    edit_btn.innerHTML = 'EDIT';
+    if ( isSearch == false ){
+        var edit_btn = document.createElement('button');
+        edit_btn.className = 'edit_btn';
+        edit_btn.setAttribute('type', 'button');
+        edit_btn.setAttribute('id', 'e_btn' + count);
+        edit_btn.setAttribute('onclick','showEditForm(' + count + ')');
+        edit_btn.innerHTML = 'EDIT';
 
-    var delete_btn = document.createElement('button');
-    delete_btn.className = 'delete_btn';
-    delete_btn.setAttribute('type', 'button');
-	delete_btn.setAttribute('id', 'd_btn' + count);
-	delete_btn.setAttribute('onclick','showDeleteForm(' + count + ')');
-    delete_btn.innerHTML = 'DELETE';
+        var delete_btn = document.createElement('button');
+        delete_btn.className = 'delete_btn';
+        delete_btn.setAttribute('type', 'button');
+        delete_btn.setAttribute('id', 'd_btn' + count);
+        delete_btn.setAttribute('onclick','showDeleteForm(' + count + ')');
+        delete_btn.innerHTML = 'DELETE';
 
-    divBtn.appendChild(edit_btn);
-    divBtn.appendChild(delete_btn);
-
-    if( adminFunctionCall == 0 ) { 
-        createTextInfo(div); //Show only for registered user
+        divBtn.appendChild(edit_btn);
+        divBtn.appendChild(delete_btn);
     }
-    else {
-        div.style.border = '5px solid yellow';
-        createTextInfoAdmin(div,false); //Show only for admin
-    }
+    
+	if( fromLoad ){ //is being called to populate the list from after loading screen
+		createTextInfo(div, resultArr);
+	}
 
-    scheduleForm.addEventListener('submit', function(e) {
-       e.preventDefault();
-	})
-
-    scheduleForm.style.display = 'none';
 
 }
 
@@ -189,7 +232,7 @@ function showEditForm(i) {
 	var entryTimeBox = doc.getElementById('editUser_entryTime');
 	var exitBox = doc.getElementById('editUser_exit');
 	var exitTimeBox = doc.getElementById('editUser_exitTime');
-
+	
 	date_box.value="";
 	entry_box.value="";
 	entryTimeBox.value="";
@@ -214,13 +257,54 @@ function showEditForm(i) {
 	
 	exitTimeBox.appendChild(newOption);
 	
+	var subBtn = document.getElementById('edit_btn');
+	subBtn.setAttribute('onclick', 'hideEditForm(' + i + ')');
+	
     editForm.style.display = 'block';
 	
 }
 
-function hideEditForm(){
+function hideEditForm(i){
 	var editForm = document.getElementById('edit_box');
 	
+	var startCampusBox = document.getElementById('ehiddenStartCampus');
+	var idNumberBox = document.getElementById('ehiddenIdNumber');
+	
+	var startVal;
+	if(!egetStartCampus())
+		startVal = 'Laguna';
+	else
+		startVal = 'Manila';
+	
+	startCampusBox.value = startVal;
+	
+	idNumberBox.value = document.getElementById(i).getAttribute('linkedidnumber'); //Get the number linked to the reservation instead
+	
+	fillHiddenField('editUser_entry', 'ehiddenEntryLoc');
+	fillHiddenField('editUser_entryTime', 'ehiddenEntryTime');
+	fillHiddenField('editUser_exit', 'ehiddenExitLoc');
+	fillHiddenField('editUser_exitTime', 'ehiddenExitTime');
+	
+	//^^^from edit form
+	//vvv get current data
+	var currCampus = document.getElementById('eCurrStartCampus');
+	var currID = document.getElementById('eCurrIdNumber');
+	var currDate = document.getElementById('eCurrDate');
+	var currEntryL = document.getElementById('eCurrEntryLoc');
+	var currEntryT = document.getElementById('eCurrEntryTime');
+	var currExitL = document.getElementById('eCurrExitLoc');
+	var currExitT = document.getElementById('eCurrExitTime');
+	
+	var reserveText = document.getElementById(i).children[1];
+	//alert(reserveText);
+	currCampus.value = reserveText.children[0].innerHTML;
+	currID.value = document.getElementById(i).getAttribute('linkedidnumber');
+	currDate.value = reserveText.children[2].innerHTML;
+	currEntryL.value = reserveText.children[4].textContent;
+	currEntryT.value = reserveText.children[5].innerHTML;
+	currExitL.value = reserveText.children[7].textContent;
+	currExitT.value = reserveText.children[8].innerHTML;
+		
 	editForm.style.display="none";
 }
 
@@ -234,28 +318,34 @@ function showDeleteForm(i) {
 	var doc = document;
     var deleteForm = document.getElementById('delete_box');	
 	var deleteButton = doc.getElementById('delete_btn');
-	var cancelButton = doc.getElementById('cancel_btn');
 	
     deleteForm.style.display = 'block';
 
 	deleteButton.setAttribute('onclick', 'hideDeleteForm(' + i + ')');
-	cancelButton.setAttribute('onclick', 'hideDeleteForm(' + -1 + ')');
-
-    // Prevent form submission from refreshing the page
-    deleteForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-    });
 }
 
 function hideDeleteForm(i){
 	var deleteForm = document.getElementById('delete_box');
+		
+	var currCampus = document.getElementById('dCurrStartCampus');
+	var currID = document.getElementById('dCurrIdNumber');
+	var currDate = document.getElementById('dCurrDate');
+	var currEntryL = document.getElementById('dCurrEntryLoc');
+	var currEntryT = document.getElementById('dCurrEntryTime');
+	var currExitL = document.getElementById('dCurrExitLoc');
+	var currExitT = document.getElementById('dCurrExitTime');
 	
-	if(i != -1){
-		var deleteReservation = document.getElementById(i);
-		deleteReservation.remove();
-	}
+
+	var reserveText = document.getElementById(i).children[1];
+	currCampus.value = reserveText.children[0].innerHTML;
+	currID.value = document.getElementById(i).getAttribute('linkedidnumber');
+	currDate.value = reserveText.children[2].innerHTML;
+	currEntryL.value = reserveText.children[4].textContent;
+	currEntryT.value = reserveText.children[5].innerHTML;
+	currExitL.value = reserveText.children[7].textContent;
+	currExitT.value = reserveText.children[8].innerHTML;
 	
-	deleteForm.style.display="none";
+	deleteForm.style.display = "none";
 }
 
 function cancelDeleteForm(){
@@ -264,8 +354,8 @@ function cancelDeleteForm(){
 	deleteForm.style.display="none";
 }
 
-function createTextInfo(main_div){
-    
+function createTextInfo(main_div, resultArr = []){
+    var hasResults = resultArr.length;
     var text_info = document.createElement('div');
     text_info.className = 'text_reserved_schedule';
     main_div.appendChild(text_info);
@@ -285,49 +375,70 @@ function createTextInfo(main_div){
     var exitTimeValue = document.getElementById('user_exitTime');
 
     var locationText = document.createElement('p');
-    locationText.innerHTML = locationValue.innerHTML;
+	if(hasResults)
+		locationText.innerHTML = resultArr[0];
+	else
+		locationText.innerHTML = locationValue.innerHTML.trim();
 
     var dateText = document.createElement('p');
     dateText.setAttribute('id', 'date_text');
-    if ( dateValue.value == '' ){
-        dateText.innerHTML = 'N/A';
-    }
-    else{
-        
-        dateText.innerHTML = dateValue.value;
-    }
+	if(hasResults){
+		dateText.innerHTML = resultArr[1];
+	}
+	else{
+		if ( dateValue.value == '' ){
+			dateText.innerHTML = 'N/A';
+		}
+		else{
+			dateText.innerHTML = dateValue.value;
+		}
+	}
 
     var entryText = document.createElement('p');
-    if ( entryValue.options[entryValue.selectedIndex].text == 'N/A' || entryValue.options[entryValue.selectedIndex].text == "Entry Location"){
-        entryText.innerHTML = 'N/A';
-    }
-    else{
-        entryText.innerHTML = entryValue.options[entryValue.selectedIndex].text;
-    }
+	if(hasResults){
+		entryText.innerHTML = resultArr[2];
+	}
+	else{
+		if ( entryValue.options[entryValue.selectedIndex].text == 'N/A' || entryValue.options[entryValue.selectedIndex].text == "Entry Location"){
+			entryText.innerHTML = 'N/A';
+		}
+		else{
+			entryText.innerHTML = entryValue.options[entryValue.selectedIndex].text;
+		}
+	}
 
     var entryTimeText = document.createElement('p');
-    if ( entryTimeValue.options[entryTimeValue.selectedIndex].text == 'N/A' || entryTimeValue.options[entryTimeValue.selectedIndex].text == "Time Slot"){
-        entryTimeText.innerHTML = 'N/A';
-    }
-    else{
-        entryTimeText.innerHTML = entryTimeValue.options[entryTimeValue.selectedIndex].text;
-    }
+    if(hasResults) entryTimeText.innerHTML = resultArr[3];
+	else{
+		if ( entryTimeValue.options[entryTimeValue.selectedIndex].text == 'N/A' || entryTimeValue.options[entryTimeValue.selectedIndex].text == "Time Slot"){
+			entryTimeText.innerHTML = 'N/A';
+		}
+		else{
+			entryTimeText.innerHTML = entryTimeValue.options[entryTimeValue.selectedIndex].text;
+		}
+	}
 
     var exitText = document.createElement('p');
-    if ( exitValue.options[exitValue.selectedIndex].text == 'N/A' || exitValue.options[exitValue.selectedIndex].text == "Exit Location"){
-        exitText.innerHTML = 'N/A';
-    }
-    else{
-        exitText.innerHTML = exitValue.options[exitValue.selectedIndex].text;
-    }
+    if(hasResults) exitText.innerHTML = resultArr[4];
+	else{
+		if ( exitValue.options[exitValue.selectedIndex].text == 'N/A' || exitValue.options[exitValue.selectedIndex].text == "Exit Location"){
+			exitText.innerHTML = 'N/A';
+		}
+		else{
+			exitText.innerHTML = exitValue.options[exitValue.selectedIndex].text;
+		}
+	}
 
     var exitTimeText = document.createElement('p');
-    if ( exitTimeValue.options[exitTimeValue.selectedIndex].text == 'N/A' || exitTimeValue.options[exitTimeValue.selectedIndex].text == "Time Slot" ){
-        exitTimeText.innerHTML = 'N/A';
-    }
-    else{
-        exitTimeText.innerHTML = exitTimeValue.options[exitTimeValue.selectedIndex].text;
-    }
+    if(hasResults) exitTimeText.innerHTML = resultArr[5];
+	else{
+		if ( exitTimeValue.options[exitTimeValue.selectedIndex].text == 'N/A' || exitTimeValue.options[exitTimeValue.selectedIndex].text == "Time Slot" ){
+			exitTimeText.innerHTML = 'N/A';
+		}
+		else{
+			exitTimeText.innerHTML = exitTimeValue.options[exitTimeValue.selectedIndex].text;
+		}
+	}
 
 
     var border = new Array();
@@ -517,7 +628,7 @@ function locationChangeFormHelper(location, isEditButton){
                 selectEntryContainer.appendChild(option);
             }
 
-            var storage_exit = ["DLSU LC -> Yuchenco Bldg. ", "DLSU LC -> Paseo ", "DLSU LC -> Carmona  ", "DLSU LC -> Pavilion Mall ", "DLSU LC -> Walter Mart ", "N/A"];
+            var storage_exit = ["DLSU LC -> Yuchenco Bldg.", "DLSU LC -> Paseo", "DLSU LC -> Carmona", "DLSU LC -> Pavilion Mall", "DLSU LC -> Walter Mart", "N/A"];
             for ( var i = 0; i < storage_exit.length; i++ ){
                 var option = document.createElement('option');
                 option.value = i;
@@ -537,7 +648,7 @@ function locationChangeFormHelper(location, isEditButton){
                 selectEntryContainer.appendChild(option);
             }
 
-            var storage_exit = ["DLSU LC -> Yuchenco Bldg. ", "DLSU LC -> Paseo ", "DLSU LC -> Carmona  ", "DLSU LC -> Pavilion Mall ", "DLSU LC -> Walter Mart ", "N/A"];
+            var storage_exit = ["DLSU LC -> Yuchenco Bldg.", "DLSU LC -> Paseo", "DLSU LC -> Carmona", "DLSU LC -> Pavilion Mall", "DLSU LC -> Walter Mart", "N/A"];
             for ( var i = 0; i < storage_exit.length; i++ ){
                 var option = document.createElement('option');
                 option.value = i;
