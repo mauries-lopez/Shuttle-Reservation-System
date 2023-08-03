@@ -7,6 +7,62 @@ function hideErrorBox(){
     document.getElementById('error_box').style.display = "none";
 }
 
+
+
+async function submitForm(event) {
+  event.preventDefault()
+  const userId = document.getElementById('user_idNumber').value
+
+
+  const response = await fetch(`/SignUp/userid=${userId}`)
+  const data = await response.json()
+  const errorText = document.getElementById('errorText')
+  console.log(data)
+
+
+
+
+
+  if (data === "unique"){
+    // send a post request to add the info to the database
+    // get all data and store it in database
+    const registerData = {
+
+      
+      "firstName": document.getElementById('user_firstName').value,
+      "lastName": document.getElementById('user_lastName').value,
+      "email": document.getElementById('user_email').value,
+      "idNumber":document.getElementById('user_idNumber').value,
+      "password": document.getElementById('user_password').value,
+      "securityCode": document.getElementById('user_securityCode').value,
+      "designation" : document.getElementById('user_designation').value,
+      "passengerType": document.getElementById('user_passengerType').value,
+    }
+    
+    console.log(registerData)
+    const response = await fetch('/SignUp', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+        },
+      body: JSON.stringify(registerData),
+    });
+    if (response.ok){
+      console.log('User successfully added');
+      window.location.href = '/Login'; // Redirect to the /Login page
+    }
+ 
+ 
+  }
+  else {
+    errorText.textContent = "ERROR"
+    errorText.style.fontSize = "2rem"
+  }
+
+
+
+
+}
 /*
 
 function validate_User() {

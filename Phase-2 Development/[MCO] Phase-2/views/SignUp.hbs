@@ -5,7 +5,7 @@
         <title> Arrow Express - Sign Up </title> 
         <link rel="icon" type="image/png" href="Images/DLSU_Logo.png">
         <link rel="stylesheet" href="CSS/FormStyle.css">  <!-- Kailangan to if may separate CSS file -->
-        <script src="JS/User.js"> </script>
+        <script src="js/User.js"> </script>
     </head>
 
     <body>
@@ -19,9 +19,10 @@
             <div class="form_box">
                 <h2> Sign Up </h2>
                 <h4> It's quick and easy </h4>
+                <p id="errorText"></p>
                 <hr>
                 <div class="input">
-                    <form action="/SignUp" method="post">
+                    <form id= "sGform" onsubmit="submitForm(event)">
                         <div class="input_name">  
                             <div> <input type="text" placeholder="First Name" class="fillup name" required name="user_firstName" id="user_firstName"> </div>    
                             <div> <input type="text" placeholder="Last Name" class="fillup name" required name="user_lastName" id="user_lastName"> </div>    
@@ -48,7 +49,7 @@
                             <option value="Employee"> Employee </option>
                         </select>
 
-                        <button type="submit" class="toggle_btn" onclick="create_User()"> Sign Up <style> .toggle_btn{ font-size: large; font-weight: bold;}</style></button>
+                        <button type="submit"  class="toggle_btn" > Sign Up <style> .toggle_btn{ font-size: large; font-weight: bold;}</style></button>
                     </form>
                 </div>
 
