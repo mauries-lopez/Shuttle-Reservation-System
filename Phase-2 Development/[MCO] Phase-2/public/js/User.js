@@ -47,8 +47,8 @@ async function submitForm(event) {
     });
     if (response.ok) {
       console.log('User successfully added');
-      showSuccessBox("Account registered successfully!");
       window.location.href = '/Login'; //REDIRECT TO LOGIN IF SUCCESSFUL
+      showSuccessBox("Account registered successfully!");
     }
   } else {
     showErrorBox("Data already exists!");

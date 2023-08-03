@@ -47,7 +47,7 @@ const signupController = {
 
         var isExisting = await User.findOne({'idNumber': idNumber});
         if (isExisting) { 
-            console.log("WAG MERON NA KO")
+            console.log("ID NUMBER IS IN DATABASE")
             res.redirect("/SignUp")
         } 
         else {
