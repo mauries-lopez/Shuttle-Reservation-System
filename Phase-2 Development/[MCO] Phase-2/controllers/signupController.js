@@ -10,7 +10,6 @@ const signupController = {
 
     checkSignUp: async function (req, res) {
         const userId = req.params.idNumber
-        console.log("AKOP USER ID")
         console.log(userId)
         const parts = userId.split('=');
         const finalId = parts[1]
@@ -27,7 +26,6 @@ const signupController = {
         else {
             res.json("unique")
         }
-        
     },
 
     postSignUp: async function (req, res) {

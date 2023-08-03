@@ -7,28 +7,19 @@ function hideErrorBox(){
     document.getElementById('error_box').style.display = "none";
 }
 
-
-
 async function submitForm(event) {
   event.preventDefault()
   const userId = document.getElementById('user_idNumber').value
-
 
   const response = await fetch(`/SignUp/userid=${userId}`)
   const data = await response.json()
   const errorText = document.getElementById('errorText')
   console.log(data)
 
-
-
-
-
   if (data === "unique"){
-    // send a post request to add the info to the database
-    // get all data and store it in database
+    //SENDING POST REQUEST TO ADD INFO INTO DATABASE
+    //GETTING ALL DATA TO STORE IN DATABASE
     const registerData = {
-
-      
       "firstName": document.getElementById('user_firstName').value,
       "lastName": document.getElementById('user_lastName').value,
       "email": document.getElementById('user_email').value,
@@ -49,19 +40,13 @@ async function submitForm(event) {
     });
     if (response.ok){
       console.log('User successfully added');
-      window.location.href = '/Login'; // Redirect to the /Login page
+      window.location.href = '/Login'; //REDIRECT TO LOGIN IF SUCCESSFUL
     }
- 
- 
   }
   else {
     errorText.textContent = "ERROR"
     errorText.style.fontSize = "2rem"
   }
-
-
-
-
 }
 /*
 

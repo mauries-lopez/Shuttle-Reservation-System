@@ -90,8 +90,6 @@ function createTextInfoAdmin(main_div, resultArr = [], isSearch){
         locationText.innerHTML = locationValue.innerHTML;
 
     }
-    
-
 
     var border = new Array();
 
