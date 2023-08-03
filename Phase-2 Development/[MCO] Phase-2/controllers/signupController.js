@@ -14,13 +14,13 @@ const signupController = {
         const parts = userId.split('=');
         const finalId = parts[1]
         console.log(typeof(finalId))
-        console.log("FINAL ID NUM is ")
+        console.log("Final ID Number is:")
         console.log(finalId)
         var isExisting = await User.find({'idNumber': finalId});
-        console.log("EXISTING AKO ")
+        console.log("Is Existing")
         console.log(isExisting)
         if (isExisting.length>0) {
-            console.log("EXIST")
+            console.log("Existing Already!")
             res.json("error");
         } 
         else {
@@ -30,7 +30,7 @@ const signupController = {
 
     postSignUp: async function (req, res) {
 
-        console.log("INSIDE POST SIGN Up")
+        console.log("Inside PostSignUp")
         const { firstName, lastName, email, idNumber, password, securityCode, designation, passengerType } = req.body;
         console.log(req.body)
 
